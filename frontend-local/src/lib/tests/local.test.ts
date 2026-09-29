@@ -57,12 +57,22 @@ describe('Dado el perfil de un local', () => {
   })
 }) // Fin test Perfil del Local - Toast
 
-describe('Medios de pago del local', () => {
+describe('Modelo del local', () => {
   let local: Local
 
   beforeEach(() => {
     local = new Local()
     local.idLocal = 1
+  })
+
+  it('asocia el error de dirección vacía al campo dirección', () => {
+    local.nombreLocal = 'Taberna de Moe'
+    local.direccion = ''
+
+    local.validarLocal()
+
+    expect(local.tieneError('direccion')).toBe(true)
+    expect(local.tieneError('nombreLocal')).toBe(false)
   })
 
   it('envía al backend los medios de pago tildados con los nombres de su enum', () => {

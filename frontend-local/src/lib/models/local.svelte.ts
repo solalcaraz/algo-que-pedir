@@ -121,7 +121,7 @@ export class Local {
     }
 
     if (vacio(this.direccion)) {
-      this.agregarError('nombreLocal', 'Por favor, ingrese una dirección válida')
+      this.agregarError('direccion', 'Por favor, ingrese una dirección válida')
     }
 
     if (!positivo(this.altura) || !esEntero(this.altura)) {
