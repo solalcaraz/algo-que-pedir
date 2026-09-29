@@ -75,7 +75,7 @@ export default function CalificarLocalView() {
                     <IconButton
                         variant="ghost"
                         aria-label="Cerrar"
-                        onClick={() => navigate('/calificaciones')}
+                        onClick={() => navigate('/calificar-local')}
                         size="lg"
                     >
                         <FiX />
