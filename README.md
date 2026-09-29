@@ -4,9 +4,6 @@
 [![Cobertura backend](https://img.shields.io/codecov/c/github/solalcaraz/algo-que-pedir?flag=backend&style=flat-square&label=cobertura%20backend&logo=codecov)](https://codecov.io/gh/solalcaraz/algo-que-pedir)
 [![Cobertura vista local](https://img.shields.io/codecov/c/github/solalcaraz/algo-que-pedir?flag=frontend-local&style=flat-square&label=cobertura%20vista%20local&logo=codecov)](https://codecov.io/gh/solalcaraz/algo-que-pedir)
 [![Cobertura vista usuario](https://img.shields.io/codecov/c/github/solalcaraz/algo-que-pedir?flag=frontend-usuario&style=flat-square&label=cobertura%20vista%20usuario&logo=codecov)](https://codecov.io/gh/solalcaraz/algo-que-pedir)
-![Lenguajes](https://img.shields.io/github/languages/count/solalcaraz/algo-que-pedir?style=flat-square&label=lenguajes)
-![Tamaño](https://img.shields.io/github/repo-size/solalcaraz/algo-que-pedir?style=flat-square&label=tama%C3%B1o)
-![Último commit](https://img.shields.io/github/last-commit/solalcaraz/algo-que-pedir?style=flat-square&label=%C3%BAltimo%20commit)
 
 ![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=flat-square&logo=kotlin&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?style=flat-square&logo=springboot&logoColor=white)
