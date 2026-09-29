@@ -346,7 +346,7 @@ class DetalleControllerTest(@Autowired val mockMvc: MockMvc) {
     }
 
     @Test
-    fun `pedido con QR tiene incremento del 5 por ciento del subtotal`() {
+    fun `pedido con QR tiene incremento del 5 por ciento del subtotal con envio`() {
         val pedidoQR = pedidoRepositorio.create(Pedido(
             cliente = clienteTest,
             local = localTest,
@@ -363,9 +363,12 @@ class DetalleControllerTest(@Autowired val mockMvc: MockMvc) {
 
         val jsonNode = ObjectMapper().readTree(response)
         val subtotal = jsonNode.get("subtotal").asDouble()
+        val comisionDelivery = jsonNode.get("comisionDelivery").asDouble()
         val incrementoPago = jsonNode.get("incrementoPago").asDouble()
+        val total = jsonNode.get("total").asDouble()
 
-        assertEquals(subtotal * 0.05, incrementoPago, 0.01)
+        assertEquals((subtotal + comisionDelivery) * 0.05, incrementoPago, 0.01)
+        assertEquals(subtotal + comisionDelivery + incrementoPago, total, 0.01)
     }
 
     @Test
