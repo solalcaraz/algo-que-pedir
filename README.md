@@ -147,7 +147,7 @@ Algoritmos II me costó mucho, sobre todo el backend y la lógica. Para Algoritm
 
 Este repositorio es el original del trabajo práctico integrador que hicimos en equipo entre marzo y noviembre de 2025. El tag [`tp-original-2025`](https://github.com/solalcaraz/algo-que-pedir/tree/tp-original-2025) marca el TP tal como lo entregamos.
 
-**Equipo:** Carla Rocca, David Pazos (Algoritmos III), Damián Palomba, Joaquín Navarro, Facundo Casado (Algoritmos II) y María Sol Alcaraz.
+**Equipo:** María Sol Alcaraz, Facundo Casado (Algoritmos II), Joaquín Navarro, Damián Palomba, David Pazos (Algoritmos III) y Carla Rocca.
 
 **Mi parte en la versión original**:
 
