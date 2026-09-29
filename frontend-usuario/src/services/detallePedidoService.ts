@@ -5,8 +5,6 @@ const BASE_URL = 'http://localhost:9000'
 const PEDIDOS_URL = `${BASE_URL}/pedidos`
 const DETALLE_PEDIDOS_URL = `${BASE_URL}/checkout-pedido`
 
-const userId = Number(localStorage.getItem('idUsuario'))
-
 export interface DetallePedidoResponse {
   id: number
   local: {
@@ -41,6 +39,8 @@ export async function obtenerDetallePedido(id: number): Promise<DetallePedidoRes
 
 export async function getPedidosPorEstados(estados: string[]): Promise<Pedido[]> {
   try {
+    // Se lee en cada llamada: si se leyera al importar el módulo, después del login quedaría el valor previo
+    const userId = Number(localStorage.getItem('idUsuario'))
     const BASE_USUARIO_URL = `${BASE_URL}/usuarios/${userId}/pedidos`
     const responses = await Promise.all(
       estados.map(estado =>
