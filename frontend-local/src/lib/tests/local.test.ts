@@ -4,27 +4,32 @@ import { toast, type Toast } from '$lib/utils/toasts/toasts'
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import Page from '../../routes/(app)/perfil-local/+page.svelte'
 import { render, screen, fireEvent } from '@testing-library/svelte'
+import type { LocalDTO } from '$lib/dto/localDTO'
+import type { MetodoDePago } from '$lib/models/metodosDePago.svelte'
+
+const datosDelLocal = (mediosDePago: MetodoDePago[]): { localDataBackend: LocalDTO } => ({
+  localDataBackend: {
+    idLocal: 1,
+    nombre: 'Taberna de Moe',
+    urlImagenLocal: 'https://www.clarin.com/img/2017/10/05/SkWTevV3-_1200x0.jpg',
+    direccion: 'Av. Siempre Viva',
+    altura: 742,
+    latitud: 10,
+    longitud: 10,
+    porcentajeSobreCadaPlato: 3,
+    porcentajeRegaliasDeAutor: 3,
+    usuario: 'local1',
+    mediosDePago
+  }
+})
 
 describe('Dado el perfil de un local', () => {
   it('muestra y oculta el toast al descartar cambios', async () => {
     vi.useFakeTimers()
 
-    const mockData = {
-      localDataBackend: {
-        nombre: 'Taberna de Moe',
-        urlImagenLocal: 'https://www.clarin.com/img/2017/10/05/SkWTevV3-_1200x0.jpg',
-        direccion: 'Av. Siempre Viva',
-        altura: 742,
-        latitud: 10,
-        longitud: 10,
-        porcentajeSobreCadaPlato: 3,
-        porcentajeRegaliasDeAutor: 3,
-        mediosDePago: ['QR', 'TARJETA'],
-      }
-    }
-    render(Page, { props: { data: mockData } })
+    render(Page, { props: { data: datosDelLocal(['QR', 'TARJETA']) } })
 
-    let currentToast: Toast | null = null
+    let currentToast = null as Toast | null
 
     const unsubscribe = toast.subscribe((value: Toast | null) => {
       currentToast = value
@@ -82,21 +87,7 @@ describe('Modelo del local', () => {
   })
 
   it('renderiza el perfil de un local que no acepta todos los medios de pago', () => {
-    const mockData = {
-      localDataBackend: {
-        idLocal: 1,
-        nombre: 'Taberna de Moe',
-        urlImagenLocal: 'https://www.clarin.com/img/2017/10/05/SkWTevV3-_1200x0.jpg',
-        direccion: 'Av. Siempre Viva',
-        altura: 742,
-        latitud: 10,
-        longitud: 10,
-        porcentajeSobreCadaPlato: 3,
-        porcentajeRegaliasDeAutor: 3,
-        mediosDePago: ['QR']
-      }
-    }
-    render(Page, { props: { data: mockData } })
+    render(Page, { props: { data: datosDelLocal(['QR']) } })
 
     expect(screen.getByLabelText('QR')).toBeChecked()
     expect(screen.getByLabelText('Efectivo')).not.toBeChecked()
@@ -108,23 +99,9 @@ describe('Dado el perfil de un local', () => {
   it('el toast de descartar cambios muestra el mensaje que corresponde', async () => {
     vi.useFakeTimers()
 
-    const mockData = {
-      localDataBackend: {
-        idLocal: 1,
-        nombre: 'Taberna de Moe',
-        urlImagenLocal: 'https://www.clarin.com/img/2017/10/05/SkWTevV3-_1200x0.jpg',
-        direccion: 'Av. Siempre Viva',
-        altura: 742,
-        latitud: 10,
-        longitud: 10,
-        porcentajeSobreCadaPlato: 3,
-        porcentajeRegaliasDeAutor: 3,
-        mediosDePago: ['QR', 'TARJETA'],
-      }
-    }
-    render(Page, { props: { data: mockData } })
+    render(Page, { props: { data: datosDelLocal(['QR', 'TARJETA']) } })
 
-    let currentToast: Toast | null = null
+    let currentToast = null as Toast | null
 
     const unsubscribe = toast.subscribe((value: Toast | null) => {
       currentToast = value

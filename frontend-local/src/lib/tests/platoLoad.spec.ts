@@ -6,6 +6,7 @@ import { PLATOS_MOCK } from '$lib/data/mocks/platosMock'
 vi.mock('axios')
 
 import axios from 'axios'
+import type { HttpError, Redirect } from '@sveltejs/kit'
 
 describe('+page.ts load - platos', () => {
 
@@ -30,7 +31,7 @@ describe('+page.ts load - platos', () => {
     it('devuelve nuevoPlato=true cuando params.id es undefined', async () => {
       const { nuevoPlato } = await load({ 
         params: { id: undefined }
-      } as Parameters<typeof load>[0])
+      } as unknown as Parameters<typeof load>[0])
       
       expect(nuevoPlato).toBe(true)
     })
@@ -88,8 +89,8 @@ describe('+page.ts load - platos', () => {
           params: { id: 'abc' } 
         } as Parameters<typeof load>[0])
         expect.fail('Debería haber lanzado un error')
-      } catch (error: unknown) {
-        expect(error.status).toBe(400)
+      } catch (error) {
+        expect((error as HttpError).status).toBe(400)
       }
     })
 
@@ -99,9 +100,9 @@ describe('+page.ts load - platos', () => {
           params: { id: 'invalid' } 
         } as Parameters<typeof load>[0])
         expect.fail('Debería haber lanzado un error')
-      } catch (error: unknown) {
-        expect(error.status).toBe(400)
-        expect(error.body.message).toContain('debe ser un número válido')
+      } catch (error) {
+        expect((error as HttpError).status).toBe(400)
+        expect((error as HttpError).body.message).toContain('debe ser un número válido')
       }
     })
   })
@@ -116,9 +117,9 @@ describe('+page.ts load - platos', () => {
           params: { id: '999' } 
         } as Parameters<typeof load>[0])
         expect.fail('Debería haber lanzado un error de redirección')
-      } catch (error: unknown) {
-        expect(error.status).toBe(302)
-        expect(error.location).toBe('/')
+      } catch (error) {
+        expect((error as Redirect).status).toBe(302)
+        expect((error as Redirect).location).toBe('/')
       }
     })
   })
