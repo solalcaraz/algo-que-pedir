@@ -40,7 +40,7 @@ class PlatoService (
 
         val platoExistente = platoRepository.getById(id) // se recupera el plato actual del repo
         // Se valida que el local que intenta modificar el plato sea el dueño
-        if (platoExistente.local.id !== idLocal) {
+        if (platoExistente.local.id != idLocal) {
             throw ErrorException.BusinessException("No tiene permisos para modificar este plato")
         }
 
