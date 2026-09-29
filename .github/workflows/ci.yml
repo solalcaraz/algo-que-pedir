@@ -19,6 +19,11 @@ jobs:
       - uses: gradle/actions/setup-gradle@v3
       - run: chmod +x gradlew
       - run: ./gradlew test
+      - uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: backend/build/reports/jacoco/test/jacocoTestReport.xml
+          flags: backend
 
   frontend-local:
     runs-on: ubuntu-latest
@@ -35,8 +40,13 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn lint
       - run: yarn run check
-      - run: yarn test:unit --run
+      - run: yarn test:unit --run --coverage --coverage.reporter=lcov --coverage.include='src/**'
       - run: yarn build
+      - uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: frontend-local/coverage/lcov.info
+          flags: frontend-local
 
   frontend-usuario:
     runs-on: ubuntu-latest
@@ -52,5 +62,10 @@ jobs:
           cache-dependency-path: frontend-usuario/package-lock.json
       - run: npm ci
       - run: npx eslint src
-      - run: npx vitest run
+      - run: npx vitest run --coverage --coverage.include='src/**'
       - run: npm run build
+      - uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: frontend-usuario/coverage/lcov.info
+          flags: frontend-usuario

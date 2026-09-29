@@ -1,8 +1,7 @@
 # Algo Que Pedir
 
 [![CI](https://img.shields.io/github/actions/workflow/status/solalcaraz/algo-que-pedir/ci.yml?style=flat-square&label=CI)](https://github.com/solalcaraz/algo-que-pedir/actions/workflows/ci.yml)
-![Tests](https://img.shields.io/badge/tests-545%20pasando-2ea44f?style=flat-square)
-![Cobertura backend](https://img.shields.io/badge/cobertura%20backend-77%25-2ea44f?style=flat-square)
+[![Cobertura](https://img.shields.io/codecov/c/github/solalcaraz/algo-que-pedir?style=flat-square&label=cobertura&logo=codecov)](https://codecov.io/gh/solalcaraz/algo-que-pedir)
 ![Lenguajes](https://img.shields.io/github/languages/count/solalcaraz/algo-que-pedir?style=flat-square&label=lenguajes)
 ![Tamaño](https://img.shields.io/github/repo-size/solalcaraz/algo-que-pedir?style=flat-square&label=tama%C3%B1o)
 ![Último commit](https://img.shields.io/github/last-commit/solalcaraz/algo-que-pedir?style=flat-square&label=%C3%BAltimo%20commit)
