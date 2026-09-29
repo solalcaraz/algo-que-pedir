@@ -5,7 +5,6 @@ import { error } from '@sveltejs/kit'
 import axios from 'axios'
 
 
-//Tengo que poder validar lo que viene en la url como un estado
 const mapaEstadosValidos: Record<string, EstadoDelPedido> = {
   pendiente : EstadoDelPedido.PENDIENTE,
   preparado : EstadoDelPedido.PREPARADO,
@@ -14,10 +13,10 @@ const mapaEstadosValidos: Record<string, EstadoDelPedido> = {
 } 
 
 function validacionEstadoURL(value: string | null) {
-  const key = value?.trim().toLowerCase()                     //Normalizo el valor que viene de la url. Si viene vacio, tira error
+  const key = value?.trim().toLowerCase()
   if (!key) throw error(400, 'Debes agregar un valor para el filtrado de pedidos!')
   
-  const estadoFront = mapaEstadosValidos[key]               //Busca el valor en el mapa de los estados validos. Si no aparece, ingreso cualquier cosa.
+  const estadoFront = mapaEstadosValidos[key]
   if (!estadoFront) throw error(404, `El estado '${value}' no es válido.`)
   return { estadoFront, estadoBack: key }
 }
@@ -28,7 +27,7 @@ export const load : PageLoad = async ( { url, depends } ) => {
   const { estadoFront, estadoBack } = validacionEstadoURL(url.searchParams.get('estado'))
 
   try{
-    const pedidos = await pedidoService.pedidoByEstado(estadoBack)        //Llama al service usando el valor normalizado a minus (en el back le hace lowercase asi que lo toma asi)
+    const pedidos = await pedidoService.pedidoByEstado(estadoBack)
     return { estado: estadoFront, pedidos }
     
   } catch (err : unknown) {

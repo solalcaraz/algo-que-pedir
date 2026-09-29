@@ -12,7 +12,8 @@
   let { nombreColumnas, datosFilas, datosExtra }: PropsTabla = $props()
 </script>
 
-<section class="contenedor-tabla"> <!-- Sin este section no me pone los bordes -->
+<!-- Sin este section la tabla no muestra los bordes -->
+<section class="contenedor-tabla">
   <table>
     <thead>
       <tr>

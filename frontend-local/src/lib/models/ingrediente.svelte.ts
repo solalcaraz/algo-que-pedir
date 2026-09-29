@@ -19,7 +19,7 @@ export class Ingrediente {
     return this.origenAnimal === 'animal'
   }
 
-  // Setter para que funcione correctamente el binding con el slider
+  // El switch de origen trabaja con un booleano, pero el modelo guarda 'animal' o 'vegetal'
   set esAnimal(value: boolean) {
     this.origenAnimal = value ? 'animal' : 'vegetal'
   }
@@ -38,7 +38,7 @@ export class Ingrediente {
   }
 
   validarIngrediente() {
-    this.errors.length = 0 // se limpian errores anteriores
+    this.errors.length = 0
     if (!this.nombre || this.nombre.trim().length === 0) {
       this.agregarError('nombre', 'Debe ingresar un nombre para el ingrediente')
     }
@@ -69,6 +69,7 @@ export class Ingrediente {
 
 export type Origen = 'animal' | 'vegetal'
 
+// El back usa el nombre del enum (LACTEOS) y la vista muestra la etiqueta (Lácteos)
 export enum GrupoAlimenticio {
   CEREALES_Y_TUBERCULOS = 'Cereales y tubérculos',
   AZUCARES_Y_DULCES = 'Azúcares y dulces',
@@ -86,13 +87,11 @@ export type IngredienteJSON = {
   origenAnimal: boolean
 }
 
-// función que mapea el enum del grupo alimenticio con el label
 function mapGrupo(grupo: string): GrupoAlimenticio | '' {
   const mappedValue = GrupoAlimenticio[grupo as keyof typeof GrupoAlimenticio]
   return mappedValue ?? ''
 }
 
-// vuelve a mandar el label con el formato de enum
 type GrupoEnum = keyof typeof GrupoAlimenticio
 
 function grupoToEnum(label: string): string {

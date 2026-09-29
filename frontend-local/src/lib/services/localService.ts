@@ -10,7 +10,6 @@ export async function getLocal(id: number): Promise<LocalDTO> {
 }
 
 export async function updateLocal(localDTO: LocalDTO): Promise<LocalDTO> {
-  // console.log(localDTO)
   const response = await axios.put<LocalDTO>(`${API_URL}${PATH_LOCAL}`, localDTO, {
     headers: { 'Content-Type': 'application/json' }
   })

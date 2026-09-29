@@ -20,7 +20,6 @@
     if (!result.success) {
       mensajeError = result.message || 'Error al crear la cuenta'
     }
-    // Si es exitoso, podrías redirigir o mostrar un mensaje de éxito
 
     password = ''
     confirmarPassword = ''

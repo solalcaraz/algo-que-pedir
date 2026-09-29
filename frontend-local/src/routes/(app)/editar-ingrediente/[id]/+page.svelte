@@ -52,10 +52,8 @@
 </script>
 
 <main class="vista-edicion-ingrediente main-vista">
-  <!-- Contenedor de toda la vista -->
   <h1 class="titulo-edicion" data-testid='titulo'>{titulo}</h1>
   <section class="container-edicion contenedor-general">
-    <!-- Contenedor de los campos de edicion ingrediente -->
     <article class="item-input-edicion">
       <form>
         <Input
@@ -106,7 +104,6 @@
     </article>
   </section>
   <div class="container-botones-edicion">
-    <!-- Contenedor de los botones de guardar y descartar cambios -->
     {#if !readOnly}
       <Boton data-testid="btnGuardar" type="button" class="boton-primario boton-guardar" onclick={actualizar}
       >{botonGuardar}</Boton>

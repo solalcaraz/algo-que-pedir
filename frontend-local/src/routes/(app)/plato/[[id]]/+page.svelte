@@ -7,7 +7,6 @@
   import { opcionesImagen } from '$lib/utils/imagenesPlato'
   import plus from '$lib/assets/plus-circle.svg'
 
-  // Componentes
   import Input from '$lib/components/generales/input/input.svelte'
   import Textarea from '$lib/components/generales/input/textarea.svelte'
   import Switch from '$lib/components/generales/switch/switch.svelte'
@@ -21,15 +20,12 @@
   import { showToast } from '$lib/utils/toasts/toasts'
   import { showError } from '$lib/utils/errorHandler'
 
-  // Recibo la carga del plato segun corresponda
   let { data } = $props()
   const { plato, nuevoPlato } = data
 
-  // Estado local para deshabilitar botones
   let guardando = $state(false)
   let modalAbierto = $state(false)
 
-  // Effect y variable para manejar archivo
   let imagenSeleccionada = $state(plato.imagenUrl.split('/').pop())
 
   $effect(() => {
@@ -38,22 +34,18 @@
     }
   })
 
-  // Dinamismo para el titulo y el texto del boton primario
   const titulo = $derived( nuevoPlato ? 'Agregar nuevo plato' : `Editar Plato: ${plato?.nombre}` )
   const txtBtnPrimario = $derived(nuevoPlato ? 'Agregar plato' : 'Guardar cambios')
 
-  // Eliminar ingrediente de la tabla
   const eliminarIngrediente = (ingredienteId: number) => {
     plato.eliminarIngrediente(ingredienteId)
     showToast('Ingrediente eliminado con éxito', 'success')
   }
-  // Agregar ingredientes seleccionados del modal
   const agregarIngredientes = (ingredientes: Ingrediente[]) => {
     ingredientes.forEach((ing) => plato.agregarIngrediente(ing))
     showToast(`${ingredientes.length} ingrediente(s) agregado(s)`, 'success')
     modalAbierto = false
   }
-  // Funciones para los botones
   const volver = () => {
     goto('/menu')
   }
@@ -90,7 +82,6 @@
 <main class="main-vista vista-editar-plato">
   <h1 class="titulo">{titulo}</h1>
 
-  <!-- Descripción del plato -->
   <section class="contenedor-general editar-plato">
     <form>
       <Input
@@ -102,7 +93,7 @@
       <Textarea data-testid="descripcion" id="descripcion" nombre_label="Descripcion*" textarea={true} bind:value={plato.descripcion} />
       <ValidadorMensaje elemento={plato} atributo="descripcion" />
 
-      <!-- Imagen cargada como select, son brindadas desde el back -->
+      <!-- Las imágenes las sirve el backend, por eso se elige de una lista fija en vez de subir un archivo -->
        <Textarea data-testid="imagen" nombre_label="URL de la imagen del plato*" id="imagen" select={true}
         options={[{value: '', label: 'Selecciona una imagen para tu plato'}, ...opcionesImagen]}
         bind:value={imagenSeleccionada}
@@ -110,13 +101,11 @@
       <ValidadorMensaje elemento={plato} atributo="imagen" />
     </form>
 
-    <!-- Imagen de referencia -->
     <div class="editar-plato__imagen">
       <img class="foto" src={plato.imagenUrlCompleta} alt="Vista previa del plato" />
     </div>
   </section>
 
-  <!-- Costos del plato -->
   <section class="contenedor-general contenedor-general_especifico">
     <h2>Costos</h2>
     <form class="costos-plato">
@@ -126,7 +115,7 @@
 
       <Switch id="esDeAutor" titulo="Plato de Autor" subtitulo="Aplica un porcentaje adicional al precio de venta" bind:checked={plato.esDeAutor} />
 
-      <!-- Promocion solo si NO es nuevo -->
+      <!-- La consigna no permite que un plato nuevo (menos de 30 días) esté en promoción -->
       {#if plato.esNuevo}
         <p class="warning-platoNuevo">
           ⚠️ Los platos nuevos no pueden estar en promoción. Esta funcionalidad se habilitará luego
@@ -143,7 +132,6 @@
     </form>
   </section>
 
-  <!-- Detalle de los ingredientes  -->
   <section class="contenedor-general contenedor-general_especifico">
     <h2>Ingredientes</h2>
     <div class="contenedor_titulo-span">
@@ -187,7 +175,6 @@
   </div>
 </main>
 
-<!-- Modal de ingredientes -->
 <Modal open={modalAbierto} onClose={() => modalAbierto = false}>
   <ModalIngredientes ingredientesActuales={plato.ingredientes} onAgregar={agregarIngredientes} />
 </Modal>

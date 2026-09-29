@@ -18,7 +18,6 @@ export async function login(usuario: string, password: string): Promise<AuthResp
     )
 
     if (response.data.success) {
-      // Login exitoso - guardar usuario e idLocal
       if (response.data.usuario) {
         sessionStorage.setItem('usuario', response.data.usuario)
       }
@@ -27,7 +26,6 @@ export async function login(usuario: string, password: string): Promise<AuthResp
       }
       return { success: true }
     } else {
-      // Error en el login
       return {
         success: false,
         message:
@@ -56,7 +54,6 @@ export async function registro(
   password: string,
   confirmarPassword: string
 ): Promise<AuthResponse> {
-  // Validación de contraseñas
   if (password !== confirmarPassword) {
     return {
       success: false,

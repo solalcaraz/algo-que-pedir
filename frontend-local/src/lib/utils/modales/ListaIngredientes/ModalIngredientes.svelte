@@ -19,12 +19,10 @@
 
   let { ingredientesActuales, onAgregar }: IngredientesModalProps = $props()
 
-  // Estados del componente
   let todosLosIngredientes: Ingrediente[] = []
   let ingredientesSeleccionados = new SvelteSet<number>()
   let cargando = $state(true)
 
-  // Cargar ingredientes al abrir este componente
   onMount(async () => {
     try {
       todosLosIngredientes = await ingredientesService.todosLosIngredientes()
@@ -33,19 +31,17 @@
     } finally { cargando = false }
   })
 
-  // Filtrar ingredientes que ya están en el plato, uso derived para recalcular cuando se cambia
   const ingredientesDisponibles = $derived(
     todosLosIngredientes.filter(
       ing => !ingredientesActuales.some(actual => actual.id === ing.id)
     )
   )
 
-  // Agregar o sacar ingredientes a los que se seleccionan
   const toggleIngrediente = (id: number) => {
     if (ingredientesSeleccionados.has(id)) {
-      ingredientesSeleccionados.delete(id) // si ya estaba en la lista, lo saco
+      ingredientesSeleccionados.delete(id)
     } else {
-      ingredientesSeleccionados.add(id) // si no estaba entonces lo agrego
+      ingredientesSeleccionados.add(id)
     }
   }
 

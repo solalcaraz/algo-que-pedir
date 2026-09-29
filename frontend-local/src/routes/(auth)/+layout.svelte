@@ -1,4 +1,4 @@
-<!-- No importar header, hacer componente aparte si se cree necesario -->
+<!-- Login y registro no llevan el header de la app -->
 <script>
   import './login.css'
   let { children } = $props()

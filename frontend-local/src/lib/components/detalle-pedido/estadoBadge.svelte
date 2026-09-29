@@ -9,10 +9,10 @@
   let { estado }: EstadoBadgeProps = $props()
 
   const estadoColores: Record<EstadoDelPedido, string> = {
-    [EstadoDelPedido.PENDIENTE]: '#ff9800', // Orange
-    [EstadoDelPedido.PREPARADO]: '#2196f3', // Blue
-    [EstadoDelPedido.ENTREGADO]: '#4caf50', // Green
-    [EstadoDelPedido.CANCELADO]: '#f44336' // Red
+    [EstadoDelPedido.PENDIENTE]: '#ff9800',
+    [EstadoDelPedido.PREPARADO]: '#2196f3',
+    [EstadoDelPedido.ENTREGADO]: '#4caf50',
+    [EstadoDelPedido.CANCELADO]: '#f44336'
   }
 
   const colorBadge = estadoColores[estado] || estadoColores[EstadoDelPedido.PENDIENTE]

@@ -22,8 +22,7 @@ export class Local {
     TARJETA: false
   })
 
-  // Setters - puntualmente para que funcione bien la reactividad al momento de descartar cambios
-  // y que la actualización sea hecha por page.svelte y no por la clase Local
+  // Los usa la página al descartar cambios, así la restauración la decide la vista y no el modelo
   setNombre(nombre: string) {
     this.nombreLocal = nombre
   }
@@ -79,10 +78,6 @@ export class Local {
 
   errors: ValidarMensaje[] = $state([])
 
-  //Variable para hacer una copia de los valores originales de carga
-  //por si el usuario descarta los cambios que realiza
-  private original?: Local
-
 
   tieneError(campo: string): boolean {
     return this.errors.some((_) => _.campo === campo)
@@ -100,7 +95,6 @@ export class Local {
   }
 
 
-  // Validaciones
   validarLocal() {
     
     const PORCENTAJE_MINIMO = 0
@@ -110,7 +104,7 @@ export class Local {
     const LONGITUD_MINIMA = -180
     const LONGITUD_MAXIMA = 180
 
-    this.errors.length = 0 // se limpian errores anteriores
+    this.errors.length = 0
 
     if (vacio(this.nombreLocal)) {
       this.agregarError('nombreLocal', 'El nombre del local no puede estar vacío')

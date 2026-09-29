@@ -59,7 +59,6 @@
           <IconoBoton onclick={() => editar(ingrediente)} data-testid={'editar-'+ingrediente.id}>
             <img src={pencil} alt="lapiz">
           </IconoBoton>
-          <!-- AGREGAR ACCION PARA EL ICONO BOTON TRASH -->
           <IconoBoton onclick={() => eliminar(ingrediente)} data-testid={'eliminar-'+ingrediente.id}>
             <img src={trash} alt="tacho">
           </IconoBoton>
