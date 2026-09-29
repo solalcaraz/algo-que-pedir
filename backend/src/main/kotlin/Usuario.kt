@@ -82,7 +82,7 @@ class Usuario(
 
     //elimino ingrediente de set de prohibidos
     fun eliminarProhibido(ingrediente: Ingrediente) {
-        ingredientesPreferidos.remove(ingrediente)
+        ingredientesProhibidos.remove(ingrediente)
     }
 
     //* Metodo que devuelve el tiempo que lleva registrado en la plataforma

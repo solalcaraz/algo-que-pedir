@@ -42,6 +42,18 @@ class UsuariosSpec : DescribeSpec({
 
             exception.message shouldBe "El ingrediente mondongo está en la lista de prohibidos"
         }
+        it("Eliminar un prohibido lo saca de prohibidos y no toca los preferidos") {
+            val usuario = Usuario()
+            val preferido = Ingrediente("avena")
+            val prohibido = Ingrediente("mondongo")
+            usuario.agregarPreferido(preferido)
+            usuario.agregarProhibido(prohibido)
+
+            usuario.eliminarProhibido(prohibido)
+
+            usuario.ingredientesProhibidos.contains(prohibido) shouldBe false
+            usuario.ingredientesPreferidos.contains(preferido) shouldBe true
+        }
         it("Valido la edad del usuario"){
             val usuarioConEdadFija = Usuario(fechaNacimiento = LocalDate.now().minusYears(25))
 
