@@ -4,6 +4,8 @@
   import Input from '$lib/components/generales/input/input.svelte'
   import Boton from '$lib/components/generales/boton/boton.svelte'
   import { registro } from '$lib/services/authService'
+  import { showToast } from '$lib/utils/toasts/toasts'
+  import { goto } from '$app/navigation'
 
   let usuario = $state('')
   let password = $state('')
@@ -17,7 +19,10 @@
 
     const result = await registro(usuario, password, confirmarPassword)
 
-    if (!result.success) {
+    if (result.success) {
+      showToast('Cuenta creada con éxito', 'success')
+      goto('/login')
+    } else {
       mensajeError = result.message || 'Error al crear la cuenta'
     }
 
