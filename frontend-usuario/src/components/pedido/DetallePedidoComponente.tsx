@@ -1,6 +1,5 @@
 import { IoMdArrowBack } from 'react-icons/io'
 import { useNavigate } from 'react-router-dom'
-import { Button } from '@/components/boton/boton'
 import { toaster } from '../chakra-toaster/toaster'
 import ResumenDetallePedido from './DetallePedidoItems'
 import { Articulo } from '../articulo-checkout/Articulo'
@@ -16,8 +15,7 @@ export const PedidoDetalle = ({
   tarifaEntrega,
   distancia,
   total,
-  medioDePago,
-  isCheckout
+  medioDePago
 }: PedidoDetalleProps) => {
 
   const navigate = useNavigate()
@@ -65,8 +63,8 @@ export const PedidoDetalle = ({
             precioUnitario={articulo.precioUnitario}
             onDecrement={function (): void {
               toaster.create({
-                description: "No es posible cancelar este artículo, el pedido ya está hecho",
-                type: "warning"
+                description: 'No es posible cancelar este artículo, el pedido ya está hecho',
+                type: 'warning'
               })
             }} />
         ))}
@@ -74,39 +72,18 @@ export const PedidoDetalle = ({
 
       <ResumenDetallePedido
         items={[
-          { label: "Subtotal", value: subtotal },
-          { label: "Recargo por tipo de pago", value: recargo },
-          { label: "Tarifa de entrega", value: tarifaEntrega },
-          { label: "Total", value: total, bold: true }
+          { label: 'Subtotal', value: subtotal },
+          { label: 'Recargo por tipo de pago', value: recargo },
+          { label: 'Tarifa de entrega', value: tarifaEntrega },
+          { label: 'Total', value: total, bold: true }
         ]}
       />
 
 
-      <VStack align="stretch">
-
-        {isCheckout ? (
-          <VStack align="stretch">
-            <Text>Forma de Pago</Text>
-            <select name="medio-de-pago" id="medio-de-pago">
-              <option value="efectivo">Efectivo</option>
-              <option value="tarjeta">Tarjeta</option>
-              <option value="QR">QR</option>
-            </select>
-          </VStack>
-        ) : (
-          <HStack w="100%" justify="space-between">
-            <Text>Forma de Pago</Text>
-            <Text fontWeight="medium">{medioDePago}</Text>
-          </HStack>
-        )}
-      </VStack>
-
-      {isCheckout &&
-        <>
-          <Button mb={2}>Confirmar pedido</Button>
-          <Button variant="secundario">Limpiar carrito de compras</Button>
-        </>
-      }
+      <HStack w="100%" justify="space-between">
+        <Text>Forma de Pago</Text>
+        <Text fontWeight="medium">{medioDePago}</Text>
+      </HStack>
     </VStack>
-  ) //Fin return
+  )
 }

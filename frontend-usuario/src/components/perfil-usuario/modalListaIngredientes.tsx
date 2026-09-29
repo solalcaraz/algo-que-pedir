@@ -5,21 +5,19 @@ import {
   Text, 
   Button,
   Spinner,
-  Checkbox,
   Input,
-  InputGroup,
   CheckboxCard
 } from '@chakra-ui/react'
 import { Ingrediente } from '@/domain/Ingrediente'
 import { ingredienteService } from '@/services/ingredienteService'
 import { IoSearchOutline } from 'react-icons/io5'
-import { ItemRow } from '../itemRow/itemRow'
 
 type ModalIngredientesProps = {
   open: boolean
   onClose: () => void
   ingredientesSeleccionados: Ingrediente[]
-  ingredientesExcluidos: Ingrediente[] // Los que NO deben aparecer en la lista
+  // Los de la otra lista: un ingrediente no puede ser preferido y a evitar a la vez
+  ingredientesExcluidos: Ingrediente[]
   onSeleccionar: (ingredientes: Ingrediente[]) => void
   titulo?: string
 }
@@ -38,18 +36,15 @@ export const ModalIngredientes = ({
   const [seleccionados, setSeleccionados] = useState<Set<number>>(new Set())
   const [busqueda, setBusqueda] = useState('')
 
-  // Cargar todos los ingredientes al abrir el modal
   useEffect(() => {
     if (open) {
       cargarIngredientes()
-      // Inicializar con los ingredientes ya seleccionados
       const idsSeleccionados = new Set(ingredientesSeleccionados.map(i => i.id!))
       setSeleccionados(idsSeleccionados)
       setBusqueda('')
     }
   }, [open, ingredientesSeleccionados])
 
-  // Filtrar ingredientes según búsqueda
   useEffect(() => {
     if (!busqueda.trim()) {
       setIngredientesFiltrados(ingredientes)
@@ -66,7 +61,6 @@ export const ModalIngredientes = ({
       setCargando(true)
       const ingredientesData = await ingredienteService.getAll()
       
-      // Filtrar los ingredientes excluidos (prohibidos o preferidos según el caso)
       const idsExcluidos = new Set(ingredientesExcluidos.map(i => i.id!))
       const ingredientesDisponibles = ingredientesData.filter(
         ing => !idsExcluidos.has(ing.id!)
@@ -116,7 +110,6 @@ export const ModalIngredientes = ({
               </Stack>
             ) : (
               <Stack gap={3}>
-                {/* Buscador */}
                   <Input
                     placeholder="Buscar ingrediente..."
                     value={busqueda}
@@ -124,7 +117,6 @@ export const ModalIngredientes = ({
                   />
                   <IoSearchOutline />
 
-                {/* Lista de ingredientes */}
                 <Stack gap={2} maxH="400px" overflowY="auto">
                   {ingredientesFiltrados.length === 0 ? (
                     <Text color="gray.500" textAlign="center" py={4}>

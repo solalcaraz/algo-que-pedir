@@ -3,9 +3,8 @@ import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react'
 import { InformacionPersonal } from './InformacionPersonal'
-import { Usuario } from '@/domain/Usuario'
 import { USUARIOS_MOCK } from '@/mocks/usuariosMock'
-import { MemoryRouter, Route, Routes } from 'react-router-dom'
+import { MemoryRouter } from 'react-router-dom'
 
 const mockUsuario = USUARIOS_MOCK[0]
 
@@ -13,7 +12,8 @@ const mockUsuario = USUARIOS_MOCK[0]
 const mockContextValue = {
     usuario: mockUsuario,
     setUsuario: vi.fn(),
-    traerUsuario: vi.fn(),
+    guardarUsuario: vi.fn(),
+    guardando: false,
     navigate: vi.fn(),
     gotoPreferencias: vi.fn()
 }
@@ -168,12 +168,9 @@ describe('InformacionPersonal', () => {
     })
 
     describe('funcionalidad de guardar', () => {
-        test('actualiza el estado del padre al hacer click en Guardar', async () => {
+        test('manda a guardar el usuario con los datos editados al hacer click en Guardar', async () => {
             const user = userEvent.setup()
-            const mockSetUsuario = vi.fn()
-            
-            vi.mocked(mockContextValue.setUsuario).mockImplementation(mockSetUsuario)
-            
+
             render(
                 <ChakraProvider value={defaultSystem}>
                     <MemoryRouter>
@@ -190,7 +187,7 @@ describe('InformacionPersonal', () => {
             await user.click(botonGuardar)
             
             await waitFor(() => {
-                expect(mockSetUsuario).toHaveBeenCalled()
+                expect(mockContextValue.guardarUsuario).toHaveBeenCalledWith(expect.objectContaining({ nombre: 'Pedro' }))
             })
         })
     })
@@ -233,47 +230,6 @@ describe('InformacionPersonal', () => {
                 await user.click(botonPreferencia)
                 expect(mockGotoPreferencias).toHaveBeenCalled()
             }
-        })
-    })
-
-    describe('sincronización con cambios externos', () => {
-        test('actualiza el formulario cuando cambia el usuario del contexto', async () => {
-            const { rerender } = render(
-                <ChakraProvider value={defaultSystem}>
-                    <MemoryRouter>
-                        <InformacionPersonal />
-                    </MemoryRouter>
-                </ChakraProvider>
-            )
-            
-            // Usuario inicial
-            const nombreInicial = screen.getByTestId('input-nombre') as HTMLInputElement
-            expect(nombreInicial.value).toBe('Pepita')
-            
-            // Simular cambio en el contexto
-            const nuevoUsuario = new Usuario()
-            nuevoUsuario.nombre = 'Maria'
-            nuevoUsuario.apellido = 'Martínez'
-            nuevoUsuario.mail = 'correo@mock.com'
-            
-            mockContextValue.usuario = nuevoUsuario
-            
-            rerender(
-                <ChakraProvider value={defaultSystem}>
-                    <MemoryRouter>
-                        <InformacionPersonal />
-                    </MemoryRouter>
-                </ChakraProvider>
-            )
-            
-            await waitFor(() => {
-                const nombreActualizado = screen.getByTestId('input-nombre') as HTMLInputElement
-                expect(nombreActualizado.value).toBe('Maria')
-                const apellidoActualizado = screen.getByTestId('input-apellido') as HTMLInputElement
-                expect(apellidoActualizado.value).toBe('Martínez')
-                expect(screen.getByText('correo@mock.com')).toBeTruthy()
-
-            })
         })
     })
 

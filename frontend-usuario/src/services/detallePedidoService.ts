@@ -1,7 +1,7 @@
 import axios from 'axios'
 import type { Pedido } from '@/pages/detalle-pedido/Pedido'
+import { REST_SERVER_URL as BASE_URL } from './constants'
 
-const BASE_URL = 'http://localhost:9000'
 const PEDIDOS_URL = `${BASE_URL}/pedidos`
 const DETALLE_PEDIDOS_URL = `${BASE_URL}/checkout-pedido`
 

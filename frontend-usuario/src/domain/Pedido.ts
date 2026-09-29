@@ -36,23 +36,6 @@ export class Pedido {
         public usuario: Usuario | null = null
     ) {}
 
-    static fromJson(pedidoJSON: PedidoJSON): Pedido {
-        const pedido = new Pedido(
-            pedidoJSON.local,
-            pedidoJSON.platosDelPedido.map(platoJSON => Plato.fromJSON(platoJSON)),
-            pedidoJSON.medioDePago,
-            pedidoJSON.estadoPedido,
-            new Date(pedidoJSON.fechaPedido),
-            pedidoJSON.costoTotalPedido,
-            pedidoJSON.costoSubtotalPedido,
-            pedidoJSON.recargoMedioDePago,
-            pedidoJSON.tarifaEntrega,
-            Usuario.fromJSON(pedidoJSON.usuario)
-        )
-        pedido.id = pedidoJSON.id
-        return pedido
-    }
-
     static fromCarrito(
         carrito: Carrito,
         local: LocalJSON,

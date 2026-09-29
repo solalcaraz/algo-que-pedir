@@ -1,78 +1,78 @@
 import theme from '@/styles/theme'
 import { MemoryRouter } from 'react-router-dom'
 import { ChakraProvider } from '@chakra-ui/react'
-import { expect, test, describe, vi } from 'vitest'
+import { beforeEach, describe, expect, test, vi } from 'vitest'
 import userEvent from '@testing-library/user-event'
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import { ListaPedidos } from '@/pages/detalle-pedido/ListaPedidos'
+import type { EstadoPedido, Pedido } from './Pedido'
+import { cancelarPedidoService, getPedidosPorEstados } from '@/services/detallePedidoService'
 
-vi.mock('@/components/PedidoCard', () => ({
-  PedidoCard: () => <div data-testid="mock-pedido-card" />
+vi.mock('@/services/detallePedidoService', () => ({
+  getPedidosPorEstados: vi.fn(),
+  cancelarPedidoService: vi.fn()
 }))
 
-vi.mock('@/mocks/pedidos', () => ({ 
-  MOCK_PEDIDOS: [
-    { id: 1, local: { nombre: 'A' }, estadoDelPedido: 'PENDIENTE', platosDelPedido: [], costoTotalPedido: 1 },
-    { id: 2, local: { nombre: 'B' }, estadoDelPedido: 'PENDIENTE', platosDelPedido: [], costoTotalPedido: 1 },
-    { id: 3, local: { nombre: 'C' }, estadoDelPedido: 'PENDIENTE', platosDelPedido: [], costoTotalPedido: 1 },
-    { id: 4, local: { nombre: 'D' }, estadoDelPedido: 'ENTREGADO', platosDelPedido: [], costoTotalPedido: 1 },
-  ]
-}))
+const crearPedido = (id: number, nombreLocal: string, estadoPedido: EstadoPedido): Pedido => ({
+  id,
+  local: {
+    idLocal: id,
+    nombre: nombreLocal,
+    urlImagenLocal: '',
+    rating: 0,
+    reviews: '',
+    mediosDePago: [],
+    tarifaEntrega: 0,
+    recargosMedioDePago: {}
+  },
+  estadoPedido,
+  fechaPedido: '1 de octubre',
+  platosDelPedido: [],
+  cantidadDePlatos: 1,
+  costoTotalPedido: 100
+})
 
-describe('Lista y Detalle de Pedidos', () => {
-  test('en la lista de pedidosaparecen las 3 pestañas -Pendientes, Completados, Cancelados-', async () => {
-    render(
-      <MemoryRouter>
-        <ChakraProvider value={theme}>
-          <ListaPedidos />
-        </ChakraProvider>
-      </MemoryRouter>
-    )
+const renderLista = () =>
+  render(
+    <MemoryRouter>
+      <ChakraProvider value={theme}>
+        <ListaPedidos />
+      </ChakraProvider>
+    </MemoryRouter>
+  )
 
-    expect(screen.getByTestId('test-pendientes')).toBeTruthy()
-    expect(screen.getByTestId('test-completados')).toBeTruthy()
-    expect(screen.getByTestId('test-cancelados')).toBeTruthy()
+describe('Lista de pedidos del usuario', () => {
+  beforeEach(() => {
+    vi.mocked(getPedidosPorEstados).mockResolvedValue([
+      crearPedido(1, 'Taberna de Moe', 'PENDIENTE'),
+      crearPedido(2, 'Krusty Burger', 'PREPARADO')
+    ])
+    vi.mocked(cancelarPedidoService).mockResolvedValue(undefined)
   })
 
-    test('los pedidos pendiente se mueven a cancelados después de ser cancelados', async () => {
-    
+  test('muestra las pestañas Pendientes, Completados y Cancelados y arranca con los pendientes', async () => {
+    renderLista()
+
+    expect(screen.getByRole('tab', { name: /pendientes/i })).toBeTruthy()
+    expect(screen.getByRole('tab', { name: /completados/i })).toBeTruthy()
+    expect(screen.getByRole('tab', { name: /cancelados/i })).toBeTruthy()
+
+    expect(await screen.findByText('Taberna de Moe')).toBeTruthy()
+    expect(screen.getByText('Krusty Burger')).toBeTruthy()
+    expect(getPedidosPorEstados).toHaveBeenCalledWith(['PENDIENTE', 'PREPARADO'])
+  })
+
+  test('al confirmar la cancelación, el pedido sale de la lista de pendientes', async () => {
     const user = userEvent.setup()
-    
-    render(
-      <MemoryRouter>
-        <ChakraProvider value={theme}>
-          <ListaPedidos />
-        </ChakraProvider>
-      </MemoryRouter>
-    )
+    renderLista()
+    await screen.findByText('Taberna de Moe')
 
-    const pestañaPendientes = await screen.findByRole('tab', { name: /pendientes/i })
-    const pestañaCompletados = await screen.findByRole('tab', { name: /completados/i })
-    const pestañaCancelados = await screen.findByRole('tab', { name: /cancelados/i })
+    const [cancelarMoe] = screen.getAllByRole('button', { name: /cancelar pedido/i })
+    await user.click(cancelarMoe)
+    await user.click(await screen.findByRole('button', { name: 'Sí' }))
 
-    await user.click(pestañaPendientes)
-    const cardMoe = await screen.findByText('Taberna de Moe')
-    const cardKrusty = await screen.findByText('Krusty Burger')
-    const cardMensita = await screen.findByText('Mensita')
-
-    expect(cardMoe).toBeTruthy()
-    expect(cardKrusty).toBeTruthy()
-    expect(cardMensita).toBeTruthy()
-
-    
-    const botonesCancelar = await screen.findAllByRole('button', { name: /cancelar pedido/i })
-    expect(botonesCancelar).toHaveLength(2)
-
-    const boton1 = botonesCancelar[0]
-    const boton2 = botonesCancelar[1]
-
-    await user.click(boton1)
-    await user.click(boton2)
-
-    screen.debug()
-
-
+    expect(cancelarPedidoService).toHaveBeenCalledWith(1)
+    await waitFor(() => expect(screen.queryByText('Taberna de Moe')).toBeNull())
+    expect(screen.getByText('Krusty Burger')).toBeTruthy()
   })
-
-  })
-
+})

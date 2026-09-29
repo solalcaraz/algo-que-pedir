@@ -29,7 +29,6 @@ export const ModalPalabrasClave = ({
   const [nuevaPalabra, setNuevaPalabra] = useState('')
   const [error, setError] = useState('')
 
-  // Reiniciar al abrir el modal
   const handleOpenChange = (isOpen: boolean) => {
     if (isOpen) {
       setPalabras([...palabrasActuales])
@@ -81,7 +80,6 @@ export const ModalPalabrasClave = ({
           
           <Dialog.Body>
             <Stack gap={4}>
-              {/* Input para agregar nueva palabra */}
               <HStack>
                 <Input
                   placeholder="Escribe una palabra clave..."
@@ -97,14 +95,12 @@ export const ModalPalabrasClave = ({
                 </IconButton>
               </HStack>
 
-              {/* Mensaje de error */}
               {error && (
                 <Text color="red.500" fontSize="sm">
                   {error}
                 </Text>
               )}
 
-              {/* Lista de palabras */}
               <Stack gap={2} maxH="250px" overflowY="auto">
                 {palabras.length === 0 ? (
                   <Text color="gray.500" textAlign="center" py={4}>

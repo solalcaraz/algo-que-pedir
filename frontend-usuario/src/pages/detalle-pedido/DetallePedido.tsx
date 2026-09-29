@@ -1,14 +1,16 @@
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { agruparPlatos } from '@/utils/agruparPlatos'
+import { agruparPlatos, type PlatoAgrupado } from '@/utils/agruparPlatos'
 import { VStack, Spinner, Heading, Text } from '@chakra-ui/react'
-import { obtenerDetallePedido } from '@/services/detallePedidoService'
+import { obtenerDetallePedido, type DetallePedidoResponse } from '@/services/detallePedidoService'
 import { PedidoDetalle } from '@/components/pedido/DetallePedidoComponente'
+
+type DetalleConArticulos = DetallePedidoResponse & { articulos: PlatoAgrupado[] }
 
 export const PaginaDetallePedido = () => {
   const { id } = useParams()
   const [loading, setLoading] = useState(false)
-  const [pedido, setPedido] = useState<any>(null)
+  const [pedido, setPedido] = useState<DetalleConArticulos | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   if (!pedido && !loading && id) {
@@ -67,7 +69,6 @@ export const PaginaDetallePedido = () => {
       distancia={pedido.distancia}
       total={pedido.costoTotalPedido}
       medioDePago={pedido.medioDePago}
-      isCheckout={false}
     />
   )
 }

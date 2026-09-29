@@ -1,4 +1,3 @@
-// ingredienteService.ts
 import axios from 'axios'
 import { REST_SERVER_URL } from './constants'
 import { Ingrediente, type IngredienteJSON } from '@/domain/Ingrediente'

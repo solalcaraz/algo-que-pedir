@@ -59,8 +59,7 @@ export const ListaPedidos = () => {
     try {
       await cancelarPedidoService(id)
 
-      // Esto es para sacar el pedido cancelado de la lista de pendientes
-      // sin tener que actualizar la página ni volver a pegarle al backend
+      // Saco el pedido de la lista local para no volver a consultar al backend
       setPedidosPendientes(prev => prev.filter(p => p.id !== id))
 
       toaster.create({
@@ -144,5 +143,4 @@ export const ListaPedidos = () => {
       </Tabs.Root>
     </VStack>
   )
-  //Fin return
 }

@@ -15,7 +15,6 @@ export const buttonRecipe = defineRecipe({
             secundario: { bg: ' secundario', color: 'principal', border: '1px solid', borderColor: 'principal'}
         }
     },
-    // Dejo como default el boton primario
     defaultVariants: {
         variant: 'primario'
     },

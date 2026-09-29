@@ -1,6 +1,5 @@
 import { REST_SERVER_URL } from '@/services/constants'
 
-//El back va a devolver esto
 export type PlatoJSON = {
     id: number,
     nombre: string,

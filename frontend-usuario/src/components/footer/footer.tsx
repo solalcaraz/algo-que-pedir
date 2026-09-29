@@ -6,7 +6,7 @@ import ticketRecibo from '/ticketRecibo.svg'
 import perfil from '/perfil.svg'
 import estrellaPuntuacion  from '/estrellaPuntuacion.svg'
 
-//Hay que agregar las rutas aca y en el routes.tsx
+// Cada link necesita su ruta en routes.tsx
 const linksFooter = [
     { link: '/home', label:'Inicio', icon: home },
     { link: '/detalle-pedido/', label: 'Pedidos', icon: ticketRecibo },
