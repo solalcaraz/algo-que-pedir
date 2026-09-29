@@ -44,13 +44,11 @@ export const IngredientesPreferidos = () => {
     return (
         <>
             <Stack py={5} pb="100px">
-                {/* Header */}
                 <HStack alignItems='center' justifyContent='center' onClick={volver}>
                     <IconButton variant="ghost"><IoMdArrowBack /></IconButton>
                     <Heading as='h1'>Ingrediente Preferido</Heading>
                 </HStack>
 
-                {/* Lista de ingredientes */}
                 <Stack gap={2} >
                     {usuario.ingredientesPreferidos.length > 0 ? (
                         usuario.ingredientesPreferidos.map((ingrediente) => (
@@ -65,7 +63,6 @@ export const IngredientesPreferidos = () => {
                     )}
                 </Stack>
 
-                {/* Botón agregar ingrediente */}
                 <Flex position="fixed" bottom="80px" left={0} right={0} justifyContent="center" px={4} >
                     <Button onClick={() => setModalAbierto(true)} maxW="400px" w="full">
                         Añadir ingrediente
@@ -73,7 +70,6 @@ export const IngredientesPreferidos = () => {
                 </Flex>
             </Stack>
 
-            {/* Modal de selección */}
             <ModalIngredientes
                 open={modalAbierto}
                 onClose={() => setModalAbierto(false)}
@@ -119,13 +115,11 @@ export const IngredientesEvitar = () => {
     return (
         <>
             <Stack py={5} pb='100px'>
-                {/* Header */}
                 <HStack alignItems='center' justifyContent='center' onClick={volver}>
                     <IconButton variant="ghost"><IoMdArrowBack /></IconButton>
                     <Heading as='h1'>Ingredientes a Evitar</Heading>
                 </HStack>
 
-                {/* Lista de ingredientes */}
                 <Stack gap={2}>
                     {usuario.ingredientesEvitar.length > 0 ? (
                         usuario.ingredientesEvitar.map((ingrediente) => (
@@ -140,7 +134,6 @@ export const IngredientesEvitar = () => {
                     )}
                 </Stack>
 
-                {/* Botón agregar ingrediente */}
                 <Flex position="fixed" bottom="80px" left={0} right={0} justifyContent="center" px={4} >
                     <Button onClick={() => setModalAbierto(true)} maxW="400px" w="full">
                         Añadir ingrediente
@@ -148,7 +141,6 @@ export const IngredientesEvitar = () => {
                 </Flex>
             </Stack>
 
-            {/* Modal de selección */}
             <ModalIngredientes
                 open={modalAbierto}
                 onClose={() => setModalAbierto(false)}

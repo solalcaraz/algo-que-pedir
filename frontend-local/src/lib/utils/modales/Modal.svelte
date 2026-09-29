@@ -7,7 +7,6 @@
 
   import './modal.css'
 
-  // Cerrar modal con tecla "Esc"
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Escape' && open) {
       onClose()
@@ -37,4 +36,4 @@
       {/if}
     </div>
   </div>
-{/if} -->
+{/if}

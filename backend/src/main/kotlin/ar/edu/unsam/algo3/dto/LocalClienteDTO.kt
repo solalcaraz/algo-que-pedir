@@ -12,10 +12,11 @@ data class LocalClienteDTO (
     val cantidadReviews: Int,
     val reviews: List<String>,
     val tarifaEntrega: Double,
-    val recargosMedioDePago: Map<String, Double>
+    val recargosMedioDePago: Map<String, Double>,
+    val cantidadPedidos: Int = 0
 )
 
-fun Local.toClienteDTO() = LocalClienteDTO (
+fun Local.toClienteDTO(cantidadPedidos: Int = 0) = LocalClienteDTO (
     idLocal = this.id!!,
     nombre = this.nombre,
     mediosDePago = this.mediosDePago,
@@ -24,15 +25,6 @@ fun Local.toClienteDTO() = LocalClienteDTO (
     cantidadReviews = this.cantidadReviews(),
     reviews = this.obtenerReviews(),
     tarifaEntrega = this.tarifaEntrega,
-    recargosMedioDePago = this.recargosMedioDePago.mapKeys { it.key.name }
+    recargosMedioDePago = this.recargosMedioDePago.mapKeys { it.key.name },
+    cantidadPedidos = cantidadPedidos
 )
-
-fun LocalClienteDTO.toDomain(): Local {
-    return Local(
-        nombre = this.nombre,
-        mediosDePago =  this.mediosDePago,
-        urlImagenLocal = this.urlImagenLocal
-    ).apply {
-        this.id = this@toDomain.idLocal
-    }
-}

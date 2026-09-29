@@ -9,17 +9,13 @@
   
   interface Props {
     pedido: Pedido
-    //intento de una callback prop: el comp padre (vista) le pasa una fx opcional a la card
-    //para que le avise si sucede un evento (el cambio de estado, en este caso)
     cambioDeEstado?: (id: number, nuevoEstado: string) => void
   }
 
   const { pedido, cambioDeEstado }: Props = $props()
 
-  // Redireccion al detalle del pedido, toma el id del pedido para armar la ruta
   const redireccionADetalle = () => goto(`/detalle-pedido/${pedido.id}`)
 
-  //Me sirve para el label dinamico de los botones y asociar cuál es el siguiente estado
   const mapaSiguienteEstado: Record<string, { label: string; next?: string }> = {
     [EstadoDelPedido.PENDIENTE]: { label: 'Preparar',  next: 'PREPARADO' },
     [EstadoDelPedido.PREPARADO]: { label: 'Entregar',  next: 'ENTREGADO' },
@@ -32,24 +28,22 @@
   )
 
   const manejoCambioEstado = (e: Event) => {
-    e.stopPropagation()       //Detiene la propagacion del evento para que no se active un onclick del article
+    // Sin esto, el click en el botón también dispara el onclick de la tarjeta y navega al detalle
+    e.stopPropagation()
     e.preventDefault()
-    const next = accion.next  //si la accion tiene un valor para el sig estado, llama a esa callback prop 
+    const next = accion.next
     if(!next){
-      redireccionADetalle()   //si no, renderiza el boton para que veas el detalle
+      redireccionADetalle()
     }else{
-      cambioDeEstado?.(pedido.id, next)
+      cambioDeEstado?.(pedido.id!, next)
     }
   }
 </script>
 
 <article class="pedido-tarjeta contenedor-general" onclick={redireccionADetalle}>
-  <!---->
-  <!-- Tarjeta de pedido -->
   <header class="pedido-header">
     <p>Pedido #{pedido.id}</p>
 
-    <!--Componente info de usuario-->
     <UsuarioSection nombre={pedido.cliente.nombre} username={pedido.cliente.username} />
 
     <p class="info-pedido">
@@ -57,7 +51,6 @@
     </p>
   </header>
 
-  <!--Componente info de direccion-->
   <DireccionSection
     direccion={pedido.direccion.direccion}
     latitud={pedido.direccion.latitud}

@@ -29,28 +29,25 @@ class PlatoService (
     }
 
     fun update(id: Int, actualizarPlato: Plato, idLocal: Int): Plato {
-        // Primero valida si id es null, dodino también lo hace en tareas de la misma manera
         if (actualizarPlato.id == null){
             throw ErrorException.BusinessException("El objeto debe tener un ID")
         }
-        // Validacion extra de URL (como en tareas)
         if (actualizarPlato.id!! != id) {
             throw ErrorException.BusinessException("Id en URL distinto del id que viene en el body")
         }
 
-        val platoExistente = platoRepository.getById(id) // se recupera el plato actual del repo
-        // Se valida que el local que intenta modificar el plato sea el dueño
-        if (platoExistente.local.id !== idLocal) {
+        val platoExistente = platoRepository.getById(id)
+        // Solo el local dueño del plato lo puede modificar
+        if (platoExistente.local.id != idLocal) {
             throw ErrorException.BusinessException("No tiene permisos para modificar este plato")
         }
 
-        // valida si se actualizan ingredientes, agregarlos y usar el repo de ingredientes
         asignarIngredientes(actualizarPlato)
 
-        platoExistente.actualizar(actualizarPlato) // pisa campo a campo los nuevos valores para la instancia existente
+        platoExistente.actualizar(actualizarPlato)
         platoExistente.validar()
 
-        return platoRepository.update(platoExistente) // y aca se actualiza en el repo con el nuevo y lo devuelve
+        return platoRepository.update(platoExistente)
     }
 
     fun delete(id: Int): List<Plato> {
@@ -59,17 +56,14 @@ class PlatoService (
         return platoRepository.findAll()
     }
 
-    // Para asignar al local el plato nuevo
     private fun asignarLocal(plato: Plato, idLocal: Int) {
         plato.local = localRepository.getById(idLocal)
     }
 
-    // Agregar los ingredientes al palto, verificando con su repo que existan (nuevo/actualizar)
     private fun asignarIngredientes(plato: Plato){
         val ingredientesActuales = plato.listaDeIngredientes.toMutableSet()
         plato.listaDeIngredientes.clear()
 
-        // Filtro los ingredientes que existan en el repo, sino los guardo para mostrar en una lista los q no existen
         val ingredientesFaltantes = mutableSetOf<String>()
         ingredientesActuales.forEach { ingrediente ->
             val ingredienteExistente = ingredienteRepository.getByNombre(ingrediente.nombre)
@@ -86,7 +80,6 @@ class PlatoService (
         }
     }
 
-    //Metodo para filtrar del repo a todos los platos que pertenecen a un local
     fun getPlatosByLocalID(localID : Int) : List<Plato> {
         val localABuscar = localRepository.getById(localID)
 

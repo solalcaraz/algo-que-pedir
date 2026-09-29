@@ -61,8 +61,7 @@ fun CriterioDTO.toUsuarioStrategy(localRepo: LocalRepositorio): UsuarioStrategy 
         TipoCriterioDTO.FIEL -> {
             UsuarioFielStrategy().apply {
                 this@toUsuarioStrategy.localesPreferidos?.forEach { localDTO ->
-                    val local = localRepo.getById(localDTO.idLocal).toCriterioDTO()
-                    agregarLocalPreferido(local.toDomain())
+                    agregarLocalPreferido(localRepo.getById(localDTO.idLocal))
                 }
             }
         }

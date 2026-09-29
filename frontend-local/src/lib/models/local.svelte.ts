@@ -2,9 +2,9 @@ import type { LocalDTO } from '$lib/dto/localDTO'
 import type { MetodoDePago } from './metodosDePago.svelte'
 import { getUsuarioDelLocal } from '$lib/utils/currentSession'
 import { esEntero, positivo, vacio } from '$lib/utils/validaciones'
-import { ValidarMensaje } from '$lib/utils/validadorMensaje/ValidarMensaje'
+import { Validable } from './validable.svelte'
 
-export class Local {
+export class Local extends Validable {
 
   idLocal: number | null = null
   nombreLocal = $state<string>('')
@@ -17,13 +17,12 @@ export class Local {
   porcentajeAutor = $state<number>(0)
   usuario = getUsuarioDelLocal()
   metodosDePago = $state<Record<MetodoDePago, boolean>>({
+    EFECTIVO: false,
     QR: false,
-    Efectivo: false,
-    Transferencia: false
+    TARJETA: false
   })
 
-  // Setters - puntualmente para que funcione bien la reactividad al momento de descartar cambios
-  // y que la actualización sea hecha por page.svelte y no por la clase Local
+  // Los usa la página al descartar cambios, así la restauración la decide la vista y no el modelo
   setNombre(nombre: string) {
     this.nombreLocal = nombre
   }
@@ -60,11 +59,7 @@ export class Local {
   }
 
   prepararDTO(): LocalDTO {
-    const medios: MetodoDePago[] = []
-
-    if (this.metodosDePago.QR) medios.push('QR' as MetodoDePago)
-    if (this.metodosDePago.Efectivo) medios.push('EFECTIVO' as MetodoDePago)
-    if (this.metodosDePago.Transferencia) medios.push('TRANSFERENCIA_BANCARIA' as MetodoDePago)
+    const medios = (Object.keys(this.metodosDePago) as MetodoDePago[]).filter((medio) => this.metodosDePago[medio])
 
     return {
       idLocal: this.idLocal ?? 1,
@@ -81,30 +76,6 @@ export class Local {
     }
   }
 
-  errors: ValidarMensaje[] = $state([])
-
-  //Variable para hacer una copia de los valores originales de carga
-  //por si el usuario descarta los cambios que realiza
-  private original?: Local
-
-
-  tieneError(campo: string): boolean {
-    return this.errors.some((_) => _.campo === campo)
-  }
-
-  agregarError(campo: string, mensaje: string) {
-    this.errors.push( new ValidarMensaje(campo, mensaje))
-  }
-
-  mensajesError(campo: string): string {
-    return this.errors
-      .filter((_) => _.campo === campo)
-      .map((_) => _.mensaje)
-      .join('. ')
-  }
-
-
-  // Validaciones
   validarLocal() {
     
     const PORCENTAJE_MINIMO = 0
@@ -114,7 +85,7 @@ export class Local {
     const LONGITUD_MINIMA = -180
     const LONGITUD_MAXIMA = 180
 
-    this.errors.length = 0 // se limpian errores anteriores
+    this.errors.length = 0
 
     if (vacio(this.nombreLocal)) {
       this.agregarError('nombreLocal', 'El nombre del local no puede estar vacío')
@@ -125,7 +96,7 @@ export class Local {
     }
 
     if (vacio(this.direccion)) {
-      this.agregarError('nombreLocal', 'Por favor, ingrese una dirección válida')
+      this.agregarError('direccion', 'Por favor, ingrese una dirección válida')
     }
 
     if (!positivo(this.altura) || !esEntero(this.altura)) {

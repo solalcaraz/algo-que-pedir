@@ -32,22 +32,14 @@ fun Plato.toSimpleDTO(): PlatoSimpleDTO = PlatoSimpleDTO(
 )
 
 fun Pedido.toDetalleDTO(): PedidoDetalleDTO {
-    val subtotal = this.valorVentaPlatos()
-    val comisionDelivery = subtotal * 0.10
-    val incrementoPago = if (this.medioDePago != ar.edu.unsam.algo3.MedioDePago.EFECTIVO) {
-        subtotal * 0.05
-    } else {
-        0.0
-    }
-
     return PedidoDetalleDTO(
         id = this.id!!,
         cliente = this.cliente.toInfoDTO(),
         direccion = this.cliente.direccion.toDTO(),
         platos = this.platosDelPedido.map { it.toSimpleDTO() },
-        subtotal = subtotal,
-        comisionDelivery = comisionDelivery,
-        incrementoPago = incrementoPago,
+        subtotal = this.valorVentaPlatos(),
+        comisionDelivery = this.costoDeEntrega(),
+        incrementoPago = this.costoMedioDePago(),
         total = this.costoTotalPedido(),
         estado = this.estadoDelPedido.name,
         medioDePago = this.medioDePago.name

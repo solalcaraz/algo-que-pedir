@@ -3,14 +3,14 @@ import { useOnInit } from '@/customHooks/useOnInit'
 import { Usuario } from '@/domain/Usuario'
 import { usuarioService } from '@/services/usuarioService'
 import { getMensajeError } from '@/utils/errorHandling'
-import { useEffect, useState, type Dispatch, type SetStateAction } from 'react'
+import { useState, type Dispatch, type SetStateAction } from 'react'
 import { Outlet, useNavigate, type ErrorResponse } from 'react-router-dom'
 import type { Preferencias } from './subrutasPerfil'
 import { LoadingSpinner } from '@/components/spinnerCargando/spinner'
 
 export type PerfilContextType = {
     usuario: Usuario
-    setUsuario: Dispatch<SetStateAction<Usuario>> //
+    setUsuario: Dispatch<SetStateAction<Usuario>>
     cargando: boolean
     guardando: boolean
     guardarUsuario: (usuarioActualizado: Usuario) => void
@@ -27,7 +27,6 @@ export const PerfilUsuario = () => {
     
     const USUARIO_ID = +localStorage.getItem('idUsuario')!
 
-    // Carga de datos inicial
     const traerUsuario = async () => {
         try {
             setCargando(true)
@@ -44,11 +43,9 @@ export const PerfilUsuario = () => {
     }
     useOnInit(traerUsuario)
 
-    // Guardar y actualizar el usuario
     const guardarUsuario = async (usuarioActualizado: Usuario) => {
         try {
             setGuardando(true)
-            // usuarioActualizado.validarCambios()
             const usuarioGuardado = await usuarioService.actualizar(usuarioActualizado)
             setUsuario(usuarioGuardado)
 
@@ -67,7 +64,6 @@ export const PerfilUsuario = () => {
         } finally { setGuardando(false) }
     }
 
-    // Navegación a las preferencias
     const gotoPreferencias = (opcion: Preferencias) => {
         navigate(opcion.path)
     }

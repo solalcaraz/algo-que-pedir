@@ -2,10 +2,8 @@ package ar.edu.unsam.algo3.controller
 
 import org.junit.jupiter.api.Test
 import org.mockito.BDDMockito.given
-import ar.edu.unsam.algo3.MedioDePago
 import ar.edu.unsam.algo3.Local
 import ar.edu.unsam.algo3.Direccion
-import ar.edu.unsam.algo3.dto.LocalDTO
 import ar.edu.unsam.algo3.dto.toDTO
 import org.junit.jupiter.api.DisplayName
 import org.springframework.http.MediaType
@@ -80,6 +78,16 @@ class LocalControllerTest(@Autowired val mockMvc: MockMvc) {
             .andExpect(jsonPath("$.altura").value(825))
             .andExpect(jsonPath("$.porcentajeSobreCadaPlato").value(3))
             .andExpect(jsonPath("$.porcentajeRegaliasDeAutor").value(3))
+    }
+
+    @Test
+    fun `el local que ve el usuario incluye la cantidad de pedidos`() {
+        given(localService.obtenerLocalPorId(2)).willReturn(crearLocalMock())
+        given(localService.cantidadDePedidos(2)).willReturn(7)
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/local/2"))
+            .andExpect(status().isOk)
+            .andExpect(jsonPath("$.cantidadPedidos").value(7))
     }
 
 } // Fin LocalControllerTest

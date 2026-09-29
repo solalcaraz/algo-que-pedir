@@ -58,13 +58,10 @@ object PedidoSearcher : SearchStrategy<Pedido> {
             "cancelado" to EnumEstadosPedido.CANCELADO
         )
 
-        //Toma lo que vino en la url, lo trimea y pasa a minus
         val valorNormalizado = value.trim().lowercase()
 
-        //Evaluo si esta en el map
         val estadoAEvaluar = estadosValidos[valorNormalizado] ?: throw IllegalArgumentException("El estado $value no es valido")
 
-        //Compara y evalua
         return objeto.estadoDelPedido == estadoAEvaluar
     }
 }

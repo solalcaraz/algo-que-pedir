@@ -53,7 +53,7 @@ export class Carrito {
         return itemPlato ? itemPlato.cantidad : 0
     }
 
-    get subtotal(): number {  // El get me deja acceder al subtotal como si fuera un atributo
+    get subtotal(): number {
         return this.items.reduce((sum, item) => sum + item.plato.precioUnitario * item.cantidad, 0)
     }
 }

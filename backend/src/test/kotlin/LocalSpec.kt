@@ -27,7 +27,7 @@ class LocalSpec : DescribeSpec({
             val pedidoConLocalAPuntuar = Pedido(local = localPuntuable)
 
             usuarioPuntuador.confirmarPedidoEntregado(pedidoConLocalAPuntuar)
-            usuarioPuntuador.puntuarLocal(localPuntuable, 4.0)
+            usuarioPuntuador.puntuarLocal(localPuntuable, 4.0, review = "")
 
             localPuntuable.puntuacionUsuarios.contains(4.0) shouldBe true
         }
@@ -37,7 +37,7 @@ class LocalSpec : DescribeSpec({
             val pedidoConLocalAPuntuar = Pedido(local = localPuntuable)
 
             usuarioPuntuador.confirmarPedidoEntregado(pedidoConLocalAPuntuar)
-            usuarioPuntuador.puntuarLocal(localPuntuable, 20.0)
+            usuarioPuntuador.puntuarLocal(localPuntuable, 20.0, review = "")
 
             localPuntuable.puntuacionUsuarios.contains(20.0) shouldBe false
         }
@@ -52,7 +52,7 @@ class LocalSpec : DescribeSpec({
             usuarioPuntuador.confirmarPedidoEntregado(pedidoConLocalAPuntuar)
 
             shouldThrow<UsuarioException.LocalAPuntuarVencido> {
-                usuarioPuntuador.puntuarLocal(localPuntuable, 4.0)
+                usuarioPuntuador.puntuarLocal(localPuntuable, 4.0, review = "")
             }
             localPuntuable.puntuacionUsuarios.contains(4.0) shouldBe false
         }

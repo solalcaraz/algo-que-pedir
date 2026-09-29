@@ -81,7 +81,7 @@ h2 {
 section {
     margin-bottom: 1rem;
     padding: 0.5rem;
-    /* background-color: var(--color-secundario); */
+    background-color: var(--color-secundario);
     border-radius: 0.8rem;
 }
 

@@ -71,20 +71,18 @@ export const CheckoutPedido = () => {
         setEstaCargando(false)
     })
 
-    useEffect(() => { //Recalcula valores cuando cambia medio de pago
+    // El recargo depende del medio de pago elegido, así que los montos se recalculan cuando cambia
+    useEffect(() => {
         if (!local) return
 
-        // Monto de entrega
         const tarifaEntregaMonto = carrito.subtotal * local.tarifaEntrega
         setTarifaEntregaMonto(tarifaEntregaMonto)
 
-        //Monto medio de pago
         const subtotalConEnvio = carrito.subtotal + tarifaEntregaMonto
         const tarifaMedioDePago = local.recargosMedioDePago[medioSeleccionado] || 0
         const tarifaMedioDePagoMonto = subtotalConEnvio * tarifaMedioDePago
         setRecargo(tarifaMedioDePagoMonto)
 
-        //Monto total
         const montoTotal = carrito.subtotal + tarifaEntregaMonto + tarifaMedioDePagoMonto
         setTotal(montoTotal)
     }, [carrito.subtotal, local, medioSeleccionado])
@@ -93,7 +91,7 @@ export const CheckoutPedido = () => {
         if (!local) return
 
         const fechaPedido = new Date()
-        const pedido = Pedido.fromCarrito(carrito, local, medioSeleccionado, total, fechaPedido, usuario!)
+        const pedido = Pedido.fromCarrito(carrito, local, medioSeleccionado, total, fechaPedido, usuario!, carrito.subtotal, recargo, tarifaEntregaMonto)
 
         try {
             await pedidoService.crearPedido(pedido)

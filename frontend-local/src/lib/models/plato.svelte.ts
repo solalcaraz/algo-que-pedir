@@ -1,25 +1,22 @@
 import { Ingrediente, type IngredienteJSON } from '$lib/models/ingrediente.svelte'
-import { ValidarMensaje } from '$lib/utils/validadorMensaje/ValidarMensaje'
 import { REST_SERVER_URL } from '$lib/services/configuration'
+import { Validable } from './validable.svelte'
 
-export class Plato {
+export class Plato extends Validable {
   id: number | null = null
   nombre = $state<string>('')
   descripcion = $state<string>('')
-  imagenUrl = $state<string>('')    // Lo dejo vacio, viene del back la imagen respectiva, e incluso la imagen vacia para ponerle a un plato nuevo
+  imagenUrl = $state<string>('')
   valorBase = $state<number>(0)
   esDeAutor = $state(false)
   esNuevo = $state(false)
   porcentajeDescuento = $state<number>(0)
   costoProduccion = $state<number>(0)
   ingredientes: Ingrediente[] = $state([])
-  errors: ValidarMensaje[] = $state([])
 
-  // Si el plato es nuevo y la URL completa de la imagen (viene la info del back)
   estaEnPromocion = $state(false)
   imagenUrlCompleta = $derived(`${REST_SERVER_URL}/${this.imagenUrl}`)
 
-  // Administrar ingredientes
   agregarIngrediente(ingrediente: Ingrediente) {
     if (!this.ingredientes.find(i => i.id === ingrediente.id)) {
       this.ingredientes.push(ingrediente)
@@ -29,7 +26,6 @@ export class Plato {
     this.ingredientes = this.ingredientes.filter(i => i.id !== id)
   }
 
-  // Crea desde el DTO del back un plato
   static fromJson(platoJSON: PlatoJSON): Plato {
     return Object.assign(new Plato(), platoJSON, {
       ingredientes: platoJSON.listaDeIngredientes
@@ -38,7 +34,6 @@ export class Plato {
     })
   }
 
-  // Convierte a DTO el plato para enviarlo al back
   toJSON(): PlatoJSON {
     const imagenNombre = this.imagenUrl.split('/').pop() || 'plato-nuevo.png'
 
@@ -57,22 +52,8 @@ export class Plato {
     }
   }
 
-  tieneError(campo: string): boolean {
-    return this.errors.some((_) => _.campo === campo)
-  }
-  agregarError(campo: string, mensaje: string) {
-    this.errors.push( new ValidarMensaje(campo, mensaje))
-  }
-  mensajesError(campo: string): string {
-    return this.errors
-      .filter((_) => _.campo === campo)
-      .map((_) => _.mensaje)
-      .join('. ')
-  }
-
-  // Validaciones
   validarPlato() {
-    this.errors.length = 0 // se limpian errores anteriores
+    this.errors.length = 0
     if (!this.nombre || this.nombre.trim().length === 0) {
       this.agregarError('nombre', 'Debe ingresar un nombre para el plato')
     }
@@ -94,13 +75,6 @@ export class Plato {
     if (this.estaEnPromocion && (this.porcentajeDescuento <= 0 || this.porcentajeDescuento >= 100)) {
       this.agregarError('porcentajeDescuento', 'El porcentaje debe estar entre 1% y 100%')
     }
-    if (this.estaEnPromocion && (this.porcentajeDescuento <= 0 || this.porcentajeDescuento >= 100)) {
-      this.agregarError('porcentajeDescuento', 'El porcentaje debe estar entre 1% y 100%')
-    }
-  }
-  
-  invalid(): boolean {
-    return this.errors.length > 0
   }
 }
 

@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { error } from '@sveltejs/kit'
-  import type { LocalDTO } from '$lib/dto/localDTO'
   import { showToast } from '$lib/utils/toasts/toasts'
   import { Local } from '$lib/models/local.svelte.js'
   import { showError } from '$lib/utils/errorHandler.js'
@@ -11,7 +9,6 @@
   import ValidadorMensaje from '$lib/utils/validadorMensaje/validadorMensaje.svelte'
   import type { MetodoDePago } from '$lib/models/metodosDePago.svelte.js'
 
-  // Traemos la data que viene del backend y la asignamos al local que vamos a renderizar
   let { data } = $props()
 
   let local = new Local()
@@ -32,8 +29,7 @@
     if (medio === 'TARJETA') local.metodosDePago.TARJETA = true
   })
 
-  // Hacemos una copia de los datos del local, para volver a mostrarlos
-  // en caso de que el usuario realice cambios y luego los descarte
+  // Copia de lo que vino del backend, para poder descartar los cambios sin volver a pedirlo
   function hacerCopiaDelLocal() {
     return structuredClone({
       nombreLocal: local.nombreLocal,
@@ -76,7 +72,6 @@
 
   function descartarCambios() {
     if (hayCambios()) {
-      //En caso de haber cambios, restauramos los valores originales
       local.setNombre(localCopiaOriginal.nombreLocal)
       local.setUrlImagen(localCopiaOriginal.urlImagen)
       local.setDireccion(localCopiaOriginal.direccion)
@@ -95,8 +90,6 @@
     }
   }
 
-  // Actualizamos los cambios realizados por el usuario en el backend
-  //
   async function guardarCambios() {
     local.validarLocal()
     if (local.errors.length > 0) {
@@ -145,7 +138,6 @@
       </form>
 
       <img src={local.urlImagen} alt="Imagen del local" class="imagen-local" />
-      <!-- La imagen se carga directamente desde la URL declarada -->
     </div>
   </ProfileCard>
 

@@ -6,7 +6,8 @@ export const AppLayout = () => {
     return (
         <Box>
             <Outlet />
-            <Box height= {SEPARADOR_FOOTER} /> {/*Es para que el footer no se "coma" parte de la pagina*/}
+            {/* Reserva el alto del footer fijo para que no tape el final de la página */}
+            <Box height= {SEPARADOR_FOOTER} />
             <FooterApp />
         </Box>
     )

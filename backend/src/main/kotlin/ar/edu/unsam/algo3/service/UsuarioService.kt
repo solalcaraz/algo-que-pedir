@@ -26,7 +26,6 @@ class UsuarioService(
 
         val usuarioExistente = usuarioRepositorio.getById(id)
 
-        // reconstruccion del usuario valido a partir del usuario dto
         val usuarioReconstruido = usuarioDTO.toDomain(ingredienteRepositorio, localRepositorio)
 
         usuarioExistente.actualizar(usuarioReconstruido)
@@ -50,7 +49,6 @@ class UsuarioService(
         val usuario = usuarioRepositorio.getById(idUsuario)
         val local = localRepositorio.getById(idLocal)
 
-        // Llama al metodo de Usuario que valida y puntúa
         usuario.puntuarLocal(local, puntuacion, review)
     }
 }

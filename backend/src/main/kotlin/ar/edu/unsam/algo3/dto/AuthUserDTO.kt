@@ -23,7 +23,6 @@ data class AuthResponseUsuario(
     val usuario: InfoUsuarioResponse
 )
 
-//Data del usuario que devuelve el back
 data class InfoUsuarioResponse(
     val id: Int? = null,
     val nombre: String,

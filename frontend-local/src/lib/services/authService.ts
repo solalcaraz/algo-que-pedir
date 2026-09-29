@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { REST_SERVER_URL } from '$lib/services/configuration'
 
 interface AuthResponse{
   success: boolean
@@ -10,7 +11,7 @@ interface AuthResponse{
 export async function login(usuario: string, password: string): Promise<AuthResponse> {
   try {
     const response = await axios.post<AuthResponse>(
-      'http://localhost:9000/api/auth/login',
+      `${REST_SERVER_URL}/api/auth/login`,
       {
         usuario,
         password
@@ -18,7 +19,6 @@ export async function login(usuario: string, password: string): Promise<AuthResp
     )
 
     if (response.data.success) {
-      // Login exitoso - guardar usuario e idLocal
       if (response.data.usuario) {
         sessionStorage.setItem('usuario', response.data.usuario)
       }
@@ -27,7 +27,6 @@ export async function login(usuario: string, password: string): Promise<AuthResp
       }
       return { success: true }
     } else {
-      // Error en el login
       return {
         success: false,
         message:
@@ -56,7 +55,6 @@ export async function registro(
   password: string,
   confirmarPassword: string
 ): Promise<AuthResponse> {
-  // Validación de contraseñas
   if (password !== confirmarPassword) {
     return {
       success: false,
@@ -66,7 +64,7 @@ export async function registro(
 
   try {
     const response = await axios.post<AuthResponse>(
-      'http://localhost:9000/api/auth/registro',
+      `${REST_SERVER_URL}/api/auth/registro`,
       {
         usuario,
         password,

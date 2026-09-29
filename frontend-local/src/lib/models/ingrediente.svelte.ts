@@ -1,12 +1,11 @@
-import { ValidarMensaje } from '$lib/utils/validadorMensaje/ValidarMensaje'
+import { Validable } from './validable.svelte'
 
-export class Ingrediente {
+export class Ingrediente extends Validable {
   id: number | null = null
   nombre = $state<string>('')
   costoMercado = $state<number>(0)
   grupoAlimenticio: GrupoAlimenticio | string = $state('') 
   origenAnimal: Origen = $state('vegetal')
-  errors: ValidarMensaje[] = $state([])
 
   static fromJson(ingredienteJSON: IngredienteJSON): Ingrediente {
     return Object.assign(new Ingrediente(), ingredienteJSON, {
@@ -19,26 +18,13 @@ export class Ingrediente {
     return this.origenAnimal === 'animal'
   }
 
-  // Setter para que funcione correctamente el binding con el slider
+  // El switch de origen trabaja con un booleano, pero el modelo guarda 'animal' o 'vegetal'
   set esAnimal(value: boolean) {
     this.origenAnimal = value ? 'animal' : 'vegetal'
   }
 
-  tieneError(campo: string): boolean {
-    return this.errors.some((_) => _.campo === campo)
-  }
-  agregarError(campo: string, mensaje: string) {
-    this.errors.push( new ValidarMensaje(campo, mensaje))
-  }
-  mensajesError(campo: string): string {
-    return this.errors
-      .filter((_) => _.campo === campo)
-      .map((_) => _.mensaje)
-      .join('. ')
-  }
-
   validarIngrediente() {
-    this.errors.length = 0 // se limpian errores anteriores
+    this.errors.length = 0
     if (!this.nombre || this.nombre.trim().length === 0) {
       this.agregarError('nombre', 'Debe ingresar un nombre para el ingrediente')
     }
@@ -50,10 +36,6 @@ export class Ingrediente {
     if (this.grupoAlimenticio == null || this.grupoAlimenticio === '') {
       this.agregarError('grupoAlimenticio', 'Debe seleccionar un grupo alimenticio')
     }
-  }
-
-  invalid(): boolean {
-    return this.errors.length > 0
   }
 
   toJSON(): IngredienteJSON {
@@ -69,6 +51,7 @@ export class Ingrediente {
 
 export type Origen = 'animal' | 'vegetal'
 
+// El back usa el nombre del enum (LACTEOS) y la vista muestra la etiqueta (Lácteos)
 export enum GrupoAlimenticio {
   CEREALES_Y_TUBERCULOS = 'Cereales y tubérculos',
   AZUCARES_Y_DULCES = 'Azúcares y dulces',
@@ -86,13 +69,11 @@ export type IngredienteJSON = {
   origenAnimal: boolean
 }
 
-// función que mapea el enum del grupo alimenticio con el label
 function mapGrupo(grupo: string): GrupoAlimenticio | '' {
   const mappedValue = GrupoAlimenticio[grupo as keyof typeof GrupoAlimenticio]
   return mappedValue ?? ''
 }
 
-// vuelve a mandar el label con el formato de enum
 type GrupoEnum = keyof typeof GrupoAlimenticio
 
 function grupoToEnum(label: string): string {

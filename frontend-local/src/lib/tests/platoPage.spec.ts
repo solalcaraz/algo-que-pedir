@@ -199,8 +199,7 @@ describe('Página de edición/creación de platos', () => {
     it('debería habilitar el campo de descuento cuando está en promoción', () => {
       const plato = PLATOS_MOCK[3] // Hamburguesa con queso
       const { container } = render(PlatoPage, {
-        data: { plato, nuevoPlato: false },
-        params: { id: '4' }
+        data: { plato, nuevoPlato: false }
       })
       
       const inputDescuento = container.querySelector('#porcentajeDescuento') as HTMLInputElement
@@ -210,8 +209,7 @@ describe('Página de edición/creación de platos', () => {
     it('no debería mostrar campo de descuento si no está en promoción', () => {
       const plato = PLATOS_MOCK[1] // Alitas picantes
       const { container } = render(PlatoPage, {
-        data: { plato, nuevoPlato: false },
-        params: { id: '2' }
+        data: { plato, nuevoPlato: false }
       })
       
       const inputDescuento = container.querySelector('#porcentajeDescuento')
@@ -270,7 +268,7 @@ describe('Página de edición/creación de platos', () => {
 
     it('no debería mostrar el switch de promoción en platos nuevos', () => {
       const plato = PLATOS_MOCK[1]
-      const { container } = render(PlatoPage, defaultData = { data: { plato, nuevoPlato: false }, params: { id: '1' }})
+      const { container } = render(PlatoPage, { data: { plato, nuevoPlato: false } })
       
       const switchPromo = container.querySelector('#estaEnPromocion')
       expect(switchPromo).not.toBeInTheDocument()

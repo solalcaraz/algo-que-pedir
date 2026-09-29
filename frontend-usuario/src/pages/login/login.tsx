@@ -10,7 +10,6 @@ import { handleAuthError } from '@/services/authService'
 
 
 
-//Tipamos los inputs que va a recibir el form para el Login
 type LoginForm = {
   usuario: string
   password: string
@@ -19,13 +18,11 @@ type LoginForm = {
 export const LoginUsuario = () => {
   const navigate = useNavigate()
 
-  /*El useForm recibe default values*/
   const { control, handleSubmit, formState: { isSubmitting } } = useForm<LoginForm>({
     defaultValues: { usuario: '', password: '' },
     mode: 'onTouched'
   })
 
-  /*Llama al service para loguear al usuario*/
   const onSubmit = async (data: LoginForm) => {
     try {
       const response = await login({
@@ -66,7 +63,6 @@ export const LoginUsuario = () => {
       </Flex>
 
       <Stack gap="5">
-        {/* Usuario */}
         <Controller
           name="usuario"
           control={control}
@@ -80,7 +76,6 @@ export const LoginUsuario = () => {
           )}
         />
 
-        {/* Password */}
         <Controller
           name="password"
           control={control}
@@ -96,7 +91,6 @@ export const LoginUsuario = () => {
           )}
         />
 
-        {/*El isSubmitting me deshabilita el boton cuando identifica que se ejecuto un onSubmit (evita envios duplicados) */}
         <Button type="submit" p="2" mt="1rem" borderRadius="full">
           Iniciar Sesión
         </Button>

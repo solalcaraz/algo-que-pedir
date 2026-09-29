@@ -1,15 +1,13 @@
-import { Local } from '@/domain/Local'
-import { Articulo } from '@/components/articulo-checkout/Articulo'
+import type { Local } from '@/domain/Local'
+import type { PlatoAgrupado } from '@/utils/agruparPlatos'
 
 export interface PedidoDetalleProps {
-  restaurante: Local
-  articulos: Articulo[]
+  restaurante: Pick<Local, 'nombre' | 'urlImagenLocal' | 'rating'>
+  articulos: PlatoAgrupado[]
   subtotal: number
   recargo: number
   tarifaEntrega: number
   distancia:string
   total: number
-  mostrarFormaDePago?: boolean
   medioDePago?: string
-  isCheckout: boolean
 }

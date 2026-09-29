@@ -6,7 +6,7 @@ import { CiSquarePlus } from 'react-icons/ci'
 import { MdClose } from 'react-icons/md'
 import type { PerfilContextType } from '../Perfil'
 import { useOutletContext } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { toaster } from '@/components/chakra-toaster/toaster'
 import { RestaurenteItem } from '@/components/perfil-usuario/restauranteItem'
 import { Contador } from '@/components/contador/contador'
@@ -20,14 +20,12 @@ import { ModalPalabrasClave } from '@/components/perfil-usuario/modalPalabras'
 export const CriteriosBusqueda = () => {
     const { usuario, setUsuario, navigate } = useOutletContext<PerfilContextType>()
     
-    // Extraigo los criterios con los que viene para mostrarlos
     const obtenerCriteriosActuales = (criterio: Criterio): TipoCriterio[] => {
         if(criterio.esCombinado()) {
             return criterio.subCriterios.map(subCriterio => subCriterio.tipo)
         }
         return [criterio.tipo]
     }
-    // Estado local para manejar los criterios seleccionados
     const [seleccionados, setSeleccionados] = useState<TipoCriterio[]>(()=>obtenerCriteriosActuales(usuario.criterio))
     const [localesPreferidos, setLocalesPreferidos] = useState<Local[]>(usuario.criterio.localesPreferidos)
     const [distancia, setDistancia] = useState(usuario.distancia)
@@ -37,7 +35,6 @@ export const CriteriosBusqueda = () => {
     const [modalPalabrasAbierto, setModalPalabrasAbierto] = useState(false)
    
 
-    // seleccionar y agregar criterio
     const toggleCriterio = (tipo: TipoCriterio) => {
         setSeleccionados(prev => { 
             if (prev.includes(tipo)) {
@@ -47,10 +44,8 @@ export const CriteriosBusqueda = () => {
         })
     }
 
-    // seleccionar el criterio
     const estaSeleccionado = (tipo: TipoCriterio) => seleccionados.includes(tipo)
     
-    // Manejo de las palabras claves
     const agregarPalabra = (palabras: string[]) => {
         setPalabrasClave(palabras)
     }
@@ -58,7 +53,6 @@ export const CriteriosBusqueda = () => {
         setPalabrasClave(prev => prev.filter(p => p !== palabra))
     }
 
-    // manejo de lista de locales
     const agregarLocal = (locales: Local[]) => {
         setLocalesPreferidos(locales)
     }
@@ -66,7 +60,6 @@ export const CriteriosBusqueda = () => {
         setLocalesPreferidos(prev => prev.filter(l => l.idLocal !== id))
     }
 
-    // modales para agregar locales y agregar palabras
     const abrirModalLocales = () => {
         setModalLocalesAbierto(true)
     }
@@ -74,7 +67,6 @@ export const CriteriosBusqueda = () => {
         setModalPalabrasAbierto(true)
     }
 
-    // Construir el criterio para guardar
     const construirCriterio = (): Criterio => {
         if (seleccionados.length === 0) {
             return new Criterio('GENERAL')
@@ -89,7 +81,7 @@ export const CriteriosBusqueda = () => {
             )
         }
 
-        // Múltiples criterios -> Combinado
+        // Con más de un criterio, el backend espera un COMBINADO que los tenga como subcriterios
         const subCriterios = seleccionados.map(tipo => new Criterio(
             tipo,
             tipo === 'FIEL' ? localesPreferidos : [],
@@ -102,7 +94,7 @@ export const CriteriosBusqueda = () => {
     const guardarCriterios = () => {
         const nuevoCriterio = construirCriterio()
 
-        //actualiza solo el estado local del usuario en el padre
+        // Solo actualiza el usuario del perfil: va al backend cuando se toca Guardar Cambios
         setUsuario(Object.assign(new Usuario(), { ...usuario, criterio: nuevoCriterio, distancia: distancia }))
        
         toaster.create({
@@ -140,7 +132,7 @@ export const CriteriosBusqueda = () => {
                             {/* Desplegable para locales: criterio FIEL */}
                             {criterio.type === 'restaurantes' && (
                                 <Collapsible.Root open={estaSeleccionado(criterio.value)}>
-                                    <Collapsible.Trigger display='none'></Collapsible.Trigger> {/* Necesario para el desplegable*/}
+                                    <Collapsible.Trigger display='none'></Collapsible.Trigger> {/* Collapsible necesita un Trigger aunque lo abra el checkbox */}
                                     <Collapsible.Content>
                                         <CheckboxCard.Addon>
                                             {localesPreferidos.length > 0 ? (
@@ -189,7 +181,7 @@ export const CriteriosBusqueda = () => {
                                         <CheckboxCard.Addon>
                                             <HStack justifyContent='space-between'>
                                                 <Text>Distancia máxima (km)</Text>
-                                                <Contador valor={usuario.distancia} />
+                                                <Contador valor={distancia} onChange={setDistancia} />
                                             </HStack>
                                         </CheckboxCard.Addon>
                                     </Collapsible.Content>

@@ -21,8 +21,7 @@
 
   let { data }: Props = $props()
 
-  //Agrego esta linea que llama a la fx medioPagoDesdeBack que recibe un string y lo matchea con el
-  //valor correspondiente del Enum del fron. De esa manera renderiza bien el valor en texto y el icono
+  // El back manda el enum en mayúsculas; la vista necesita el texto y el ícono del medio de pago
   const medioDePagoEnum: MedioDePago = medioPagoDesdeBack(data.medioDePago)
 
   const platosAgrupados = $derived(

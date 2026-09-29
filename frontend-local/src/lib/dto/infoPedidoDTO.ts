@@ -1,4 +1,3 @@
-//Tipado de DTOs del back para poder chequear que venga todo bien
 export type DireccionJSON = {
   direccion: string,
   latitud: number,

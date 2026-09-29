@@ -12,7 +12,6 @@
 
   import MenuHamburguesa from '$lib/components/generales/menu hamburguesa/hamburguesa.svelte'
 
-  //Array de todas las urls de la barra de navegacion del header
   const urls = [
     { href: '/', icono: carrito, label: 'Pedidos', alias: ['/'] },
     { href: '/menu', icono: menu, label: 'Menú', alias: ['/menu', '/editar-plato'] },
@@ -20,11 +19,9 @@
     { href: '/perfil-local', icono: usuarioIcono, label: 'Cuenta', alias: ['/perfil-local'] }
   ]
 
-  //Arrow function para obtener la pagina activa que se muestra al lado del menu hamburguesa
 const paginaActiva = () => {
   const rutaActual = page.url.pathname
 
-  //Verifica si alguna de las rutas alias coincide con la ruta actual
   const matcheaAlguna = (rutas: string[]) =>
     rutas.some((ruta) =>
       ruta === '/'
@@ -38,14 +35,12 @@ const paginaActiva = () => {
 
 <header class="header-pagina">
   <nav class="barra-navegacion">
-    <!-- Toda la barra de navegacion del header -->
     <a href="/" class="container-logo">
       <img class="logo-app" src={logoUrl} alt="Algo que pedir" />
       <h4>Algo que Pedir</h4>
     </a>
 
     <ul class="ul-links">
-      <!-- Lista de enlaces de navegacion -->
       {#each urls as { href, icono, label } (href)}
         <li class="items-navegacion">
           <a class="links-navegacion" {href} aria-label={label}>
@@ -62,7 +57,6 @@ const paginaActiva = () => {
     </ul>
 
     <div class="container-usuario">
-      <!-- Container del icono usuario + hamburguesa -->
       <a class="vista-activa" href={paginaActiva().href}>{paginaActiva().label}</a>
 
       <MenuHamburguesa urlsNavegacion={urls} />

@@ -4,9 +4,8 @@
 
   let { urlsNavegacion = [] as Array<{ href: string; icono: string; label: string }> } = $props()
 
-  let estadoMenu = $state(false) //El menu arranca cerrado
+  let estadoMenu = $state(false)
 
-  //Cierra/Abre el menu
   const toggleMenu = () => {
     estadoMenu = !estadoMenu
   }

@@ -338,7 +338,8 @@ class ServiceDetalleSpec {
 
         val detalle = detalleService.obtenerDetallePedido(pedidoQR.id!!)
 
-        assertEquals(detalle.subtotal * 0.05, detalle.incrementoPago, 0.01)
+        assertEquals((detalle.subtotal + detalle.comisionDelivery) * 0.05, detalle.incrementoPago, 0.01)
+        assertEquals(detalle.subtotal + detalle.comisionDelivery + detalle.incrementoPago, detalle.total, 0.01)
     }
 
     @Test
@@ -397,7 +398,7 @@ class ServiceDetalleSpec {
 
         val detalle = detalleService.obtenerDetallePedido(pedidoTransferencia.id!!)
 
-        assertEquals(detalle.subtotal * 0.05, detalle.incrementoPago, 0.01)
+        assertEquals((detalle.subtotal + detalle.comisionDelivery) * 0.05, detalle.incrementoPago, 0.01)
     }
     // endregion
 }

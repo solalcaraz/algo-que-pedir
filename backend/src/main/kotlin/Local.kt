@@ -49,9 +49,8 @@ class Local(
     val RANGO_PUNTUACION_LOCAL = 4.0..5.0
     var inboxMensajes: InboxMensajes = InboxMensajes()
     val puntuacionUsuarios: MutableList<Double> = mutableListOf()
-    var reviewsTexto: MutableList<String> = mutableListOf() // Nueva lista de reviews
+    var reviewsTexto: MutableList<String> = mutableListOf()
 
-    // Validaciones previas a inicializar el Local
     init {
         require(nombre.isNotBlank()) { "El nombre no puede estar vacío" }
         require(direccion.altura > 0) { "La altura debe ser mayor que 0" }
@@ -93,7 +92,6 @@ class Local(
         recargosMedioDePago[medio] = recargo
     }
 
-    // Nuevos métodos para manejar reviews de texto
     fun agregarReview(review: String) {
         if (review.isNotBlank()) {
             reviewsTexto.add(review)

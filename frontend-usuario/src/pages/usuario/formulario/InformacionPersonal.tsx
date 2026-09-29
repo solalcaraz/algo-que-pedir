@@ -7,22 +7,19 @@ import type { PerfilContextType } from '../Perfil'
 import { useOutletContext } from 'react-router-dom'
 import { CompositeValidacion, validacionStrategy } from '@/utils/validacionStrategy'
 import { Button } from '@/components/boton/boton'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Usuario } from '@/domain/Usuario'
-import { useOnInit } from '@/customHooks/useOnInit'
 
 export const InformacionPersonal = () => {
     const { usuario, guardando, guardarUsuario, gotoPreferencias } = useOutletContext<PerfilContextType>()
     
-    // Estado local para no generar reactividad en el preview de la informacion
+    // Copia local: la vista previa de arriba no cambia hasta que se guarda
     const [usuarioForm, setUsuarioForm] = useState<Usuario>(usuario)
 
-    // Actualizacion local del form
     const actualizarForm = (referencia: keyof Usuario, valor: unknown) => {
         setUsuarioForm(Object.assign(new Usuario(), { ...usuarioForm, [referencia]: valor }))
     }
 
-    // Validaciones compuestas para los numeros:
     const validacionUbicacion = new CompositeValidacion()
     validacionUbicacion.agregar(validacionStrategy.valorRequerido)
     validacionUbicacion.agregar(validacionStrategy.rangoNumerido)
@@ -35,7 +32,6 @@ export const InformacionPersonal = () => {
         <Stack py='5'>
             <Heading as='h1' size='md' textAlign="center">Perfil</Heading>
                         
-            {/* Preview de la informacion del usuario */}
             <VStack py='3'>
                 <Avatar.Root size='2xl'>
                     <Avatar.Image src={usuario.imagen}/>
@@ -75,7 +71,6 @@ export const InformacionPersonal = () => {
                 </Card.Body>
             </Card.Root>
 
-            {/* Navegacion a preferencias */}
             <Card.Root variant='outline'>
                 <Card.Header>
                     <Card.Title>Preferencias</Card.Title>

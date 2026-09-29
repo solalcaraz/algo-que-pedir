@@ -1,8 +1,6 @@
-// TEMAS GLOBALES, VARIABLES Y ESTILOS, se pasa a chakra
 import { createSystem, defaultConfig, defineConfig } from '@chakra-ui/react'
 import { buttonRecipe } from '@chakra-ui/react/theme'
 
-// Aca se define el "tema" base para todo el proyecto
 const config = defineConfig({
   theme: {
     tokens: {
@@ -20,13 +18,11 @@ const config = defineConfig({
       },
     },
 
-    // Se aplica la "receta" de cada componente de manera reutilizable
     recipes: {
       button: buttonRecipe,
     }
   },
   
-  // Estilos globales en general
   globalCss: {
     'html, body': {
         margin: '0',

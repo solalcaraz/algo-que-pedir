@@ -9,7 +9,6 @@ export const login = async (data: LoginData): Promise<AuthResponseUsuario> => {
     try {
         const response = await axios.post<AuthResponseUsuario>(url, data)
 
-        //Si el back responde todo OK --> login exitoso con el setItem del Local Storage de id y nombre
         if (response.data.success && response.data.usuario) {
             localStorage.setItem('idUsuario', response.data.usuario.id.toString())
             localStorage.setItem('nombreUsuario', response.data.usuario.nombre) 
@@ -37,8 +36,7 @@ export const registro = async (data: RegisterData): Promise<AuthResponseUsuario>
     }
 }
 
-//Auxiliar para handlear los errores de ambos casos
-export const handleAuthError = (error) => {
+export const handleAuthError = (error: unknown) => {
     if (axios.isAxiosError(error)) {
         if (error.response) {
             return error.response.data.message || 'Error en la solicitud'

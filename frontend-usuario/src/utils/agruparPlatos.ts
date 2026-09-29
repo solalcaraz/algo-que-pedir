@@ -1,4 +1,4 @@
-import type { Plato } from "@/types/plato"
+import type { PlatoJSON } from '@/domain/Plato'
 
 export interface PlatoAgrupado {
   id: number
@@ -7,7 +7,7 @@ export interface PlatoAgrupado {
   precioUnitario: number
 }
 
-export function agruparPlatos(platos: Plato[]): PlatoAgrupado[] {
+export function agruparPlatos(platos: PlatoJSON[]): PlatoAgrupado[] {
   const mapa = new Map<number, PlatoAgrupado>()
 
   for (const p of platos) {

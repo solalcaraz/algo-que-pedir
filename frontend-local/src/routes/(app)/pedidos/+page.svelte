@@ -10,20 +10,17 @@
 
   let { data } = $props<{ data: { estado: EstadoDelPedido; pedidos: Pedido[] } }>()
 
-  //Por default la vista arranca con el filtrado de los pedidos Pendientes
   let estadoActivo = $state<EstadoDelPedido>(data.estado ?? EstadoDelPedido.PENDIENTE)
 
-  //Mantiene el filtrado si volves atras
+  // Al volver atrás cambia la URL pero no se remonta el componente: sincronizo el filtro con el estado cargado
   $effect(() => {
     if (data.estado) estadoActivo = data.estado
   })
 
-  //Filtrado de los pedidos segun el estado activo
   const pedidosFiltrados = $derived<Pedido[]>(
     (data.pedidos ?? []).filter((it: Pedido) => it.estadoPedido === estadoActivo)
   )
 
-  //Cambia el estado activo por el seleccionado tras el onclick
   const switchEstado = (nuevoEstado: EstadoDelPedido) => {
     estadoActivo = nuevoEstado
     goto(`/pedidos?estado=${nuevoEstado}`)
@@ -36,7 +33,7 @@
   const manejarCambioDeEstado = async (id: number, nuevoEstado: string) => {
     try {
       await pedidoService.actualizarEstado(id, nuevoEstado)
-      buscarPedidos() //refresca si todo salio ok
+      buscarPedidos()
       showToast(`Pedido #${id} actualizado a ${nuevoEstado.toLowerCase()}`, 'success')
     } catch (error: unknown) {
       showError('Error al actualizar el pedido.', error)
@@ -46,11 +43,9 @@
 </script>
 
 <main class="container-principal main-vista">
-  <!-- Contenedor de toda la vista -->
   <h1>Pedidos actuales</h1>
 
   <nav class="container-estados">
-    <!-- Contenedor de los estados de los pedidos -->
     {#each estadosLabelBoton as { estado, label } (label)}
       <button
         type="button"
@@ -62,8 +57,6 @@
   </nav>
 
   <section class="container-tarjetas">
-    <!-- Contenedor de las tarjetas de pedidos -->
-    <!-- Si esta vacia la lista filtrada va al else -->
     {#if pedidosFiltrados.length}
       {#each pedidosFiltrados as pedido (pedido.id)}
         <PedidoCard {pedido} cambioDeEstado={manejarCambioDeEstado} />

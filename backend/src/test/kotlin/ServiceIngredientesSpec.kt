@@ -2,8 +2,6 @@ package ar.edu.unsam.algo3
 
 import ar.edu.unsam.algo3.repositorios.IngredienteSearcher
 import ar.edu.unsam.algo3.repositorios.Repositorio
-import ar.edu.unsam.algo3.servicios.IExternalService
-import ar.edu.unsam.algo3.servicios.IServiceIngredientes
 import ar.edu.unsam.algo3.servicios.IngredientesAdapter
 import ar.edu.unsam.algo3.servicios.ServicioRepositorios
 import io.kotest.core.spec.IsolationMode

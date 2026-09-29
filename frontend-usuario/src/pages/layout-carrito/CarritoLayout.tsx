@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { toaster } from '@/components/chakra-toaster/toaster'
 import { Outlet } from 'react-router-dom'
 
-//Lo que le pasamos a la vistas por el outlet
 export type CarritoContext = {
     carrito: Carrito
     setPlatoCantidad: (plato: Plato, cantidad: number, idLocal: number) => void

@@ -21,7 +21,7 @@ import kotlin.collections.map
 
 @RestController
 @CrossOrigin(
-    origins = ["http://localhost:5173"],
+    origins = ["*"],
     allowedHeaders = ["*"],
     methods = [RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS]
 )
@@ -34,7 +34,6 @@ class LocalController(private val localService: LocalService) {
 
     @PutMapping("/localAdmin")
     fun actualizarLocal(@RequestBody localDTO: LocalDTO): LocalDTO {
-        println("DTO recibido: ${localDTO}")
         return localService.actualizarLocalDesdeDTO(localDTO).toDTO()
     }
 
@@ -43,7 +42,6 @@ class LocalController(private val localService: LocalService) {
         return localService.obtenerTodosLosLocales().map { local -> local.toDTO() }
     }
 
-    // Devuelve los locales que el usuario necesita para listar, con menos informacion
     @GetMapping("/locales/criterio")
     fun obtenerLocalesCriterio(): List<LocalCriterioDTO> {
         return localService.obtenerTodosLosLocales().map { local -> local.toCriterioDTO() }
@@ -55,7 +53,6 @@ class LocalController(private val localService: LocalService) {
             local, id)) }
     }
 
-    //Va a devolver la lista de platos que necesita el front de la pagina de Usuario
     @GetMapping("/local/{id}/platos")
     fun obtenerPlatosDelLocal(@PathVariable id: Int): List<PlatoClienteDTO> {
         val platosDelLocal = localService.obtenerPlatosDisponibles(id)
@@ -63,10 +60,9 @@ class LocalController(private val localService: LocalService) {
         return platosDelLocal.map{ it.toClienteDTO()}
     }
 
-    //Devuelve el DTO del Local que se usa en el front de la pagina de Usuario
     @GetMapping("/local/{id}")
     fun obtenerLocalClientePorId(@PathVariable id: Int): LocalClienteDTO {
-        return localService.obtenerLocalPorId(id).toClienteDTO()
+        return localService.obtenerLocalPorId(id).toClienteDTO(localService.cantidadDePedidos(id))
     }
 
     @GetMapping("/distancia")

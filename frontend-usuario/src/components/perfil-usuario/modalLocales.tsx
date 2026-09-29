@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Dialog, Stack, Text, Button, Spinner, Checkbox, CheckboxCard } from '@chakra-ui/react'
+import { Dialog, Stack, Text, Button, Spinner, CheckboxCard } from '@chakra-ui/react'
 import type { Local } from '@/domain/Local'
 import { localService } from '@/services/localService'
 
@@ -20,11 +20,9 @@ export const ModalLocalesPreferidos = ({
   const [cargando, setCargando] = useState(true)
   const [seleccionados, setSeleccionados] = useState<Set<number>>(new Set())
 
-  // Cargar todos los locales al abrir el modal
   useEffect(() => {
     if (open) {
       cargarLocales()
-      // Inicializar con los locales ya seleccionados
       const idsSeleccionados = new Set(localesSeleccionados.map(l => l.idLocal!))
       setSeleccionados(idsSeleccionados)
     }

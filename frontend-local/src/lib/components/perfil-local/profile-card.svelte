@@ -1,5 +1,7 @@
 <script lang="ts">
-  const { title = '', children } = $props()
+  import type { Snippet } from 'svelte'
+
+  const { title = '', children }: { title?: string, children?: Snippet } = $props()
   import './profile-card.css'
 </script>
 

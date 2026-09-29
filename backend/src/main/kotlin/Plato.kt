@@ -57,11 +57,9 @@ class Plato(
         return listaDeIngredientes.any { usuario.esIngredienteProhibido(it) }
     }
 
-    // Metodo para obtener la URL completa de la imagen
     @JsonIgnore
     fun getImagenUrl(): String = "images/$imagenNombre"
 
-    // Validaciones para crear nuevo plato (back)
     fun validar() {
         if (nombre.isEmpty()) throw ErrorException.BusinessException("Debe ingresar un nombre")
         if (descripcion.isEmpty()) throw ErrorException.BusinessException("Debe ingresar una descripcion")
@@ -71,7 +69,6 @@ class Plato(
             throw ErrorException.BusinessException("El descuento debe estar entre 1% y 100%")
     }
 
-    // Actualizacion para el plato
     fun actualizar(otro: Plato) {
         nombre = otro.nombre
         descripcion = otro.descripcion

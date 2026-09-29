@@ -11,7 +11,6 @@ const INGREDIENTES_B = [
   INGREDIENTES_MOCK[4]
 ]
 
-// builder de plato para que use correctamente metodos
 function PlatosBuilder(Init: Partial<Plato>){
   const plato = new Plato()
   plato.id = Init.id ?? null

@@ -17,11 +17,9 @@ export const LocalesView = () => {
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [locales, setLocales] = useState<Local[]>([])
   const [showNearby, setShowNearby] = useState<boolean>(false)
-  //Estado para poder tener el nombre del usuario
   const [nombreUsuario, setNombreUsuario] = useState<string>('')
 
   useOnInit(() => {
-    //Recupero el nombre con el localStorage y lo seteo con useState
     const nombreActual = localStorage.getItem('nombreUsuario')
     const idUsuario = localStorage.getItem('idUsuario')
     if (nombreActual) { setNombreUsuario(nombreActual) }
@@ -36,7 +34,6 @@ export const LocalesView = () => {
     fetchLocales()
   })
 
-  //Agrego fx que llama al logout del service para asociar la accion con el icono del /home
   const handleLogOut = () => {
     logout()
 
@@ -59,7 +56,6 @@ export const LocalesView = () => {
 
   return (
     <Box className="delivery-container">
-      {/* Header */}
       <Box className="delivery-header">
         <HStack justify="space-between" mb={2}>
           <Heading size="md">Delivery</Heading>
@@ -71,7 +67,6 @@ export const LocalesView = () => {
           </Flex>
         </HStack>
 
-        {/* Buscador */}
         <Box className="search-container">
           <Input
             className="search-input"
@@ -89,7 +84,6 @@ export const LocalesView = () => {
           </Box>
         </Box>
 
-        {/* Checkbox de cercania */}
         <Checkbox.Root pt="3" variant="solid" colorPalette="red" onCheckedChange={() => setShowNearby(!showNearby)}>
           <Checkbox.HiddenInput />
           <Checkbox.Control />
@@ -97,7 +91,6 @@ export const LocalesView = () => {
         </Checkbox.Root>
       </Box>
 
-      {/* Content */}
       <Box className="delivery-content">
         <Heading size="lg" mb={4}>
           Locales de comidas

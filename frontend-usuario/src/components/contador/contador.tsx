@@ -7,16 +7,22 @@ type ContadorProps = {
   valor: number
   min?: number
   max?: number
+  onChange?: (valor: number) => void
 }
 
-export const Contador = ({ valor, min = 0, max = 10 }: ContadorProps) => {
+export const Contador = ({ valor, min = 0, max = 10, onChange }: ContadorProps) => {
     const [nuevoValor, setValor] = useState(valor)
+    const cambiarValor = (valorActualizado: number) => {
+        setValor(valorActualizado)
+        onChange?.(valorActualizado)
+    }
+
     const sumar = () => {
-        if (nuevoValor < max) { setValor(nuevoValor + 1) } 
+        if (nuevoValor < max) { cambiarValor(nuevoValor + 1) }
     }
 
     const restar = () => {
-        if (nuevoValor > min) { setValor(nuevoValor - 1) }
+        if (nuevoValor > min) { cambiarValor(nuevoValor - 1) }
     }
 
     return (
