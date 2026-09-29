@@ -173,7 +173,6 @@ Este repositorio es el original del trabajo práctico integrador que hicimos en 
   - El perfil del local no guardaba Efectivo ni Tarjeta como medios de pago. Además se rompía en los locales que no aceptan todos.
   - Recargar el perfil del local mandaba al login.
   - El error de dirección vacía aparecía debajo del nombre del local.
-  - Un import con una mayúscula distinta al nombre del archivo rompía el build de la vista del local en Linux.
   - Después del login, la lista de pedidos del usuario consultaba al usuario 0 hasta recargar la página.
   - La distancia máxima del criterio Impaciente no se guardaba.
   - El botón para cerrar la calificación de un local mandaba al login.
@@ -181,7 +180,6 @@ Este repositorio es el original del trabajo práctico integrador que hicimos en 
   - Eliminar un ingrediente prohibido lo sacaba de preferidos.
   - El criterio Fiel no aceptaba ningún plato.
   - En pagos con QR o tarjeta, el desglose del pedido que ve el local no sumaba el total.
-  - El dueño de un plato no podía editarlo si el id del local era mayor a 127.
   - El local El Imperio compartía usuario con otro, así que no se podía entrar con él.
   - El CORS de dos controllers impedía usar las dos vistas a la vez.
   - La validación del descuento de un plato mostraba el mismo error dos veces.
