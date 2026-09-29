@@ -21,7 +21,7 @@ import kotlin.collections.map
 
 @RestController
 @CrossOrigin(
-    origins = ["http://localhost:5173"],
+    origins = ["*"],
     allowedHeaders = ["*"],
     methods = [RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS]
 )
