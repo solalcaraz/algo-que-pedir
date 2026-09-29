@@ -1,7 +1,9 @@
 # Algo Que Pedir
 
 [![CI](https://img.shields.io/github/actions/workflow/status/solalcaraz/algo-que-pedir/ci.yml?style=flat-square&label=CI)](https://github.com/solalcaraz/algo-que-pedir/actions/workflows/ci.yml)
-[![Cobertura](https://img.shields.io/codecov/c/github/solalcaraz/algo-que-pedir?style=flat-square&label=cobertura&logo=codecov)](https://codecov.io/gh/solalcaraz/algo-que-pedir)
+[![Cobertura backend](https://img.shields.io/codecov/c/github/solalcaraz/algo-que-pedir?flag=backend&style=flat-square&label=cobertura%20backend&logo=codecov)](https://codecov.io/gh/solalcaraz/algo-que-pedir)
+[![Cobertura vista local](https://img.shields.io/codecov/c/github/solalcaraz/algo-que-pedir?flag=frontend-local&style=flat-square&label=cobertura%20vista%20local&logo=codecov)](https://codecov.io/gh/solalcaraz/algo-que-pedir)
+[![Cobertura vista usuario](https://img.shields.io/codecov/c/github/solalcaraz/algo-que-pedir?flag=frontend-usuario&style=flat-square&label=cobertura%20vista%20usuario&logo=codecov)](https://codecov.io/gh/solalcaraz/algo-que-pedir)
 ![Lenguajes](https://img.shields.io/github/languages/count/solalcaraz/algo-que-pedir?style=flat-square&label=lenguajes)
 ![Tamaño](https://img.shields.io/github/repo-size/solalcaraz/algo-que-pedir?style=flat-square&label=tama%C3%B1o)
 ![Último commit](https://img.shields.io/github/last-commit/solalcaraz/algo-que-pedir?style=flat-square&label=%C3%BAltimo%20commit)
@@ -146,7 +148,7 @@ Algoritmos II me costó mucho, sobre todo el backend, la lógica. Para Algoritmo
 - Autenticación: las contraseñas se guardan con un hash que no es criptográfico (`cyrb53`); la sesión es un id guardado en el navegador, sin token. Usaría Spring Security con bcrypt y JWT.
 - Configuración: la URL del backend y los orígenes de CORS están escritos en el código; los pasaría a variables de entorno.
 - El detalle del pedido en la vista del usuario no muestra la distancia al local, porque ese endpoint no la devuelve.
-- La vista del usuario tiene poca cobertura de tests: 14% de líneas, contra 77% del backend o 65% de la vista del local.
+- La vista del usuario tiene mucha menos cobertura de tests que las otras dos partes (se ve en los badges de arriba).
 
 ## Autoría y mejoras
 
