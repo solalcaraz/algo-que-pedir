@@ -141,7 +141,6 @@ Algoritmos II me costó mucho, sobre todo el backend y la lógica. Para Algoritm
 - Autenticación: las contraseñas se guardan con un hash que no es criptográfico (`cyrb53`) y la sesión es un id guardado en el navegador, sin token. Usaría Spring Security con bcrypt y JWT.
 - Configuración: la URL del backend y los orígenes de CORS están escritos en el código; los pasaría a variables de entorno.
 - El detalle del pedido en la vista del usuario no muestra la distancia al local, porque ese endpoint no la devuelve.
-- Los tests de la vista del local tienen errores de tipos que no impiden que corran, pero que `svelte-check` marca.
 - La vista del usuario tiene poca cobertura de tests (14% de líneas, contra 77% del backend y 65% de la vista del local).
 
 ## Autoría y mejoras
@@ -163,6 +162,7 @@ Este repositorio es el original del trabajo práctico integrador que hicimos en 
 
 - Junté los tres repositorios en uno, conservando el historial de cada uno, y sumé un CI que prueba y compila las tres partes.
 - Arreglé los tests del backend, que no compilaban, y el build de las dos vistas, que fallaba.
+- Corregí los 18 errores de tipos que `svelte-check` marcaba en los tests de la vista del local y sumé ese chequeo al CI.
 - Corregí que el perfil del local no guardara Efectivo ni Tarjeta como medios de pago y se rompiera en los locales que no aceptan todos.
 - Corregí que recargar el perfil del local mandara al login.
 - Corregí que el error de dirección vacía apareciera debajo del nombre del local.
