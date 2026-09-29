@@ -2,10 +2,8 @@ package ar.edu.unsam.algo3.controller
 
 import org.junit.jupiter.api.Test
 import org.mockito.BDDMockito.given
-import ar.edu.unsam.algo3.MedioDePago
 import ar.edu.unsam.algo3.Local
 import ar.edu.unsam.algo3.Direccion
-import ar.edu.unsam.algo3.dto.LocalDTO
 import ar.edu.unsam.algo3.dto.toDTO
 import org.junit.jupiter.api.DisplayName
 import org.springframework.http.MediaType

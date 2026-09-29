@@ -11,10 +11,6 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @CrossOrigin("*")
 class PedidoController(val pedidoService: PedidoService) {
-    //Llamada redundandte porque el home ya trae los pedidos Pendientes
-    //@GetMapping("/pedidos")
-    //fun listarPedidos() : List<PedidoDTO> = pedidoService.getAll()
-
     @GetMapping("/pedidos", params = ["estado"])
     fun listarPedidosPorEstado(@RequestParam("estado") estado : String): List<PedidoDTO> = pedidoService.getByEstado(estado)
 
@@ -24,13 +20,11 @@ class PedidoController(val pedidoService: PedidoService) {
     @PostMapping("/checkout-pedido")
     fun crearPedido(@RequestBody pedidoBody: PedidoClienteDTO) = pedidoService.crearPedido(pedidoBody)
 
-        //Endpoint para la actualizacion de estado del Pedido
     @PatchMapping("/pedidos")
     fun actualizarEstado(@RequestBody updateDTO: PedidoUpdateDTO) {
         pedidoService.actualizarEstado(updateDTO.id, updateDTO.nuevoEstado)
     }
 
-    // Endpoint para obtener los pedidos del usuario, pudiendo filtrar también por estado
     @GetMapping("/usuarios/{userId}/pedidos")
     fun pedidosDelUsuario(
         @PathVariable userId: Int,

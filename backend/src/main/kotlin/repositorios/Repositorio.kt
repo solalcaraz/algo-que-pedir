@@ -16,7 +16,6 @@ open class Repositorio<T : TipoRepositorio>(
     var memoria: MutableMap<Int, T> = mutableMapOf()
 
     fun create(objeto: T): T {
-        // Lanza una excepcion del tipo IllegalArgumentException si no cumple la condicion
         require(objeto.id == null) { "El objeto ya esta creado" }
         val id = ++idActual
         objeto.id = id
@@ -59,13 +58,12 @@ open class Repositorio<T : TipoRepositorio>(
         return memoria.values.toList()
     }
 
-    //Actualiza repositorio a través de una lista
     fun agregarDesdeLista(objetos: List<T>) {
         objetos.forEach { objeto ->
             when {
-                objeto.id == null -> create(objeto) //Si no tiene ID crea el objeto
+                objeto.id == null -> create(objeto)
                 memoria.containsKey(objeto.id) -> update(objeto)
-                else -> memoria[requireNotNull(objeto.id)] = objeto //Si no está en el repo y tiene ID lo agrega
+                else -> memoria[requireNotNull(objeto.id)] = objeto
             }
         }
     }
@@ -76,7 +74,7 @@ open class Repositorio<T : TipoRepositorio>(
     }
 }
 
-// Hago esta clase para q Spring reconozca que esto es el repo
+// Subclases concretas para que Spring las pueda inyectar como beans en los services
 @Component
 class PlatoRepositorio: Repositorio<Plato>(PlatoSearcher, nombreSelector = { it.nombre })
 
@@ -91,7 +89,7 @@ open class PedidoRepositorio : Repositorio<Pedido>(PedidoSearcher)
 @Component
 class UsuarioRepositorio : Repositorio<Usuario>(UsuarioSearcher, nombreSelector = { it.usuario })
 
-// Singletons de algo2:
+// Repositorios globales que usa el dominio de Algoritmos II (procesos y observers); la API usa los beans de arriba
 object Repositorios {
     val usuario = Repositorio<Usuario>(
         searcher = UsuarioSearcher,

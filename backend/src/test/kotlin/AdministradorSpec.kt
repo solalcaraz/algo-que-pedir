@@ -1,5 +1,4 @@
 package ar.edu.unsam.algo3
-import ar.edu.unsam.algo3.repositorios.IngredienteSearcher
 import ar.edu.unsam.algo3.repositorios.LocalSearcher
 import ar.edu.unsam.algo3.repositorios.Repositorio
 import ar.edu.unsam.algo3.repositorios.Repositorios

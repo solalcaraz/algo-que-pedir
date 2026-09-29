@@ -8,10 +8,6 @@ interface IServiceIngredientes{
     fun getIngredientes() : String
 }
 
-interface IServiceLocales{
-    fun getLocales() : String
-}
-
 interface IExternalService {
     fun get(): String
 }

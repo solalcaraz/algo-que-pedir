@@ -3,7 +3,6 @@ package ar.edu.unsam.algo3.service
 import ar.edu.unsam.algo3.EnumEstadosPedido
 import ar.edu.unsam.algo3.Pedido
 import ar.edu.unsam.algo3.dto.PedidoClienteDTO
-import ar.edu.unsam.algo3.dto.toClienteDTO
 import ar.edu.unsam.algo3.dto.toDomain
 import ar.edu.unsam.algo3.dto.PedidoDTO
 import ar.edu.unsam.algo3.dto.toDTO
@@ -18,16 +17,9 @@ class PedidoService(
     private val platoService: PlatoService,
     private val usuarioService: UsuarioService
 ) {
-    fun getAll() : List<PedidoDTO> = pedidoRepo.findAll().map { it.toDTO() }
-
     fun getByEstado(estado : String) : List<PedidoDTO> = pedidoRepo.search(estado).map { it.toDTO() }
 
     fun getById(id: Int) : Pedido = pedidoRepo.getById(id)
-
-    fun actualizarPedidoCheckout(pedido: PedidoClienteDTO): PedidoClienteDTO {
-        val pedidoActualizado = pedido.toDomain(localService, platoService, usuarioService)
-        return pedidoActualizado.toClienteDTO()
-    }
 
     fun getByUsuarioYEstado(userId: Int, estado: String?): List<Pedido> {
         val pedidos = pedidoRepo.findAll()
@@ -42,9 +34,8 @@ class PedidoService(
     }
 
     fun actualizarEstado(id : Int, nuevoEstado : String){
-        val pedido = pedidoRepo.getById(id)     //Busco el objeto Pedido
+        val pedido = pedidoRepo.getById(id)
 
-        //Si lo que viene como estado es cualquier cosa, tira error
         val nuevoEstado = try {
             EnumEstadosPedido.valueOf(nuevoEstado.uppercase())
         }catch (e: IllegalArgumentException){

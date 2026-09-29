@@ -24,7 +24,6 @@ class InboxMensajes {
 
     fun obtenerMensajesNoLeidos(): List<Mensaje> = mensajes.filter { !it.leido }
 
-    //elimina mensajes leidos que superen los diasAntiguedad de antiguedad
     fun eliminarMensajesAntiguosYLeidos(diasAntiguedad: Long = 30) {
         val fechaLimite = LocalDate.now().minusDays(diasAntiguedad)
         mensajes.removeIf { it.leido && it.fechaEmision.isBefore(fechaLimite) }

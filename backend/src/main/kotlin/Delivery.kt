@@ -12,7 +12,7 @@ class Delivery(
     var tipoDeDelivery: TipoDeDelivery = DeliverySinCondiciones,
     var puntosZona: Set<Point> = setOf(Point(-30, -60), Point(20, 80), Point(50, 32))
 ): TipoRepositorio(){
-    //Instancio puntos como set para que no haya repetidos, verifico que haya al menos tres, devuelvo el polígono
+    // Los puntos son un Set para no repetir vértices: un polígono necesita al menos tres distintos
     fun zonaDeTrabajo(): Polygon{
         if(puntosZona.size < 3 ) {throw DeliveryException.zonaNoFormaPoligono()}
         return Polygon(puntosZona.toList())

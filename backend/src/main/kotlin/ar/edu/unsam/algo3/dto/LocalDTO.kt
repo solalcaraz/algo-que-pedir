@@ -10,7 +10,6 @@ data class LocalCercanoDTO(
 
 data class LocalDTO(
 
-    //Cambiar las validaciones a la clase del Local
     val idLocal: Int,
     
     val nombre: String,

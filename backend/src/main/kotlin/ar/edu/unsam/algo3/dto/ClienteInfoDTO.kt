@@ -14,11 +14,3 @@ fun Usuario.toInfoDTO() : ClienteInfoDTO =
         nombre = this.devolverNombreCompleto(),
         username = this.usuario,
     )
-
-fun ClienteInfoDTO.toDomain(): Usuario =
-    Usuario(
-        nombre = this.nombre,
-        usuario = this.username
-    ).apply{
-        this.id = this@toDomain.id
-    }

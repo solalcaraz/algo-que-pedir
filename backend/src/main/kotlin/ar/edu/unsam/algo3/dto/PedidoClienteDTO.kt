@@ -14,7 +14,6 @@ import java.time.format.DateTimeFormatter
 import java.util.Locale
 
 
-// En principio voy a armar este nuevo DTO para la aplicación de React
 
 data class PedidoClienteDTO(
     var id: Int,

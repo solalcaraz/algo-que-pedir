@@ -16,7 +16,6 @@ import org.uqbar.geodds.Point
 @Service
 class AuthUsuarioService(private val usuarioRepositorio : UsuarioRepositorio){
 
-    //Funcion para centralizar todas las validaciones para el registro desde el back
     private fun validarCamposRegistro(data: RegisterRequestUsuario) : MutableList<String> {
         val soloTextoRegex = "^[A-Za-zÁÉÍÓÚáéíóúÑñ ]+\$"
 
@@ -45,22 +44,19 @@ class AuthUsuarioService(private val usuarioRepositorio : UsuarioRepositorio){
     }
 
     fun registrarUsuario(dataUsuario: RegisterRequestUsuario): Usuario {
-        val errores = validarCamposRegistro(dataUsuario)        //Almacena los errores generales
+        val errores = validarCamposRegistro(dataUsuario)
 
-        //Confirma que las contraseñas matcheen
         if(dataUsuario.password != dataUsuario.confirmarPassword){ errores.add("Las contraseñas no coinciden") }
 
-        //Confirma que el usuario no exista
         if(existeUser(dataUsuario.usuario)) {errores.add("El usuario ${dataUsuario.usuario} ya existe") }
 
-        //Lanza todos los errores con la BusinessException si los hubiere
         if(errores.isNotEmpty()){
             throw ErrorException.BusinessException(mensaje = errores.joinToString(" | "))
         }
 
         val passwordHasheada = HashUtils.hash53(dataUsuario.password)
 
-        //El unico valor que no es real es el del Point pero calle y altura lo recibe del Formulario
+        // El registro solo pide calle y altura, así que la ubicación geográfica arranca con un valor fijo
         val nuevaDireccionUsuario = Direccion(
             calle = dataUsuario.calle,
             altura = dataUsuario.altura.toInt(),
@@ -92,7 +88,6 @@ class AuthUsuarioService(private val usuarioRepositorio : UsuarioRepositorio){
         return usuarioEncontrado
     }
 
-    //Retorna toda la lista de usuarios registrados en la app
     fun obtenerTodosLosUsuarios(): List<InfoUsuarioResponse> {
         return usuarioRepositorio.findAll().map { usuario -> usuario.toInfoUsuarioDTO() }
     }

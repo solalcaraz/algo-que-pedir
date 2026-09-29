@@ -17,13 +17,3 @@ fun Local.toCriterioDTO(): LocalCriterioDTO = LocalCriterioDTO(
     rating = this.calcularPromedioPuntuacion(),
     tarifaEntrega = this.tarifaEntrega
 )
-
-fun LocalCriterioDTO.toDomain(): Local {
-    return Local(
-        nombre = this.nombre,
-        urlImagenLocal=this.urlImagenLocal,
-        tarifaEntrega = this.tarifaEntrega
-    ).apply {
-        id = this@toDomain.idLocal
-    }
-}

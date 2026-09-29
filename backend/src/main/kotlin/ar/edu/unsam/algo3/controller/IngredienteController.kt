@@ -25,7 +25,7 @@ class IngredienteController(val ingredienteService: IngredienteService) {
     @GetMapping("/ingrediente/{id}")
     fun ingredientePorId(@PathVariable id: Int): IngredienteDTO = ingredienteService.getById(id).toDTO()
 
-    // para los ingredientes que se muestran en los criterios
+    // Versión reducida (id y nombre) para las preferencias de la vista del usuario
     @GetMapping("/ingrediente/criterio")
     fun listarTodosCriterio(): List<IngredienteUsuarioDTO> =
         ingredienteService.getAll().map { it.toUsuarioIngredienteDTO() }.toMutableList()

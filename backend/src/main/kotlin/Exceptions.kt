@@ -4,8 +4,6 @@ import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ResponseStatus
 import java.time.DayOfWeek
 
-// Se usa sealed class para agrupar las excepciones del usuario. ninguna clase fuera de las definidas dentro del sealed class pueden heredar de ella.
-// es correcto este uso de sealed class?
 sealed class UsuarioException(mensaje: String) : Exception(mensaje) {
     class generalException(mensaje: String) : UsuarioException(mensaje)
 
@@ -36,10 +34,6 @@ sealed class DeliveryException(mensaje: String) : Exception(mensaje) {
     class zonaNoFormaPoligono() : DeliveryException("La zona tiene menos de 3 puntos")
 }
 
-
-sealed class LocalException(mensaje: String) : Exception(mensaje) {
-    class puntajeFueraDeRango() : LocalException("El puntaje asignado está fuera de rango (1 a 5)")
-}
 
 sealed class ErrorException(mensaje: String) : Exception(mensaje) {
     @ResponseStatus(HttpStatus.NOT_FOUND)

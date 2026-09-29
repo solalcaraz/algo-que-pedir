@@ -28,7 +28,7 @@ class LocalService(
     }
 
     fun actualizarLocalDesdeDTO(localDTO: LocalDTO): Local {
-        val local = localRepositorio.getById(localDTO.idLocal) // obtener el local existente
+        val local = localRepositorio.getById(localDTO.idLocal)
         local.nombre = localDTO.nombre
         local.urlImagenLocal = localDTO.urlImagenLocal
         local.direccion = Direccion(
@@ -46,7 +46,7 @@ class LocalService(
     }
 
     fun obtenerPlatosDisponibles(localID : Int) : List<Plato> {
-        val platosDelLocal = platoService.getPlatosByLocalID(localID)       //El service de plato devuelve la lista de platos del local
+        val platosDelLocal = platoService.getPlatosByLocalID(localID)
         return platosDelLocal
     }
 
@@ -62,4 +62,4 @@ class LocalService(
         return usuario.esLocalCercano(local)
     }
 
-} // Fin clase LocalService
+}

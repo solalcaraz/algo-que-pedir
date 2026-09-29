@@ -26,13 +26,3 @@ fun Local.toClienteDTO() = LocalClienteDTO (
     tarifaEntrega = this.tarifaEntrega,
     recargosMedioDePago = this.recargosMedioDePago.mapKeys { it.key.name }
 )
-
-fun LocalClienteDTO.toDomain(): Local {
-    return Local(
-        nombre = this.nombre,
-        mediosDePago =  this.mediosDePago,
-        urlImagenLocal = this.urlImagenLocal
-    ).apply {
-        this.id = this@toDomain.idLocal
-    }
-}
