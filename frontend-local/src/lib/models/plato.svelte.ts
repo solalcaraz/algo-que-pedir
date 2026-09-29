@@ -1,8 +1,8 @@
 import { Ingrediente, type IngredienteJSON } from '$lib/models/ingrediente.svelte'
-import { ValidarMensaje } from '$lib/utils/validadorMensaje/ValidarMensaje'
 import { REST_SERVER_URL } from '$lib/services/configuration'
+import { Validable } from './validable.svelte'
 
-export class Plato {
+export class Plato extends Validable {
   id: number | null = null
   nombre = $state<string>('')
   descripcion = $state<string>('')
@@ -13,7 +13,6 @@ export class Plato {
   porcentajeDescuento = $state<number>(0)
   costoProduccion = $state<number>(0)
   ingredientes: Ingrediente[] = $state([])
-  errors: ValidarMensaje[] = $state([])
 
   estaEnPromocion = $state(false)
   imagenUrlCompleta = $derived(`${REST_SERVER_URL}/${this.imagenUrl}`)
@@ -53,19 +52,6 @@ export class Plato {
     }
   }
 
-  tieneError(campo: string): boolean {
-    return this.errors.some((_) => _.campo === campo)
-  }
-  agregarError(campo: string, mensaje: string) {
-    this.errors.push( new ValidarMensaje(campo, mensaje))
-  }
-  mensajesError(campo: string): string {
-    return this.errors
-      .filter((_) => _.campo === campo)
-      .map((_) => _.mensaje)
-      .join('. ')
-  }
-
   validarPlato() {
     this.errors.length = 0
     if (!this.nombre || this.nombre.trim().length === 0) {
@@ -89,10 +75,6 @@ export class Plato {
     if (this.estaEnPromocion && (this.porcentajeDescuento <= 0 || this.porcentajeDescuento >= 100)) {
       this.agregarError('porcentajeDescuento', 'El porcentaje debe estar entre 1% y 100%')
     }
-  }
-  
-  invalid(): boolean {
-    return this.errors.length > 0
   }
 }
 

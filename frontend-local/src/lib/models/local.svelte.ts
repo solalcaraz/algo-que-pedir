@@ -2,9 +2,9 @@ import type { LocalDTO } from '$lib/dto/localDTO'
 import type { MetodoDePago } from './metodosDePago.svelte'
 import { getUsuarioDelLocal } from '$lib/utils/currentSession'
 import { esEntero, positivo, vacio } from '$lib/utils/validaciones'
-import { ValidarMensaje } from '$lib/utils/validadorMensaje/ValidarMensaje'
+import { Validable } from './validable.svelte'
 
-export class Local {
+export class Local extends Validable {
 
   idLocal: number | null = null
   nombreLocal = $state<string>('')
@@ -75,25 +75,6 @@ export class Local {
       mediosDePago: medios
     }
   }
-
-  errors: ValidarMensaje[] = $state([])
-
-
-  tieneError(campo: string): boolean {
-    return this.errors.some((_) => _.campo === campo)
-  }
-
-  agregarError(campo: string, mensaje: string) {
-    this.errors.push( new ValidarMensaje(campo, mensaje))
-  }
-
-  mensajesError(campo: string): string {
-    return this.errors
-      .filter((_) => _.campo === campo)
-      .map((_) => _.mensaje)
-      .join('. ')
-  }
-
 
   validarLocal() {
     

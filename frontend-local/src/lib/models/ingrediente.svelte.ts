@@ -1,12 +1,11 @@
-import { ValidarMensaje } from '$lib/utils/validadorMensaje/ValidarMensaje'
+import { Validable } from './validable.svelte'
 
-export class Ingrediente {
+export class Ingrediente extends Validable {
   id: number | null = null
   nombre = $state<string>('')
   costoMercado = $state<number>(0)
   grupoAlimenticio: GrupoAlimenticio | string = $state('') 
   origenAnimal: Origen = $state('vegetal')
-  errors: ValidarMensaje[] = $state([])
 
   static fromJson(ingredienteJSON: IngredienteJSON): Ingrediente {
     return Object.assign(new Ingrediente(), ingredienteJSON, {
@@ -24,19 +23,6 @@ export class Ingrediente {
     this.origenAnimal = value ? 'animal' : 'vegetal'
   }
 
-  tieneError(campo: string): boolean {
-    return this.errors.some((_) => _.campo === campo)
-  }
-  agregarError(campo: string, mensaje: string) {
-    this.errors.push( new ValidarMensaje(campo, mensaje))
-  }
-  mensajesError(campo: string): string {
-    return this.errors
-      .filter((_) => _.campo === campo)
-      .map((_) => _.mensaje)
-      .join('. ')
-  }
-
   validarIngrediente() {
     this.errors.length = 0
     if (!this.nombre || this.nombre.trim().length === 0) {
@@ -50,10 +36,6 @@ export class Ingrediente {
     if (this.grupoAlimenticio == null || this.grupoAlimenticio === '') {
       this.agregarError('grupoAlimenticio', 'Debe seleccionar un grupo alimenticio')
     }
-  }
-
-  invalid(): boolean {
-    return this.errors.length > 0
   }
 
   toJSON(): IngredienteJSON {
