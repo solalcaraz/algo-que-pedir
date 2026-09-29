@@ -1,0 +1,48 @@
+/* Container general ingredientes */
+.ingrediente-container {
+    max-width: 100%;
+    padding: 1rem 2rem;
+}
+
+/* Estilo del título y botón de agregar ingrediente */
+.boton-titulo h1 {
+    flex-basis: 277px;
+}
+
+/* Estilo de cabecera acciones */
+.cabecera-acciones {
+    text-align: center;
+}
+
+.cabecera-origen {
+    text-align: center;
+}
+
+/* Estilo de iconos acciones */
+.iconos-acciones {
+    display: flex;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+/* Media query mobile */
+@media (max-width: 400px) {
+    .cabecera-origen,
+    .cabecera-alimenticio {
+        display: none;
+    }
+}
+
+/* Media query tablet */
+@media (401px <= width <= 768px) {
+    .ingrediente-container {
+        margin: 0 2.5rem 0 2.5rem;
+    }
+}
+
+/* Media query desktop */
+@media (min-width: 769px) {
+    .ingrediente-container {
+        margin: 0 7rem 0 7rem;
+    }
+}

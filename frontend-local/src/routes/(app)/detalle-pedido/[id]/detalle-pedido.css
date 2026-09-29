@@ -1,0 +1,173 @@
+/* ESTILOS PRINCIPALES */
+main {
+    max-width: 90%;
+    display: block;
+    margin: auto;
+    padding: 10px;
+    line-height: 1.5rem;
+}
+
+h2 {
+    font-size: 1.2rem;
+}
+
+/* CONTENEDORES */
+.contenedor-general {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 1rem;
+}
+
+.contenedor-general h2 {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.contenedor-info {
+    flex-direction: row;
+    gap: 1rem;
+}
+
+section.info-direccion {
+    flex-direction: row;
+    display: flex;
+    gap: 1rem;
+}
+
+section.info-usuario {
+    flex-direction: row;
+    display: flex;
+    gap: 1rem;
+}
+
+img.icono-usuario-pedido{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+img.pin-ubicacion {
+    width: 50px;
+    height: 50px;
+}
+
+/* ELEMENTOS COMUNES */
+.cliente-content,
+.metodo-pago {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.icono {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.cliente-content img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.metodo-pago img {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+}
+
+/* TEXTO */
+.texto-principal {
+    color: var(--color-texto-primario);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.texto-secundario {
+    color: var(--color-texto-secundario);
+}
+
+.cliente-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-top: 0;
+}
+
+/* SECCIONES */
+section {
+    margin-bottom: 1rem;
+    /* background-color: var(--color-secundario); */
+    border-radius: 0.8rem;
+}
+
+.cliente-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+}
+
+/* ESTADO DEL PEDIDO */
+.contenedor-estado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-fondo-secundario);
+    margin-top: 1rem;
+}
+
+.contenedor-estado h2 {
+    display: inline;
+    margin-right: 1rem;
+}
+
+/* PAGO */
+.contenedor-tabla-pago {
+    box-sizing: border-box;
+    padding: 0.5rem 0.75rem;
+    width: 100%;
+    line-height: 2rem;
+}
+
+.tabla-pago {
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+
+/* BOTÓN */
+.boton-volver {
+    text-align: right;
+    height: 2.75rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 400px) {
+    h2 {
+        font-size: 1.1rem;
+    }
+    .contenedor-info {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .contenedor-estado {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .contenedor-estado div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .contenedor-estado div h2 {
+        top: 50%;
+    }
+}

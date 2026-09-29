@@ -1,0 +1,15 @@
+.estado-badge {
+    color: white;
+    border-radius: 1rem;
+    padding: 0 5rem;
+    display: inline-flex;
+    text-align: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 400px) {
+    .estado-badge {
+      width: auto;
+      padding: 0 2rem;
+    }
+  }

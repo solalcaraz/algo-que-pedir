@@ -1,0 +1,143 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 100%;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.boton-login {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 25px;
+}
+
+.grupo-formulario {
+    text-align: left;
+    margin-bottom: 0;
+}
+
+.contenedor-formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.contenedor-login {
+    padding: 3rem 2.5rem;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: none;
+}
+
+.grupo-formulario label {
+    display: block;
+    color: var(--color-texto-primario);
+    margin-left: 5%;
+}
+
+.input-formulario {
+    display: block;
+    padding: 0.75rem;
+    padding-right: 3rem;
+    width: 90%;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+.contenedor-password {
+    position: relative;
+    margin: auto;
+}
+
+.base-toggle-password {
+    position: absolute;
+    right: 6%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    margin: 0;
+}
+
+.checkbox-toggle-password {
+    opacity: 0;
+    cursor: pointer;
+}
+
+.etiqueta-toggle-password {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.etiqueta-toggle-password:hover {
+    box-shadow: none;
+}
+
+.icono-ojo {
+    width: 30px;
+    height: 30px;
+    background-image: url('../assets/eye.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    transition: background-image 0.3s ease;
+}
+
+.checkbox-toggle-password:checked ~ .etiqueta-toggle-password .icono-ojo {
+    background-image: url('../assets/eye-slash.svg');
+}
+
+.enlace-registro {
+    text-align: center;
+    font-size: 0.75rem;
+    padding-top: 1rem;
+    color: var(--color-texto-secundario);
+}
+
+a {
+    color: var(--color-texto-secundario);
+}
+
+.seccion-logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+} 
+
+.imagen-logo {
+    width: 35px;
+    height: 35px;
+    border: solid 5px var(--color-principal);
+    border-radius: 50%;
+    background-color: var(--color-principal);
+    object-fit: contain;
+}
+
+.icono {
+    width: 30px;
+    height: 30px;
+    padding-top: 0.3rem;
+}
+
+@media (max-width: 768px) {
+    .seccion-logo {
+        gap: 1rem;
+    }
+}
+
+@media (min-width: 401px) {
+    .contenedor-login {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    }
+}

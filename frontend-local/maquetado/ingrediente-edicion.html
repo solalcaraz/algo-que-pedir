@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algo que Pedir</title>
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/ingrediente-edicion.css">
+    <link rel="stylesheet" href="/css/botones.css">
+    <link rel="stylesheet" href="/css/input.css">
+</head>
+<body>
+    <header class="header-pagina">
+            <nav class="barra-navegacion"> <!-- Toda la barra de navegacion del header -->
+                <a href="/" class="container-logo">
+                    <img class="logo-app" src="../assets/logo.svg"/>
+                    <h4>Algo que Pedir</h4>  
+                </a>
+
+                <ul class="ul-links"> <!-- Lista de enlaces de navegacion -->
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="../assets/carrito.svg"/>
+                            <span>Pedidos</span>
+                        </a>
+                    </li>
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="../assets/menu.svg"/>
+                            <span>Menu</span>
+                        </a>
+                    </li>
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="../assets/ingredientes.svg"/>
+                            <span>Ingredientes</span>
+                        </a>
+                    </li>
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="../assets/usuario.svg"/>
+                            <span>Cuenta</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                
+                <div class="container-usuario">
+                    <div class="hamburguesa">
+                        <img class="hamburguesa-icono" src="../assets/hamburguesa-menu.svg"/>
+                    </div>
+                    <img class="usuario-logo" src="../assets/usuario-chica.svg"/>
+                </div>
+            </nav>
+    </header> 
+    
+    <main class="vista-edicion-ingrediente main-vista">                        <!-- Contenedor de toda la vista -->
+        <h1 class="titulo-edicion">Editar ingrediente</h1>
+        <section class="container-edicion contenedor-general">                             <!-- Contenedor de los campos de edicion ingrediente -->    
+            <article class="item-input-edicion">
+                <label for="nombre-ingrediente">Nombre del ingrediente*</label>
+                <input type="text" id="nombre-ingrediente" name="nombre-ingrediente" placeholder="Ingresa el nombre del ingrediente..." required>
+            </article>
+
+            <article class="item-input-edicion">
+                <label for="costo-ingrediente">Costo*</label>
+                <input type="number" id="costo-ingrediente" name="costo-ingrediente" placeholder="Ingresa su costo..." required>
+            </article>
+
+            <article class="item-input-edicion">
+                <label for="grupo-alimenticio">Grupo Alimenticio</label>
+                <select name="grupo-alimenticio" id="grupo-alimenticio">
+                    <option value="" disabled selected>Selecciona su grupo</option>
+                    <option value="1">Cereales y tuberculos</option>
+                    <option value="2">Azucares y dulces</option>
+                    <option value="3">Lacteos</option>
+                    <option value="4">Frutas y verduras</option>
+                    <option value="5">Grasas y aceites</option>
+                    <option value="6">Proteinas</option>
+                </select>
+            </article>
+
+            <article class="origen-toggle">         <!-- Implementacion del toggle adaptado -->
+                <label class="switch">
+                    <span class="origen-animal">Origen animal</span>
+                    <input type="checkbox" name="origen-animal">
+                    <span class="slider"></span>
+                </label>
+            </article>
+        </section>
+
+        <div class="container-botones-edicion">             <!-- Contenedor de los botones de guardar y descartar cambios -->
+            <button class="boton-primario boton-guardar">
+                <span class="texto-boton-edicion">Guardar cambios</span>
+            </button>
+            <button class="boton-secundario boton-descartar">
+                <span class="texto-boton-edicion">Descartar cambios</span>
+            </button>
+        </div>
+    </main>
+</body>
+</html>

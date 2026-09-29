@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Algo que pedir</title>
+        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/botones.css">
+        <link rel="stylesheet" href="css/pedidos-actuales.css">
+        <link rel="stylesheet" href="css/general.css">
+    </head>
+    <body>
+        <header class="header-pagina">
+            <nav class="barra-navegacion"> <!-- Toda la barra de navegacion del header -->
+                <a href="/" class="container-logo">
+                    <img class="logo-app" src="../assets/logo.svg"/>
+                    <h4>Algo que Pedir</h4>  
+                </a>
+
+                <ul class="ul-links"> <!-- Lista de enlaces de navegacion -->
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="../assets/carrito.svg"/>
+                            <span>Pedidos</span>
+                        </a>
+                    </li>
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="../assets/menu.svg"/>
+                            <span>Menu</span>
+                        </a>
+                    </li>
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="../assets/ingredientes.svg"/>
+                            <span>Ingredientes</span>
+                        </a>
+                    </li>
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="../assets/usuario.svg"/>
+                            <span>Cuenta</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                
+                <div class="container-usuario">
+                    <div class="hamburguesa">
+                        <img class="hamburguesa-icono" src="../assets/hamburguesa-menu.svg"/>
+                    </div>
+                    <img class="usuario-logo" src="../assets/usuario-chica.png"/>
+                </div>
+            </nav>
+        </header> 
+
+        <main class="container-principal main-vista">      <!-- Contenedor de toda la vista -->
+            <h1>Pedidos actuales</h1>
+            
+            <nav class="container-estados">     <!-- Contenedor de los estados de los pedidos -->
+                <a href="#" class="link-estados">Pendientes</a>
+                <a href="#" class="link-estados">Preparados</a>
+                <a href="#" class="link-estados">Entregados</a>
+                <a href="#" class="link-estados">Cancelados</a>
+            </nav>
+
+            <section class="container-tarjetas">    <!-- Contenedor de las tarjetas de pedidos -->     
+                
+                <article class="pedido-tarjeta contenedor-general">    <!-- Tarjeta de pedido -->
+                    <header class="pedido-header">
+                        <p>Pedido #1234</p>
+
+                        <section class="info-usuario">
+                            <img src="/assets/pedido-user-icon.png" alt="usuario" class="icono-usuario-pedido">
+                            <div class="nombre-usuario">
+                                <h4> Sofia Miller</h4> 
+                                <p> <b>usuario: </b>smiller2005</p>
+                            </div>
+                        </section>
+
+                        <p class="info-pedido">Hora: 12:30 PM | Articulos: 2 | Total: $25</p>
+                    </header>
+
+                    <section class="info-direccion">
+                        <img src="/assets/pin-ubicacion.svg" alt="" class="pin-ubicacion">
+                        <div class="direccion-coordenadas">
+                            <h4>Av. Siempre Viva 555</h4>
+                            <p>Lat: 407128, Long: -740060</p>
+                        </div>
+                    </section>
+
+                    <footer class="pedido-footer">
+                        <div class="modo-pago">
+                            <img src="/assets/tarjeta-credito.svg" alt="" class="icono-pago">
+                            <p><b>Pago con tarjeta de credito</b></p>
+                        </div>
+                    </footer>
+                    <button class="boton-primario boton-preparar">Preparar</button>
+                </article>
+
+                <article class="pedido-tarjeta contenedor-general">    <!-- Tarjeta de pedido -->
+                    <header class="pedido-header">
+                        <p>Pedido #1234</p>
+
+                        <section class="info-usuario">
+                            <img src="/assets/usuario-chica.svg" alt="usuario" class="icono-usuario-pedido">
+                            <div class="nombre-usuario">
+                                <h4> Sofia Miller</h4> 
+                                <p> <b>usuario: </b>smiller2005</p>
+                            </div>
+                        </section>
+
+                        <p class="info-pedido">Hora: 12:30 PM | Articulos: 2 | Total: $25</p>
+                    </header>
+
+                    <section class="info-direccion">
+                        <img src="/assets/pin-ubicacion.svg" alt="" class="pin-ubicacion">
+                        <div class="direccion-coordenadas">
+                            <h4>Av. Siempre Viva 555</h4>
+                            <p>Lat: 407128, Long: -740060</p>
+                        </div>
+                    </section>
+
+                    <footer class="pedido-footer">
+                        <div class="modo-pago">
+                            <img src="/assets/efectivo.svg" alt="" class="icono-efectivo">
+                            <p><b>Pago en efectivo</b></p>
+                        </div>
+                    </footer>
+                    <button class="boton-primario boton-preparar">Preparar</button>
+                </article>
+
+                <article class="pedido-tarjeta contenedor-general">    <!-- Tarjeta de pedido -->
+                    <header class="pedido-header">
+                        <p>Pedido #1234</p>
+
+                        <section class="info-usuario">
+                            <img src="/assets/pedido-user-icon.png" alt="usuario" class="icono-usuario-pedido">
+                            <div class="nombre-usuario">
+                                <h4> Sofia Miller</h4> 
+                                <p> <b>usuario: </b>smiller2005</p>
+                            </div>
+                        </section>
+
+                        <p class="info-pedido">Hora: 12:30 PM | Articulos: 2 | Total: $25</p>
+                    </header>
+
+                    <section class="info-direccion">
+                        <img src="/assets/pin-ubicacion.svg" alt="" class="pin-ubicacion">
+                        <div class="direccion-coordenadas">
+                            <h4>Av. Siempre Viva 555</h4>
+                            <p>Lat: 407128, Long: -740060</p>
+                        </div>
+                    </section>
+
+                    <footer class="pedido-footer">
+                        <div class="modo-pago">
+                            <img src="/assets/codigo-qr.svg" alt="" class="icono-pago">
+                            <p><b>Pago con QR</b></p>
+                        </div>
+                    </footer>
+                    <button class="boton-primario boton-preparar">Preparar</button>
+                </article>
+
+                <article class="pedido-tarjeta contenedor-general">    <!-- Tarjeta de pedido -->
+                    <header class="pedido-header">
+                        <p>Pedido #1234</p>
+
+                        <section class="info-usuario">
+                            <img src="/assets/usuario-chica.svg" alt="usuario" class="icono-usuario-pedido">
+                            <div class="nombre-usuario">
+                                <h4> Sofia Miller</h4> 
+                                <p> <b>usuario: </b>smiller2005</p>
+                            </div>
+                        </section>
+
+                        <p class="info-pedido">Hora: 12:30 PM | Articulos: 2 | Total: $25</p>
+                    </header>
+
+                    <section class="info-direccion">
+                        <img src="/assets/pin-ubicacion.svg" alt="" class="pin-ubicacion">
+                        <div class="direccion-coordenadas">
+                            <h4>Av. Siempre Viva 555</h4>
+                            <p>Lat: 407128, Long: -740060</p>
+                        </div>
+                    </section>
+
+                    <footer class="pedido-footer">
+                        <div class="modo-pago">
+                            <img src="/assets/tarjeta-credito.svg" alt="" class="icono-pago">
+                            <p><b>Pago con tarjeta de credito</b></p>
+                        </div>
+                    </footer>
+                    <button class="boton-primario boton-preparar">Preparar</button>
+                </article>
+
+                <article class="pedido-tarjeta contenedor-general">    <!-- Tarjeta de pedido -->
+                    <header class="pedido-header">
+                        <p>Pedido #1234</p>
+
+                        <section class="info-usuario">
+                            <img src="/assets/pedido-user-icon.png" alt="usuario" class="icono-usuario-pedido">
+                            <div class="nombre-usuario">
+                                <h4> Sofia Miller</h4> 
+                                <p> <b>usuario: </b>smiller2005</p>
+                            </div>
+                        </section>
+
+                        <p class="info-pedido">Hora: 12:30 PM | Articulos: 2 | Total: $25</p>
+                    </header>
+
+                    <section class="info-direccion">
+                        <img src="/assets/pin-ubicacion.svg" alt="" class="pin-ubicacion">
+                        <div class="direccion-coordenadas">
+                            <h4>Av. Siempre Viva 555</h4>
+                            <p>Lat: 407128, Long: -740060</p>
+                        </div>
+                    </section>
+
+                    <footer class="pedido-footer">
+                        <div class="modo-pago">
+                            <img src="/assets/codigo-qr.svg" alt="" class="icono-pago">
+                            <p><b>Pago con QR</b></p>
+                        </div>
+                    </footer>
+                    <button class="boton-primario boton-preparar">Preparar</button>
+                </article>
+
+                <article class="pedido-tarjeta contenedor-general">    <!-- Tarjeta de pedido -->
+                    <header class="pedido-header">
+                        <p>Pedido #1234</p>
+
+                        <section class="info-usuario">
+                            <img src="/assets/usuario-chica.svg" alt="usuario" class="icono-usuario-pedido">
+                            <div class="nombre-usuario">
+                                <h4> Sofia Miller</h4> 
+                                <p> <b>usuario: </b>smiller2005</p>
+                            </div>
+                        </section>
+
+                        <p class="info-pedido">Hora: 12:30 PM | Articulos: 2 | Total: $25</p>
+                    </header>
+
+                    <section class="info-direccion">
+                        <img src="/assets/pin-ubicacion.svg" alt="" class="pin-ubicacion">
+                        <div class="direccion-coordenadas">
+                            <h4>Av. Siempre Viva 555</h4>
+                            <p>Lat: 407128, Long: -740060</p>
+                        </div>
+                    </section>
+
+                    <footer class="pedido-footer">
+                        <div class="modo-pago">
+                            <img src="/assets/tarjeta-credito.svg" alt="" class="icono-pago">
+                            <p><b>Pago con tarjeta de credito</b></p>
+                        </div>
+                    </footer>
+                    <button class="boton-primario boton-preparar">Preparar</button>
+                </article>
+
+                <article class="pedido-tarjeta contenedor-general">    <!-- Tarjeta de pedido -->
+                    <header class="pedido-header">
+                        <p>Pedido #1234</p>
+
+                        <section class="info-usuario">
+                            <img src="/assets/pedido-user-icon.png" alt="usuario" class="icono-usuario-pedido">
+                            <div class="nombre-usuario">
+                                <h4> Sofia Miller</h4> 
+                                <p> <b>usuario: </b>smiller2005</p>
+                            </div>
+                        </section>
+
+                        <p class="info-pedido">Hora: 12:30 PM | Articulos: 2 | Total: $25</p>
+                    </header>
+
+                    <section class="info-direccion">
+                        <img src="/assets/pin-ubicacion.svg" alt="" class="pin-ubicacion">
+                        <div class="direccion-coordenadas">
+                            <h4>Av. Siempre Viva 555</h4>
+                            <p>Lat: 407128, Long: -740060</p>
+                        </div>
+                    </section>
+
+                    <footer class="pedido-footer">
+                        <div class="modo-pago">
+                            <img src="/assets/efectivo.svg" alt="" class="icono-pago">
+                            <p><b>Pago en efectivo</b></p>
+                        </div>
+                    </footer>
+                    <button class="boton-primario boton-preparar">Preparar</button>
+                </article>
+            </section>
+        </main>
+
+    </body>
+</html>

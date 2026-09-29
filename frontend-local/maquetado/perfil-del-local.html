@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil del local</title>
+
+    <!-- Archivos externos -->
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/botones.css">
+    <link rel="stylesheet" href="css/perfil-del-local.css">
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nata+Sans:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header-pagina">
+            <nav class="barra-navegacion"> <!-- Toda la barra de navegacion del header -->
+                <a href="/" class="container-logo">
+                    <img class="logo-app" src="assets/logo.svg"/>
+                    <h4>Algo que Pedir</h4>  
+                </a>
+
+                <ul class="ul-links"> <!-- Lista de enlaces de navegacion -->
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="assets/carrito.svg"/>
+                            <span>Pedidos</span>
+                        </a>
+                    </li>
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="assets/menu.svg"/>
+                            <span>Menu</span>
+                        </a>
+                    </li>
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="assets/ingredientes.svg"/>
+                            <span>Ingredientes</span>
+                        </a>
+                    </li>
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="assets/usuario.svg"/>
+                            <span>Cuenta</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                
+                <div class="container-usuario">
+                    <div class="hamburguesa">
+                        <img class="hamburguesa-icono" src="assets/hamburguesa-menu.svg"/>
+                    </div>
+                    <img class="usuario-logo" src="assets/usuario-chica.svg"/>
+                </div>
+            </nav>
+    </header>    
+    <main class="contenedor-principal main-vista">
+        <div class="titulo-principal">
+            <h1>Información del local</h1>
+        </div>
+        
+        <section class="informacion-local card">
+            <div class="inputs-local">
+                <label for="nombre-local">Nombre del local*</label>
+                <input type="text" id="nombre-local" placeholder="Escribir" required>
+                <label for="url-imagen-local">URL de la imagen*</label>
+                <input type="text" id="url-imagen-local" placeholder="Escribir" required>
+            </div>
+            <img src="assets/moes-bar.jpg" alt="Imagen del local" class="imagen-local">
+        </section>
+
+
+    <section class="card">
+        <h3>Dirección</h3>
+        <div class="card-inputs">
+            <div>
+                <label for="direccion">Dirección*</label>
+                <input type="text" id="direccion" placeholder="Escribir" required>
+            </div>
+            <div>
+                <label for="altura">Altura*</label>
+                <input type="number" id="altura" placeholder="Escribir" required>
+            </div>
+            <div>
+                <label for="latitud">Latitud*</label>
+                <input type="number" id="latitud" placeholder="Escribir" required>
+            </div>
+            <div>
+                <label for="longitud">Longitud*</label>
+                <input type="number" id="longitud" placeholder="Escribir" required>
+            </div>
+        </div>
+    </section>
+
+    <section class="card">
+        <h3>Porcentajes</h3>
+
+        <div class="card-inputs">
+            <div>
+                <label for="porcentaje-comision-app">Porcentaje de comisión con la app*</label>
+                <input type="number" id="porcentaje-comision-app" placeholder="Escribir" required>
+            </div>
+            <div>
+                <label for="porcentaje-comision-plato-autor">Porcentaje de comisión con autores de platos*</label>
+                <input type="number" id="porcentaje-comision-plato-autor" placeholder="Escribir" required>
+            </div>
+        </div>
+
+        <h3>Métodos de pago</h3>
+        <div class="metodos-de-pago">
+            <label for="efectivo">
+                <input type="checkbox" id="efectivo">
+                Efectivo
+            </label>
+            <label for="qr">
+                <input type="checkbox" id="qr">
+                QR
+            </label>
+            <label for="transferencia">
+                <input type="checkbox" id="transferencia">
+                Transferencia
+            </label>
+        </div>
+    </section>
+
+        <div class="button">
+            <button class="boton-primario">Guardar cambios</button>
+            <button class="boton-secundario">Descartar cambios</button>
+        </div>
+    
+    </main>
+</body>
+</html>

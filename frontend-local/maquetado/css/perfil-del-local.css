@@ -1,0 +1,146 @@
+.contenedor-principal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60vw;
+  margin: 0px auto;
+  box-sizing: border-box;
+}
+
+.titulo-principal {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+h1, h2, h3, h4 {
+  margin-bottom: 8px;
+}
+
+.card {
+  width: 60vw;
+  background-color: #fff;
+  padding: 16px;
+  border: 1px solid var(--color-bordes);
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.informacion-local {
+  display: grid;
+  grid-template-columns: 1fr 180px;
+  grid-template-rows: auto auto;
+  align-items: start;
+}
+
+.card input {
+  padding: 12px;
+  border: 1px solid var(--color-bordes);
+  border-radius: 4px;
+  width: 90%;
+  margin: 6px 0px;
+}
+
+.inputs-local {
+  display: grid;
+  grid-auto-rows: min-content;
+}
+
+.imagen-local {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  width: 90%;
+  height: 90%;
+  border-radius: 8px;
+  border: 1px solid var(--color-bordes);
+  margin-top: 16px;
+}
+
+.card-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.metodos-de-pago {
+  display: flex;
+  gap: 16px;
+}
+
+.metodos-de-pago label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+/* Vista mobile */
+@media (width <= 400px) {
+
+.contenedor-principal {
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+}
+
+.titulo-principal {
+  font-size: 1.3em;
+  width: 130%;
+  text-align: center;
+}
+
+.card, .card-inputs {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+}
+
+.metodos-de-pago {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+}
+
+.button {
+  margin-bottom: 2rem;
+  margin-top: -0.5rem;
+  justify-content: space-between;
+}
+
+h1 {
+  font-size: 1.1em;
+}
+}
+
+/* Vista tablet */
+@media (401px <= width <= 768px){ 
+
+.contenedor-principal {
+  width: 95%;
+  margin-top: 20%;
+}
+
+.titulo-principal {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.card, .card-inputs {
+  width: 95%;
+  font-size: 0.8rem;
+}
+
+button {
+  display: flex;
+  justify-content: space-between;
+}
+}

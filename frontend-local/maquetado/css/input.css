@@ -1,0 +1,17 @@
+/* Estilos de labels, inputs y textarea */
+    /* Contenedor para el label y el input */
+.label-input {
+    display: flex;
+    flex-direction: column;
+}
+label {
+    margin: 0.5rem 0;
+}
+    /* Como esta en cascada, la tipografia del input pisa la que elegimos */
+input, textarea, select {
+    font-family: "Nata Sans", sans-serif;
+    font-size: 1rem;
+    padding: 0.2rem;
+    border-radius: 0.3rem;
+    border: 1px solid var(--color-bordes);
+}

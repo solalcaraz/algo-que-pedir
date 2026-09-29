@@ -1,0 +1,48 @@
+/* Container principal */
+.delivery-container {
+    min-height: 100vh;
+    background-color: #f7fafc;
+    padding-bottom: 80px;
+}
+
+/* Header */
+.delivery-header {
+    background-color: white;
+    padding: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* Search container */
+.search-container {
+    position: relative;
+}
+
+.search-input {
+    padding-right: 40px;
+}
+
+.search-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #718096;
+}
+
+/* Content */
+.delivery-content {
+    padding: 1rem;
+}
+
+/* Local card */
+.local-image {
+    height: 140px;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* No results */
+.no-results {
+    text-align: center;
+    padding: 2.5rem 0;
+}

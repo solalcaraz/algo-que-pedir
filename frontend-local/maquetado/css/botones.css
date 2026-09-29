@@ -1,0 +1,93 @@
+/* Estilo de los botones: primerios y secundarios */
+button {                        
+    border: none;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+}
+
+.boton-primario {
+    background-color: var(--color-principal);
+    color: var(--color-secundario);
+}
+
+.boton-secundario {
+    background-color: var(--color-secundario);
+    color: var(--color-principal);
+    border: 1px solid var(--color-principal);
+}
+
+/* Combinación de título h1 y botón, se usa en gestión del MENU e INGREDIENTES */
+.titulo-boton {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+    /* Iconos que son botones de accion */
+.boton-icono {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* ################################################## */
+
+/* Estilo para boton deslizante */
+    /* Contenedor general de switch. 
+    Disposicion del texto y boton en fila. */
+.switch {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+}
+    /* Estilo del texto y subtitulo/leyenda. 
+    Se aplican así para no pisar nada y asegurar que se apliquen donde corresponde */
+.switch span.contenedor-texto {
+    display: flex;
+    flex-direction: column;
+}
+.switch span.contenedor-texto .subtitulo-label {
+    font-size: 0.8rem;
+    color: var(--color-texto-secundario);
+}
+    /* Ocultar visualmente el checkbox real */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+    /* Slider personalizado */
+.slider {
+    position: relative;
+    width: 40px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 20px;
+    transition: 0.4s;
+}
+    /* Circulo dentro del slider */
+.slider::before {
+    content: "";
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    top: 2px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+    /* Efecto cuando el checkbox está activo.
+    El + es el selector de hermano adyacente.
+    Cuando se hace click sobre el checkbox el .slide aplica cierto estilo (color y cambio de posicion en este caso). */
+.switch input:checked + .slider {
+    background-color: var(--color-principal);
+}
+.switch input:checked + .slider::before {
+    transform: translateX(20px);
+}

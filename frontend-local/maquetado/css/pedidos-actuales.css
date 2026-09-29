@@ -1,0 +1,136 @@
+/* -----> Vista Desktop */
+.container-principal {                      /* Container flex de toda la vista */
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+}
+
+.container-estados {            
+    display: flex;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    margin: 1rem 1rem 0 1rem;           /* Margin top/right/bottom/left para posicionamiento y acomodar la linea de c/estado */       
+}
+
+.link-estados:hover {
+    font-weight: bold;
+    border-bottom: 4px solid rgb(109, 109, 109); 
+}
+
+.link-estados {
+    color: var(--color-texto-secundario);
+    border-bottom: 3px solid var(--color-bordes);       /* Linea de c/estado */
+    padding-bottom: 0.7rem;   
+    transition: border-bottom 0.3s;                    
+}
+
+/* Container grid de todas las tarjetas */
+.container-tarjetas {                              
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);        /*3 columnas que toman 1/3 del espacio c/u*/
+    gap: 1rem;
+    border-top: 1px solid var(--color-bordes);
+    padding-top: 1rem;
+}
+
+.pedido-tarjeta {                               /* Cada tarjeta de pedido */
+    border: 1px solid var(--color-bordes);
+    border-radius: 1rem;                        /*Implementa estilos de contenedor-general*/
+    display: flex;
+    flex-direction: column;
+}
+
+.pedido-header{
+    display: flex;
+    flex-direction: column;
+}
+
+.pedido-header > p,
+.modo-pago {                        /* Color gris para parrafos de la tarjeta */
+    color: var(--color-texto-secundario);
+} 
+
+.info-usuario{                      /* Icono/info usuario de la tarjeta */
+    display: flex;
+    gap: 1rem;
+    margin: 0.7rem 1rem;
+}
+
+.icono-usuario-pedido{
+    width: 3.5rem;
+}
+
+.nombre-usuario,                  /* Alineacion nombre-user del header tarjeta */ 
+.direccion-coordenadas {          /* Alineacion direccion/coordenadas de tarjeta */             
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+}
+
+.nombre-usuario > p,                /* Color violeta para parrafos de la tarjeta */
+.direccion-coordenadas > p {               
+    color: var(--color-parrafos); 
+}
+
+.info-pedido {                          /*Alineacion parrafo hora/articulos/total del header tarjeta */
+    font-size: 15px;
+    color: var(--color-texto-secundario);
+}
+
+.info-direccion {                       /* Alineacion info direccion pedido */
+    display: flex;
+    margin: 1.5rem 0;
+}
+
+.pin-ubicacion {
+    padding: 0.5rem;
+    margin-right: 1rem;
+    background-color: rgb(230, 224, 236);     /* Fondo del pin gris-violaceo */
+    border-radius: 20%;
+}
+
+.pedido-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modo-pago {                               /* Alineacion footer */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+.boton-preparar {               /* Boton preparar pedido */ 
+    height: max-content;
+    align-self: flex-end;
+}
+
+
+
+/* -----> Vista Tablet */
+@media (min-width: 401px) and (max-width: 769px) {      
+    .container-tarjetas {
+        grid-template-columns: repeat(2, 1fr);
+    } 
+} 
+
+/* -----> Vista Mobile*/
+@media (max-width: 400px) {         
+    .container-principal {
+        margin: 2rem 1.5rem 0 1.5rem;              /*Mantengo margin laterales+top pero el margin-bottom de mobile ya viene fijado en general.css*/
+    }
+    
+    .container-estados {
+        margin: 1rem 0 0 0;
+        gap: 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .container-tarjetas {               /* Contenedor de todas las tarjetas de pedidos */
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+}

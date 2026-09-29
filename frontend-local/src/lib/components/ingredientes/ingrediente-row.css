@@ -1,0 +1,12 @@
+.icono-origen, .icono-accion {
+    text-align: center;
+}
+
+/* Media query mobile */
+@media (max-width: 400px) {
+    .icono-origen,
+    .celda-alimenticio {
+        display: none;
+    }
+}
+

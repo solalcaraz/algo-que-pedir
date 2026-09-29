@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Pedido</title>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/tablas.css">
+    <link rel="stylesheet" href="css/botones.css">
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/detalle-pedido.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nata+Sans:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="header-pagina">
+            <nav class="barra-navegacion"> <!-- Toda la barra de navegacion del header -->
+                <a href="/" class="container-logo">
+                    <img class="logo-app" src="../assets/logo.svg"/>
+                    <h4>Algo que Pedir</h4>  
+                </a>
+
+                <ul class="ul-links"> <!-- Lista de enlaces de navegacion -->
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="../assets/carrito.svg"/>
+                            <span>Pedidos</span>
+                        </a>
+                    </li>
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="../assets/menu.svg"/>
+                            <span>Menu</span>
+                        </a>
+                    </li>
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="../assets/ingredientes.svg"/>
+                            <span>Ingredientes</span>
+                        </a>
+                    </li>
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="../assets/usuario.svg"/>
+                            <span>Cuenta</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                
+                <div class="container-usuario">
+                    <div class="hamburguesa">
+                        <img class="hamburguesa-icono" src="../assets/hamburguesa-menu.svg"/>
+                    </div>
+                    <img class="usuario-logo" src="../assets/usuario-chica.svg"/>
+                </div>
+            </nav>
+    </header>   
+    <main class="main-vista">
+        <section class="contenedor-estado">
+            <h1>Pedido #12345</h1>
+            <div>
+                <h2>Estado del Pedido</h2>
+                <span class="estado-icono">Pendiente</span>
+            </div>
+        </section>
+        <section class="contenedor-general contenedor-info">
+            <div class="cliente-info">
+                <h2>Cliente</h2>
+                <div class="cliente-content">
+                    <img src="assets/usuario.svg" class="icono" alt="Cliente">
+                    <div class="cliente-texto">
+                        <span class="texto-principal">Sofia Miller</span>
+                        <span class="texto-secundario"><b>Usuario:</b> smiller2005</span>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="cliente-info">
+                <h2>Dirección de entrega</h2>
+                <div class="cliente-content">
+                    <img src="assets/pin-ubicacion.svg" class="icono" alt="Ubicacion">
+                    <div class="cliente-texto">
+                        <span class="texto-principal">Av. Siempre Viva 555</span>
+                        <span class="texto-secundario">Lp 05, 1798 Tay - 19-09047</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class ="contenedor-general">
+            <h2>Resumen del Pedido</h2>
+            <table class="contenedor-tabla">
+                    <thead>
+                        <tr>
+                            <th>Plato</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="plato-detalle">
+                                <img src="assets/hamburguesa-con-queso.png" class="icono" alt="Hamburguesa">
+                                <div>
+                                    <span class="texto-principal">Hamburguesa con Queso</span><br>
+                                    <span class="texto-secundario">Hamburguesa clásica con queso y papas fritas</span>
+                                </div>
+                            </td>
+                            <td>1</td>
+                            <td>$15.00</td>
+                        </tr>
+                        <tr>
+                            <td class="plato-detalle">
+                                <img src="assets/alitas-picantes.png" class="icono" alt="Papas Fritas">
+                                <div>
+                                    <span class="texto-principal">Papas Fritas</span><br>
+                                    <span class="texto-secundario">Papas caseras fritas y crocantes</span>
+                                </div>
+                            </td>
+                            <td>1</td>
+                            <td>$6.00</td>
+                        </tr>
+                        <tr>
+                            <td class="plato-detalle">
+                                <img src="assets/pescado-papas-fritas.png" class="icono" alt="Refresco">
+                                <div>
+                                    <span class="texto-principal">Refresco</span><br>
+                                    <span class="texto-secundario">Vaso natural refrescante</span>
+                                </div>
+                            </td>
+                            <td>1</td>
+                            <td>$3.00</td>
+                        </tr>
+                    </tbody>
+            </table>
+        </section>
+        <section class ="contenedor-general">
+            <div class="contenedor-tabla-pago">
+                <h3>Pago</h3>
+                <dl class="tabla-pago">
+                    <dt>Subtotal</dt>
+                    <dd>$20.00</dd>
+                    <dt>Comisión del delivery</dt>
+                    <dd>$2.00</dd>
+                    <dt>Incremento por tipo de pago</dt>
+                    <dd>$1.10</dd>
+                    <dt>Total</dt> <dd>$23.10</dd>
+                </dl>
+                <h3>Método de Pago</h3>
+                <div class="metodo-pago">
+                    <img src="assets/tarjeta-credito.svg" class="icono" alt="Metodo de pago">
+                    <p>Pago con tarjeta de crédito</p>
+                </div> 
+            </div>
+        </section>
+        <div class="boton-volver">
+            <button type="submit" class="boton-volver boton-primario">Volver</button>
+        </div>
+    </main>
+</body>
+</html>

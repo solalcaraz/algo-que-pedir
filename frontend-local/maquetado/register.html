@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Crear tu cuenta</title>
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/input.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/botones.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nata+Sans:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <section class="contenedor-login">
+            <div class="seccion-logo">
+                <img class="imagen-logo" src="assets/logo.svg" alt="Logo Algo que Pedir">
+                <h1>Crea tu cuenta</h1>
+            </div>
+            <form class="contenedor-formulario">
+                <div class="grupo-formulario">
+                    <label for="usuario">Usuario</label>
+                    <input type="text" id="usuario" class="input-formulario" name="usuario" placeholder="Escribir" required>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="password">Password</label>
+                    <div class="contenedor-password">
+                        <input type="password" id="password" name="password" class="input-formulario" placeholder="Escribir" required>
+                        <input type="checkbox" id="password-toggle" class="base-toggle-password checkbox-toggle-password">
+                        <label for="password-toggle" class="base-toggle-password etiqueta-toggle-password">
+                            <div class="icono-ojo"></div>
+                        </label>
+                    </div>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="confirmar-password">Re-ingrese el Password</label>
+                    <div class="contenedor-password">
+                        <input type="password" id="confirmar-password" class="input-formulario" name="confirmar-password" placeholder="Escribir" required>
+                        <input type="checkbox" id="confirmar-toggle" class="base-toggle-password checkbox-toggle-password">
+                        <label for="confirmar-toggle" class="base-toggle-password etiqueta-toggle-password">
+                            <div class="icono-ojo"></div>
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="boton-login boton-primario">Registrarse</button>
+                </div>
+            </form>
+            <p class="enlace-registro">¿Ya tienes una cuenta? <a href="login.html">Inicia sesión</a></p>
+        </section>
+    </main>
+</body>
+</html>

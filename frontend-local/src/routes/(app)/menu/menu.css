@@ -1,0 +1,26 @@
+/* Container main del menú */
+.menu-container {
+    max-width: 100%;
+    padding: 1rem 2rem;  
+}
+
+ /* Formato del contenedor de la lista del menú */
+.lista-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Media Query tablet */
+@media (401px <= width <= 768px) {
+    .menu-container {
+        margin: 0 4.5rem 0 4.5rem
+    }
+}
+
+/* Media Query desktop */
+@media (min-width: 769px) {
+    .menu-container {
+        margin: 0 7rem 0 7rem;
+    }
+}

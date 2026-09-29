@@ -1,0 +1,59 @@
+/* Configuración para cada item (plato+precio) del menú*/
+.item-menu {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    position: relative; 
+}
+
+/* Pseudoclase para mostrar linea en hover del item del menú */
+.item-menu::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;                     
+  height: 1px;                      
+  background: darkgray;                 
+  opacity: 0;                       
+  transition: opacity .15s ease;
+}
+
+/* Muestra la línea al hoverear sobre el item */
+.item-menu:hover::after {
+  opacity: 1;                       
+  cursor: pointer;
+}
+
+/* Configuración para imágen y nombre+descripción del plato */
+.detalles-menu {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-grow: 1;
+}
+
+/* Formato de las imágenes en el menú */
+ .imagen-menu {
+    height: 3rem;
+    width: auto;
+    border-radius: 8px;
+} 
+
+/* Configuración para precios del menú */
+.precio-menu {
+    display: flex;
+    align-items: center;
+}
+
+/* Descripción del plato del menú */
+.descripcion-plato {
+    font-weight: 140;
+}
+
+/* Media Query mobile */
+@media (max-width: 400px) {    
+    .descripcion-plato {
+        display: none;
+    }
+}

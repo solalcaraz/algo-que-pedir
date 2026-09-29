@@ -1,0 +1,28 @@
+/* Estilo de los botones: primerios y secundarios */
+button {                        
+    border: none;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+}
+
+.boton-primario {
+    background-color: var(--color-principal);
+    color: var(--color-secundario);
+}
+
+.boton-secundario {
+    background-color: var(--color-secundario);
+    color: var(--color-principal);
+    border: 1px solid var(--color-principal);
+}
+
+/* Combinación de título h1 y botón, se usa en gestión del MENU e INGREDIENTES */
+.boton-titulo {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}

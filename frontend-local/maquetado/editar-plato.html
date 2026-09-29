@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Plato</title>
+    
+    <!-- Archivos externos -->
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/botones.css">
+    <link rel="stylesheet" href="css/input.css">
+    <link rel="stylesheet" href="css/tablas.css">
+    <link rel="stylesheet" href="css/estilo-editar-plato.css">
+    <!-- Archivo para fuente -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nata+Sans:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header-pagina">
+            <nav class="barra-navegacion"> <!-- Toda la barra de navegacion del header -->
+                <a href="/" class="container-logo">
+                    <img class="logo-app" src="../assets/logo.svg"/>
+                    <h4>Algo que Pedir</h4>  
+                </a>
+
+                <ul class="ul-links"> <!-- Lista de enlaces de navegacion -->
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="../assets/carrito.svg"/>
+                            <span>Pedidos</span>
+                        </a>
+                    </li>
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="../assets/menu.svg"/>
+                            <span>Menu</span>
+                        </a>
+                    </li>
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="../assets/ingredientes.svg"/>
+                            <span>Ingredientes</span>
+                        </a>
+                    </li>
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="../assets/usuario.svg"/>
+                            <span>Cuenta</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                
+                <div class="container-usuario">
+                    <div class="hamburguesa">
+                        <img class="hamburguesa-icono" src="../assets/hamburguesa-menu.svg"/>
+                    </div>
+                    <img class="usuario-logo" src="../assets/usuario-chica.svg"/>
+                </div>
+            </nav>
+    </header>
+    <main class="main-vista">
+        <h1 class="titulo">Editar Plato</h1>
+
+        <!-- Descripción del plato -->
+        <section class="contenedor-general editar-plato">
+            <form>
+                <div class="label-input">
+                    <label for="nombre">Nombre del plato*</label>
+                    <input type="text" id="nombre" value="Hamburguesa con cheddar y cebolla" maxlength="30" required>
+                </div>
+        
+                <div class="label-input">
+                    <label for="descripcion">Descrpción*</label>
+                    <textarea class="textarea-descripcion" id="descripcion">Breve descripción de los ingredientes o preparación del plato</textarea>
+                </div>
+        
+                <div class="label-input">
+                    <label for="imagen">URL de la imagen del plato*</label>
+                    <input type="url" id="imagen" placeholder="http://images.google.com/altaburguer.jpg" required>
+                </div>
+            </form>
+    
+                <!-- Imagen de referencia -->
+            <div class="editar-plato__imagen">
+                <img class="foto" src="assets\hamburguesa-preview.jpg" alt="Vista previa del plato">
+            </div>
+        </section>
+
+        <!-- Costos del plato -->
+        <section class="contenedor-general contenedor-general_especifico">
+            <h2>Costos</h2>
+            <form action="#">
+                <div class="label-input">
+                    <label for="precio">Precio Base*</label>
+                    <input type="number" id="precio" placeholder="Ej: 500" min="0" required>
+                </div>
+    
+                <div>
+                    <label class="switch switch-separacion" for="platoDeAutor">
+                        <span class="contenedor-texto">
+                            <span class="titulo-label"><b>Plato de Autor</b></span>
+                            <span class="subtitulo-label">Aplica un porcentaje adicional al precio de venta</span>
+                        </span>
+                        <input type="checkbox" id="platoDeAutor">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div>
+                    <label class="switch switch-separacion" for="platoDePromocion">
+                        <span class="contenedor-texto">
+                            <span class="titulo-label"><b>Plato en Promoción</b></span>
+                            <span class="subtitulo-label">Aplica un descuento al precio de venta</span>
+                        </span>
+                        <input type="checkbox" id="platoDePromocion">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </form>
+        </section>
+
+        <!-- Detalle de los ingredientes -->
+        <section class="contenedor-general contenedor-general_especifico">
+            <h2>Ingredientes</h2>
+            <div class="contenedor_titulo-span">
+                <h3 class="subtitulo">Costo de producción</h3><span>$ 100</span>
+            </div>
+            <article class="contenedor-tabla">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Grupo</th>
+                            <th class="icono">Origen</th>
+                            <th class="icono">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Carne de Red</td>
+                            <td>Proteínas</td>
+                            <td class="icono"><img src="assets/cow.svg"></td>
+                            <td class="icono">
+                                <button class="boton-icono" type="button" aria-label="Eliminar">
+                                    <img src="assets/trash.svg" alt="">
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Queso Cheddar</td>
+                            <td>Lácteos</td>
+                            <td class="icono"><img src="assets/cow.svg"></td>
+                            <td class="icono">
+                                <button class="boton-icono" type="button" aria-label="Eliminar">
+                                    <img src="assets/trash.svg" alt="">
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Lechuga</td>
+                            <td>Frutas y verduras</td>
+                            <td class="icono"><img src="assets/palta.svg"></td>
+                            <td class="icono">
+                                <button class="boton-icono" type="button" aria-label="Eliminar">
+                                    <img src="assets/trash.svg" alt="">
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tomate</td>
+                            <td>Frutas y verduras</td>
+                            <td class="icono"><img src="assets/palta.svg"></td>
+                            <td class="icono">
+                                <button class="boton-icono" type="button" aria-label="Eliminar">
+                                    <img src="assets/trash.svg" alt="">
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+        </section>
+
+        <!-- Botones finales -->
+        <div class="botones-juntos">
+            <button class="boton boton-primario">Guardar cambios</button>
+            <button class="boton boton-secundario">Descartar cambios</button>
+        </div>
+    </main>
+</body>
+</html>

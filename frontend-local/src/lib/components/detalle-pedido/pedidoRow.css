@@ -1,0 +1,41 @@
+.plato-detalle {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .icono {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 10px;
+    flex-shrink: 0;
+    object-fit: cover;
+  }
+
+  .texto-principal {
+    color: var(--color-texto-primario);
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  .texto-secundario {
+    color: var(--color-texto-secundario);
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 400px) {
+    .icono {
+      width: 3rem;
+      height: 3rem;
+    }
+
+    .texto-principal {
+      font-size: 1rem;
+    }
+    
+    .texto-secundario {
+      display: none;
+    }
+  }

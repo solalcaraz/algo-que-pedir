@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingredientes</title>
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="/css/botones.css">
+    <link rel="stylesheet" href="css/tablas.css">
+    <link rel="stylesheet" href="css/ingredientes.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nata+Sans:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header-pagina">
+            <nav class="barra-navegacion"> <!-- Toda la barra de navegacion del header -->
+                <a href="/" class="container-logo">
+                    <img class="logo-app" src="../assets/logo.svg"/>
+                    <h4>Algo que Pedir</h4>  
+                </a>
+
+                <ul class="ul-links"> <!-- Lista de enlaces de navegacion -->
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="../assets/carrito.svg"/>
+                            <span>Pedidos</span>
+                        </a>
+                    </li>
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="../assets/menu.svg"/>
+                            <span>Menu</span>
+                        </a>
+                    </li>
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="../assets/ingredientes.svg"/>
+                            <span>Ingredientes</span>
+                        </a>
+                    </li>
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="../assets/usuario.svg"/>
+                            <span>Cuenta</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="container-usuario">
+                    <div class="hamburguesa">
+                        <img class="hamburguesa-icono" src="../assets/hamburguesa-menu.svg"/>
+                    </div>
+                    <img class="usuario-logo" src="../assets/usuario-chica.svg"/>
+                </div>
+            </nav>
+    </header>
+    <main class="ingrediente-container main-vista">
+        <header class="titulo-boton">
+            <h1>Ingredientes</h1>
+            <button class="boton-primario">Nuevo Ingrediente</button>
+        </header>
+        <section class="contenedor-tabla"> <!-- Sin este section no me pone los bordes -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Costo</th>
+                        <th class="cabecera-alimenticio">Grupo alimenticio</th>
+                        <th class="cabecera-origen">Origen</th>
+                        <th class="cabecera-acciones">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tomate</td>
+                        <td>$0.50</td>
+                        <td class="celda-alimenticio">Frutas y verduras</td>
+                        <td class="icono-origen"><img src="assets/palta.svg" alt="palta"></td>
+                        <td>
+                            <div class="iconos-acciones">
+                                <img src="assets/eye.svg" alt="ojo" class="icono-ojo">
+                                <img src="assets/pencil-simple.svg" alt="lapiz">
+                                <img src="assets/trash.svg" alt="tacho">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Pechuga de pollo</td>
+                        <td>$3.00</td>
+                        <td class="celda-alimenticio">Proteinas</td>
+                        <td class="icono-origen"><img src="assets/cow.svg" alt="vaca"></td>
+                        <td>
+                            <div class="iconos-acciones">
+                                <img src="assets/eye.svg" alt="ojo" class="icono-ojo">
+                                <img src="assets/pencil-simple.svg" alt="lapiz">
+                                <img src="assets/trash.svg" alt="tacho">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Arroz</td>
+                        <td>$1.00</td>
+                        <td class="celda-alimenticio">Cereales y tuberculos</td>
+                        <td class="icono-origen"><img src="assets/palta.svg" alt="palta"></td>
+                        <td>
+                            <div class="iconos-acciones">
+                                <img src="assets/eye.svg" alt="ojo" class="icono-ojo">
+                                <img src="assets/pencil-simple.svg" alt="lapiz">
+                                <img src="assets/trash.svg" alt="tacho">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Leche</td>
+                        <td>$2.00</td>
+                        <td class="celda-alimenticio">Lacteos</td>
+                        <td class="icono-origen"><img src="assets/cow.svg" alt="vaca"></td>
+                        <td>
+                            <div class="iconos-acciones">
+                                <img src="assets/eye.svg" alt="ojo" class="icono-ojo">
+                                <img src="assets/pencil-simple.svg" alt="lapiz">
+                                <img src="assets/trash.svg" alt="tacho">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Palta</td>
+                        <td>$1.50</td>
+                        <td class="celda-alimenticio">Frutas y verduras</td>
+                        <td class="icono-origen"><img src="assets/palta.svg" alt="palta"></td>
+                        <td>
+                            <div class="iconos-acciones">
+                                <img src="assets/eye.svg" alt="ojo" class="icono-ojo">
+                                <img src="assets/pencil-simple.svg" alt="lapiz">
+                                <img src="assets/trash.svg" alt="tacho">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main> 
+</body>
+</html>

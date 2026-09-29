@@ -1,0 +1,14 @@
+.plato-precio {
+    display: flex;
+    justify-content: space-between;
+}
+
+.detalle-icono {
+    display: flex;
+    justify-content: space-between;
+}
+
+.precio-total {
+    display: flex;
+    justify-content: flex-end;
+}

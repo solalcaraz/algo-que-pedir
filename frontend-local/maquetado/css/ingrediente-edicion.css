@@ -1,0 +1,91 @@
+/* Vista Mobile */
+.vista-edicion-ingrediente {    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 5rem 2rem;
+}
+
+.titulo-edicion {
+    align-self: flex-start;
+    color: var(--color-texto-primario);
+}
+
+/* Container de todos los inputs de edicion ingrediente */
+.container-edicion {    
+    margin: 2rem 0;
+    padding: 1.5rem;
+}
+
+/* Espaciado y alineamiento de c/input dentro del container */
+.item-input-edicion {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-edicion input,
+.container-edicion select {
+    height: 2.5rem;
+    padding: 0.1rem 0.4rem;
+}
+
+/* Espaciado entre contenedor toggle e inputs de arriba */
+.origen-toggle {               
+    margin-top: 2rem;           
+}
+
+/* Espaciado entre laberl Origen animal y toggle */
+.origen-toggle .slider {        
+    margin-left: 1rem;
+}
+
+.container-botones-edicion {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.container-botones-edicion > button {
+    padding: 0.3rem 0.3rem;
+}
+
+
+/* Vista Tablet */
+@media (min-width: 401px) and (max-width: 769px) {
+    .vista-edicion-ingrediente{
+        margin: 5rem 4rem;
+    }
+    
+    .container-edicion {
+        padding: 1rem 3rem;
+    }
+    
+    .container-botones-edicion {
+        justify-content: flex-end;
+    }
+
+    .container-botones-edicion > button {
+        padding: 0.5rem 1rem;
+    }
+}
+
+
+/* Vista Desktop */
+@media (min-width: 770px) {
+    .vista-edicion-ingrediente{
+        margin: 5rem 5rem;
+    }
+
+    .container-edicion {
+        padding: 1rem 5rem;
+    }
+    
+    .container-botones-edicion {
+        justify-content: flex-end;
+    }
+
+    .container-botones-edicion > button {
+        padding: 0.5rem 1rem;
+    }
+} 

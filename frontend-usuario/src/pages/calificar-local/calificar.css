@@ -1,0 +1,17 @@
+/* Container principal */
+.calificaciones-container {
+    min-height: 100vh;
+    background-color: #f7fafc;
+    padding-bottom: 80px;
+}
+
+/* Header */
+.calificaciones-header {
+    background-color: white;
+    padding: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+/* Content */
+.calificaciones-content {
+    padding: 1rem;
+}

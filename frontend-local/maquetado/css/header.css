@@ -1,0 +1,115 @@
+/* -------> Vista Desktop */
+.header-pagina{
+    background-color: var(--color-secundario);
+    height: 3.5rem;
+    width: 100%;
+}
+
+/* Alineado general de barra-navegacion */
+.barra-navegacion {                     
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.3rem;                   /* Agrego padding a la barra para dar + espacio al estilo del hover de los links */
+}
+
+/* Alineado de los links de barra-navegacion */
+.ul-links {                  
+    display: flex;
+    justify-content: flex-end;
+    gap: 3rem;
+    flex: 1;           /* le permito crecer para ocupar todo el espacio disponible  */
+    margin: 1rem;
+}
+
+/* Estilo para el hover de los links-navegacion del header */
+.links-navegacion {
+    border-radius: 5px;
+    padding: 0.5rem;                    /* Padding para ver el box shadow */
+    transition: box-shadow 0.3s;        /* Para que no aparezca de golpe el sombreado*/
+}
+
+.iconos-navegacion,
+.hamburguesa {
+    display: none;
+}
+
+/* Formato icono+titulo (izq) */
+.container-logo {           
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 1rem;
+    gap: 1rem;             
+}
+
+.logo-app {
+    border: solid 3px var(--color-principal);
+    border-radius: 50%;
+    background-color: var(--color-principal);
+}
+
+/* Formato icono usuario (der) */
+.container-usuario {         
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0 1rem;
+}
+
+.usuario-logo {
+    width: 2.4rem;
+}
+
+/* -------> Vista Tablet*/
+@media (min-width: 401px) and (max-width: 769px) {  
+    .barra-navegacion{              /* Saco padding de hover para vista table */
+        padding: 0;
+    }
+
+    .ul-links {
+        display: none;
+    }
+
+    .hamburguesa {
+        display: flex;
+        margin: 0 1rem;
+    }
+
+    .usuario-logo {          
+        margin: 0.5rem;
+    }
+}
+
+/* -------> Vista Mobile*/
+@media (max-width: 400px) {                         
+    .header-pagina{
+        position: fixed;
+        width : 100%;
+        bottom: 0;
+        left: 0;
+    }
+
+    .hamburguesa,
+    .container-usuario,
+    .links-navegacion > span,
+    .container-logo > h4 {
+        display: none;
+    }
+    
+    .links-navegacion,
+    .barra-navegacion{          /* Saco padding de hover para la vista mobile */
+        padding: 0;
+    }
+
+    .links-navegacion > img {
+        display: flex;
+    }
+
+    .barra-navegacion {
+        height: 3.5rem;
+    }    
+}
+
+
+

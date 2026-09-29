@@ -1,0 +1,33 @@
+.modal-ingredientes {
+    max-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.cargando, .sin-ingredientes {
+  text-align: center;
+  padding: 2rem;
+  color: var(--color-texto-secundario)
+}
+
+.lista-ingredientes {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.txtColumna {
+    text-align: center;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+}
+
+.contador {
+  color: var(--color-parrafos);
+  font-size: .9rem;
+}

@@ -1,0 +1,45 @@
+.main-checkout {
+    padding: 0.5rem;
+}
+
+.container-checkout{
+    padding: 0.5rem;
+}
+
+.checkout-header {
+    display: flex;
+    padding-bottom: 0.5rem;
+}
+
+.checkout-titulo{
+    text-align: center;
+    width: 100%;
+}
+
+.imagen-restaurante{
+    border-radius: 8px;
+    width: 3rem;
+}
+
+.restaurante-figure{
+    display: flex;
+    gap: 0.5rem;
+}
+
+.texto-secundario-checkout{
+    color: rgb(203, 90, 71);
+    font-size: 13px;
+}
+
+.container-resumen{
+    display: flex;
+    justify-content: space-between;
+}
+
+.precio-resumen {
+    font-size: 13px;
+}
+
+.boton-checkout {
+    width: 100%;
+}

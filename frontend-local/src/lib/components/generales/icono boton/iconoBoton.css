@@ -1,0 +1,10 @@
+
+/* Iconos que son botones de accion */
+
+/* Estilo basico, sin icono */
+.iconoBoton-basico {
+  background: none;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+}

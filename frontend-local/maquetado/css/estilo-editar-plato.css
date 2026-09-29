@@ -1,0 +1,91 @@
+/* Estilos de la vista en general */
+main {
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.titulo {
+  margin-left: 1rem;
+}
+
+.subtitulo {
+  color: var(--color-texto-secundario);
+}
+
+.contenedor-general_especifico {
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+}
+
+/* Seccion: Descripción del plato */
+.editar-plato {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 3rem;
+  padding: 1rem;
+}
+
+.textarea-descripcion {
+  width: 100%;
+  height: 8rem; 
+  resize: none; 
+}
+
+.editar-plato__imagen {
+  width: 100%;
+  height: auto;
+  border-radius: 2rem;
+  overflow: hidden; /* Se recorta lo que "sobra" */
+}
+
+.foto{
+  height: 100%;
+  border-radius: 2rem;
+  object-fit: cover; /* Ocupa todo sin deformarse */
+}
+
+/* ############################## */
+
+/* Seccion: Costos del plato */
+.switch-separacion {
+  justify-content: space-between;
+}
+
+/* ############################## */
+
+/* Seccion: Detalle de los ingredientes - TABLA */
+.contenedor_titulo-span{
+  display: flex;
+  align-items: center;
+  gap: 0 1rem;
+  margin-bottom: 1rem;
+}
+
+.icono {
+    text-align: center;
+}
+
+/* ############################## */
+
+/* Botones - cuestiones especificas */
+    /* Si los botones estan juntos tienen otra ubicación */
+.botones-juntos {           
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.7rem;
+}
+
+/* ############################## */
+
+@media (max-width: 400px) {  
+  .botones-juntos {
+    justify-content: space-between;
+  }
+
+  .subtitulo-label {
+    display: none;
+  }
+}

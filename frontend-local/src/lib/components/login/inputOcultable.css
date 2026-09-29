@@ -1,0 +1,55 @@
+.contenedor-password {
+    position: relative;
+    margin: auto;
+    .label-input input {
+      display: block;
+      padding: 0.75rem;
+      padding-right: 3rem;
+      width: 90%;
+      margin: auto;
+      box-sizing: border-box;
+    }
+    .label-input label {
+      display: block;
+      color: var(--color-texto-primario);
+      margin-left: 5%;
+    }
+  }
+
+  .base-toggle-password {
+    position: absolute;
+    right: 6%;
+    top: 50%;
+    transform: translateY(20%);
+    width: 30px;
+    height: 30px;
+    margin: 0;
+  }
+
+  .icono-ojo {
+    width: 30px;
+    height: 30px;
+    background-image: url('$lib/assets/eye.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    transition: background-image 0.3s ease;
+  }
+
+  .icono-ojo.mostrar {
+    background-image: url('$lib/assets/eye-slash.svg');
+  }
+
+  .toggle-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .toggle-button:hover {
+    box-shadow: none;
+  }

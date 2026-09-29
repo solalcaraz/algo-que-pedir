@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú</title>
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="/css/menu.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/botones.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nata+Sans:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header-pagina">
+            <nav class="barra-navegacion"> <!-- Toda la barra de navegacion del header -->
+                <a href="/" class="container-logo">
+                    <img class="logo-app" src="../assets/logo.svg"/>
+                    <h4>Algo que Pedir</h4>  
+                </a>
+
+                <ul class="ul-links"> <!-- Lista de enlaces de navegacion -->
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="../assets/carrito.svg"/>
+                            <span>Pedidos</span>
+                        </a>
+                    </li>
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="../assets/menu.svg"/>
+                            <span>Menu</span>
+                        </a>
+                    </li>
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="../assets/ingredientes.svg"/>
+                            <span>Ingredientes</span>
+                        </a>
+                    </li>
+                    <li class="items-navegacion">
+                        <a class="links-navegacion" href="#">
+                            <img class="iconos-navegacion" src="../assets/usuario.svg"/>
+                            <span>Cuenta</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                
+                <div class="container-usuario">
+                    <div class="hamburguesa">
+                        <img class="hamburguesa-icono" src="../assets/hamburguesa-menu.svg"/>
+                    </div>
+                    <img class="usuario-logo" src="../assets/usuario-chica.png"/>
+                </div>
+            </nav>
+    </header>    
+    <main class="menu-container main-vista">
+        <header class="titulo-boton">
+            <h1>Gestión del Menú</h1>
+            <button class="boton-primario">Agregar nuevo plato</button>
+        </header>
+        <section class="contenedor-general">
+            <h2>Platos Disponibles</h2>
+            <ul class="lista-menu">
+                <li class="item-menu">
+                    <figure class="detalles-menu">
+                        <img src="assets/pasta-cremosa.png" class="imagen-menu">
+                        <figcaption>
+                            <p>Pasta Cremosa</p>
+                            <p class="descripcion-plato">Deliciosa pasta con salsa cremosa</p>
+                        </figcaption>
+                    </figure>
+                    <div class="precio-menu">
+                        <span>$12.99</span>
+                    </div>
+                </li>
+                <li class="item-menu">
+                    <figure class="detalles-menu">
+                        <img src="assets/alitas-picantes.png" class="imagen-menu">
+                        <figcaption>
+                            <p>Alitas Picantes</p>
+                            <p class="descripcion-plato">Alitas de pollo picantes con salsa para mojar</p>
+                        </figcaption>
+                    </figure>
+                    <div class="precio-menu">
+                        <span>$9.99</span>
+                    </div>
+                </li>
+                <li class="item-menu">
+                    <figure class="detalles-menu">
+                        <img src="assets/ensalada-huerta.png" class="imagen-menu">
+                        <figcaption>
+                            <p>Ensalada de la Huerta</p>
+                            <p class="descripcion-plato">Ensalada fresca con hojas mixtas y vinagreta</p>
+                        </figcaption>
+                    </figure>
+                    <div class="precio-menu">
+                        <span>$7.50</span>
+                    </div>
+                </li>
+                <li class="item-menu">
+                    <figure class="detalles-menu">
+                        <img src="assets/hamburguesa-con-queso.png" class="imagen-menu">
+                        <figcaption>
+                            <p>Hamburguesa con Queso</p>
+                            <p class="descripcion-plato">Hamburguesa clásica con queso y papas fritas</p>
+                        </figcaption>
+                    </figure>
+                    <div class="precio-menu">
+                        <span>$10.50</span>
+                    </div>
+                </li>
+                <li class="item-menu">
+                    <figure class="detalles-menu">
+                        <img src="assets/pescado-papas-fritas.png" class="imagen-menu">
+                        <figcaption>
+                            <p>Pescado y Papas Fritas</p>
+                            <p class="descripcion-plato">Pescado crujiente y papas fritas con salsa tártara</p>
+                        </figcaption>
+                    </figure>
+                    <div class="precio-menu">
+                        <span>$11.75</span>
+                    </div>
+                </li>
+                <li class="item-menu">
+                    <figure class="detalles-menu">
+                        <img src="assets/pizza-vegetariana.png" class="imagen-menu">
+                        <figcaption>
+                            <p>Pizza Vegetariana</p>
+                            <p class="descripcion-plato">Pizza vegetariana con ingredientes variados</p>
+                        </figcaption>
+                    </figure>
+                    <div class="precio-menu">
+                        <span>$14.25</span>
+                    </div>
+                </li>
+                <li class="item-menu">
+                    <figure class="detalles-menu">
+                        <img src="assets/pastel-chocolate.png" class="imagen-menu">
+                        <figcaption>
+                            <p>Pastel de Chocolate</p>
+                            <p class="descripcion-plato">Pastel de chocolate rico con glaseado</p>
+                        </figcaption>
+                    </figure>
+                    <div class="precio-menu">
+                        <span>$6.50</span>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>
