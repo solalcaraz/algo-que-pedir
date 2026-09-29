@@ -34,6 +34,7 @@ jobs:
           cache-dependency-path: frontend-local/yarn.lock
       - run: yarn install --frozen-lockfile
       - run: yarn lint
+      - run: yarn run check
       - run: yarn test:unit --run
       - run: yarn build
 
