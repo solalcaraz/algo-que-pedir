@@ -1,0 +1,59 @@
+/* HOJA DE ESTILOS GENERALES */
+
+ * {                /*Diferencia entre * y agregar margin/padding al body*/
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --color-principal: #FF0000;
+    --color-secundario: #FFFFFF;
+    --color-texto-primario: #000000;
+    --color-texto-secundario: #3b3b3b;
+    --color-bordes: #dddddd;
+    --color-fondo: whitesmoke;
+    --color-parrafos: #97749d;
+}
+
+/* General - tipografía y tamaño*/
+body {
+    font-family: "Nata Sans", sans-serif;
+    background-color: var(--color-fondo);
+}
+
+/* Estilo para los links */
+a {
+    text-decoration: none;
+    color: var(--color-texto-primario)
+}
+
+/* Estilo para las listas sin puntitos */
+ul {        
+    list-style-type: none;
+}
+
+/* Estilo para el contenedor general de todos los contenidos
+    redefinir en cada archivo propio las dimensiones */
+.contenedor-general{
+    background-color: var(--color-secundario);
+    border-radius: 20px; 
+    padding: 1rem;
+}
+
+/* Para que solo se apliquen los estilos si el dispositivo lo permite */
+@media (hover: hover) {
+        /* Sombra para el boton */
+    button:hover {
+        box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.2);
+    }
+        /* Sombra para los elementos del nav */
+    .links-navegacion:hover {
+        box-shadow: 0 0 10px rgb(214, 214, 214);
+    }
+}
+
+@media (max-width: 400px) {             /*Solucion a overlapping de footer con la vista*/
+    .main-vista {                        /*TODOS deberiamos tener un main con clase main-vista en el html */
+        margin-bottom: 4.5rem;
+    }
+}

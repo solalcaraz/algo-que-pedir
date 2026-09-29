@@ -1,0 +1,22 @@
+.contenedor-tabla {
+    border: 1px solid var(--color-bordes);
+    border-radius: 20px;
+    background-color: var(--color-secundario);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+td, th {
+    text-align: start;
+    border-bottom: 1px solid var(--color-bordes);
+    padding: 0.5rem;
+}
+
+  /* Sin borde inferior en última fila */
+tr:last-child td { 
+  border-bottom: none;
+}
