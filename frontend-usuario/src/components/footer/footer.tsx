@@ -10,7 +10,7 @@ import estrellaPuntuacion  from '/estrellaPuntuacion.svg'
 const linksFooter = [
     { link: '/home', label:'Inicio', icon: home },
     { link: '/detalle-pedido/', label: 'Pedidos', icon: ticketRecibo },
-    { link: '/calificar-local  ', label: 'Calificar', icon: estrellaPuntuacion },
+    { link: '/calificar-local', label: 'Calificar', icon: estrellaPuntuacion },
     { link: '/perfil-usuario', label: 'Perfil', icon: perfil }
 ]
 
