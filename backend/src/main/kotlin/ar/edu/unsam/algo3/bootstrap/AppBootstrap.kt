@@ -222,8 +222,8 @@ class AppBootstrap(
             "https://64.media.tumblr.com/0d4da77f3c775637e86f11ff07d0fd07/tumblr_p4d8p0FTBr1qz7gc6o1_640.jpg",
             1.5,
             1.0,
-            usuario = "local3",
-            password = HashUtils.hash53("local3")
+            usuario = "local5",
+            password = HashUtils.hash53("local5")
         ).apply {
             agregarMedioDePago(MedioDePago.EFECTIVO)
             agregarMedioDePago(MedioDePago.QR)
