@@ -17,9 +17,9 @@ export class Local {
   porcentajeAutor = $state<number>(0)
   usuario = getUsuarioDelLocal()
   metodosDePago = $state<Record<MetodoDePago, boolean>>({
+    EFECTIVO: false,
     QR: false,
-    Efectivo: false,
-    Transferencia: false
+    TARJETA: false
   })
 
   // Setters - puntualmente para que funcione bien la reactividad al momento de descartar cambios
@@ -60,11 +60,7 @@ export class Local {
   }
 
   prepararDTO(): LocalDTO {
-    const medios: MetodoDePago[] = []
-
-    if (this.metodosDePago.QR) medios.push('QR' as MetodoDePago)
-    if (this.metodosDePago.Efectivo) medios.push('EFECTIVO' as MetodoDePago)
-    if (this.metodosDePago.Transferencia) medios.push('TRANSFERENCIA_BANCARIA' as MetodoDePago)
+    const medios = (Object.keys(this.metodosDePago) as MetodoDePago[]).filter((medio) => this.metodosDePago[medio])
 
     return {
       idLocal: this.idLocal ?? 1,

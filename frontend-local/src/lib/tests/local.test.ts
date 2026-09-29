@@ -19,7 +19,7 @@ describe('Dado el perfil de un local', () => {
         longitud: 10,
         porcentajeSobreCadaPlato: 3,
         porcentajeRegaliasDeAutor: 3,
-        mediosDePago: ['QR', 'TRANSFERENCIA_BANCARIA'],
+        mediosDePago: ['QR', 'TARJETA'],
       }
     }
     render(Page, { props: { data: mockData } })
@@ -57,40 +57,40 @@ describe('Dado el perfil de un local', () => {
   })
 }) // Fin test Perfil del Local - Toast
 
-describe('Restaurar valores originales', () => {
+describe('Medios de pago del local', () => {
   let local: Local
 
   beforeEach(() => {
     local = new Local()
-
-    // Datos del local, como si los cargara el backend
     local.idLocal = 1
-    local.nombreLocal = 'Taberna de Moe'
-    local.urlImagen = 'https://www.clarin.com/img/2017/10/05/SkWTevV3-_1200x0.jpg'
-    local.direccion = 'Av. Siempre Viva'
-    local.altura = 742
-    local.porcentajeApp = 3
-    local.porcentajeAutor = 3
-    local.metodosDePago = { QR: true, Efectivo: false, Transferencia: true }
-
-    // Copia original para después restaurarla
-    local.copiaOriginal()
   })
 
-  it('debería restaurar los valores originales luego de modificar los campos', () => {
-    local.nombreLocal = 'Starbucks'
-    local.porcentajeApp = 99
-    local.metodosDePago.QR = false
+  it('envía al backend los medios de pago tildados con los nombres de su enum', () => {
+    local.metodosDePago = { EFECTIVO: true, QR: false, TARJETA: true }
 
-    expect(local.nombreLocal).toBe('Starbucks')
+    expect(local.prepararDTO().mediosDePago).toEqual(['EFECTIVO', 'TARJETA'])
+  })
 
-    local.restaurarValores()
+  it('renderiza el perfil de un local que no acepta todos los medios de pago', () => {
+    const mockData = {
+      localDataBackend: {
+        idLocal: 1,
+        nombre: 'Taberna de Moe',
+        urlImagenLocal: 'https://www.clarin.com/img/2017/10/05/SkWTevV3-_1200x0.jpg',
+        direccion: 'Av. Siempre Viva',
+        altura: 742,
+        latitud: 10,
+        longitud: 10,
+        porcentajeSobreCadaPlato: 3,
+        porcentajeRegaliasDeAutor: 3,
+        mediosDePago: ['QR']
+      }
+    }
+    render(Page, { props: { data: mockData } })
 
-    expect(local.porcentajeApp).toBe(3)
-    expect(local.metodosDePago.QR).toBe(true)
-    expect(local.nombreLocal).toBe('Taberna de Moe')
-
-    
+    expect(screen.getByLabelText('QR')).toBeChecked()
+    expect(screen.getByLabelText('Efectivo')).not.toBeChecked()
+    expect(screen.getByLabelText('Tarjeta')).not.toBeChecked()
   })
 })
 
@@ -109,7 +109,7 @@ describe('Dado el perfil de un local', () => {
         longitud: 10,
         porcentajeSobreCadaPlato: 3,
         porcentajeRegaliasDeAutor: 3,
-        mediosDePago: ['QR', 'TRANSFERENCIA_BANCARIA'],
+        mediosDePago: ['QR', 'TARJETA'],
       }
     }
     render(Page, { props: { data: mockData } })
@@ -130,7 +130,9 @@ describe('Dado el perfil de un local', () => {
     await fireEvent.click(botonDescartar)
 
     expect(currentToast?.message).toBe('Cambios descartados')
+    expect(nombreInput.value).toBe('Taberna de Moe')
 
+    unsubscribe()
     vi.useRealTimers()
   })
 }) // Fin test mensajes del toast
