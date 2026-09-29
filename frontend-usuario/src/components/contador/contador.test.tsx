@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { userEvent } from '@testing-library/user-event'
-import { describe, expect, test } from 'vitest'
+import { describe, expect, test, vi } from 'vitest'
 import { Contador } from './contador'
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react'
 
@@ -56,6 +56,20 @@ describe('Contador', () => {
     await user.click(botonRestar)
     
     expect(screen.getByText('0')).toBeTruthy()
+  })
+
+  test('avisa el nuevo valor para que el formulario lo pueda guardar', async () => {
+    const user = userEvent.setup()
+    const onChange = vi.fn()
+    render(
+      <ChakraProvider value={defaultSystem}>
+        <Contador valor={5} onChange={onChange} />
+      </ChakraProvider>
+    )
+
+    await user.click(screen.getAllByRole('button')[1])
+
+    expect(onChange).toHaveBeenCalledWith(6)
   })
 
   test('los botones se deshabilitan en los límites', () => {

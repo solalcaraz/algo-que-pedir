@@ -189,7 +189,7 @@ export const CriteriosBusqueda = () => {
                                         <CheckboxCard.Addon>
                                             <HStack justifyContent='space-between'>
                                                 <Text>Distancia máxima (km)</Text>
-                                                <Contador valor={usuario.distancia} />
+                                                <Contador valor={distancia} onChange={setDistancia} />
                                             </HStack>
                                         </CheckboxCard.Addon>
                                     </Collapsible.Content>
