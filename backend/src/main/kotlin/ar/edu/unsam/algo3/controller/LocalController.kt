@@ -62,7 +62,7 @@ class LocalController(private val localService: LocalService) {
 
     @GetMapping("/local/{id}")
     fun obtenerLocalClientePorId(@PathVariable id: Int): LocalClienteDTO {
-        return localService.obtenerLocalPorId(id).toClienteDTO()
+        return localService.obtenerLocalPorId(id).toClienteDTO(localService.cantidadDePedidos(id))
     }
 
     @GetMapping("/distancia")

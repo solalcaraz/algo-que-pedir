@@ -80,4 +80,14 @@ class LocalControllerTest(@Autowired val mockMvc: MockMvc) {
             .andExpect(jsonPath("$.porcentajeRegaliasDeAutor").value(3))
     }
 
+    @Test
+    fun `el local que ve el usuario incluye la cantidad de pedidos`() {
+        given(localService.obtenerLocalPorId(2)).willReturn(crearLocalMock())
+        given(localService.cantidadDePedidos(2)).willReturn(7)
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/local/2"))
+            .andExpect(status().isOk)
+            .andExpect(jsonPath("$.cantidadPedidos").value(7))
+    }
+
 } // Fin LocalControllerTest

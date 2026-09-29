@@ -89,7 +89,7 @@ export const DetalleLocal = () => {
                 rating: localData.rating,
                 cantidadReviews: localData.cantidadReviews,
                 reviews: localData.reviews,
-                pedidos: 0 // el backend todavía no expone la cantidad de pedidos del local
+                pedidos: localData.cantidadPedidos
             })
 
             setPlatos(platosData.map((plato: PlatoJSON) => Plato.fromJSON(plato)))
@@ -140,7 +140,7 @@ export const DetalleLocal = () => {
                     <HStack fontSize="sm">
                         <FaStar color="#f9d44dff" />
                         <Text>
-                            {`${local.rating.toFixed(2)} (${local.cantidadReviews}+ reviews) · ${local.pedidos} pedidos`}
+                            {`${local.rating.toFixed(2)} (${local.cantidadReviews}+ reviews) · ${local.pedidos} ${local.pedidos === 1 ? 'pedido' : 'pedidos'}`}
                         </Text>
                     </HStack>
                 </Flex>

@@ -6,7 +6,9 @@ import ar.edu.unsam.algo3.Local
 import ar.edu.unsam.algo3.Direccion
 import ar.edu.unsam.algo3.Plato
 import org.springframework.stereotype.Service
+import ar.edu.unsam.algo3.EnumEstadosPedido
 import ar.edu.unsam.algo3.repositorios.LocalRepositorio
+import ar.edu.unsam.algo3.repositorios.PedidoRepositorio
 import ar.edu.unsam.algo3.repositorios.UsuarioRepositorio
 import java.util.Locale
 
@@ -15,7 +17,8 @@ import java.util.Locale
 class LocalService(
     private val localRepositorio: LocalRepositorio,
     private val platoService : PlatoService,
-    private val usuarioRepositorio: UsuarioRepositorio
+    private val usuarioRepositorio: UsuarioRepositorio,
+    private val pedidoRepositorio: PedidoRepositorio
 ) {
 
     fun obtenerLocalPorId(id: Int): Local {
@@ -56,6 +59,10 @@ class LocalService(
         val distancia = local.direccion.distanciaCon(usuario.direccion)
         return String.format(Locale.US, "%.2f km", distancia)
     }
+
+    // Los cancelados no cuentan: el número se muestra a los usuarios como referencia de cuánto se pide al local
+    fun cantidadDePedidos(idLocal: Int): Int =
+        pedidoRepositorio.findAll().count { it.local.id == idLocal && it.estadoDelPedido != EnumEstadosPedido.CANCELADO }
 
     fun usuarioEsCercano(local: Local, idUsuario: Int): Boolean {
         val usuario = usuarioRepositorio.getById(idUsuario)

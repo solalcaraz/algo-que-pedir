@@ -53,4 +53,5 @@ export type LocalJSON = {
     reviews: string[],
     tarifaEntrega: number,
     recargosMedioDePago: Record<MedioDePago, number>
+    cantidadPedidos: number
 }
